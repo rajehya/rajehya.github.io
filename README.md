@@ -6,7 +6,7 @@ A static portfolio website for Yasser Alrajeh's enterprise infrastructure, cloud
 
 Replace every occurrence of:
 
-- `yourusername` in `index.html` (GitHub profile link)
+- Verify the LinkedIn profile URL in `index.html` and `projects/azure-governance.html`.
 - The sample About section text in `index.html`
 
 ## Publish with GitHub Pages
