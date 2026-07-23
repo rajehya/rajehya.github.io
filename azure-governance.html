@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Azure Governance Enterprise Lab — subscription-level governance project by Yasser Alrajeh covering naming, tagging, Azure Policy, RBAC, resource locks, and cost governance." />
+  <title>Azure Governance Enterprise Lab | Yasser Alrajeh</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="Homepage">
+        <span class="brand-mark">YA</span>
+        <span>Yasser Alrajeh</span>
+      </a>
+      <nav>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <a class="back-link" href="../index.html">← Back to Portfolio</a>
+        <p class="eyebrow">AZURE · GOVERNANCE · ENTERPRISE LAB</p>
+        <h1>Azure Governance Enterprise Lab</h1>
+        <p class="hero-copy">
+          A subscription-level governance implementation for a simulated organization,
+          covering naming standards, tagging, Azure Policy, RBAC, resource locks,
+          and cost management — designed, deployed, and validated end to end.
+        </p>
+        <div class="project-actions">
+          <a class="button primary" href="#implementation">View Implementation</a>
+          <a class="button secondary" href="#validation">View Validation</a>
+        </div>
+
+        <div class="project-meta">
+          <div>
+            <span>Scope</span>
+            <strong>Subscription-level</strong>
+          </div>
+          <div>
+            <span>Environments</span>
+            <strong>Production &amp; Development</strong>
+          </div>
+          <div>
+            <span>Regions</span>
+            <strong>Qatar Central · UAE North</strong>
+          </div>
+          <div>
+            <span>Status</span>
+            <strong>Completed</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-layout">
+        <aside class="toc">
+          <strong>On this page</strong>
+          <a href="#overview">Overview</a>
+          <a href="#planning">1. Planning &amp; Design</a>
+          <a href="#implementation">2. Implementation</a>
+          <a href="#validation">3. Validation &amp; Compliance</a>
+          <a href="#summary">4. Project Summary</a>
+        </aside>
+
+        <div class="project-content">
+
+          <section id="overview">
+            <p class="eyebrow">OVERVIEW</p>
+            <h2>Project overview</h2>
+            <p>
+              YCS Enterprise Lab represents a small-to-medium organization planning to host
+              infrastructure in Microsoft Azure. The organization needed two logically separated
+              environments — Production and Development — deployed under a consistent governance
+              model: standardized naming, mandatory tags, approved regions, protection against
+              accidental deletion, controlled access, and proactive cost monitoring.
+            </p>
+
+            <div class="check-grid">
+              <div class="check-card">
+                <h3>In scope</h3>
+                <p>Resource groups, naming standards, tagging strategy, custom &amp; built-in Azure
+                  Policy, location restrictions, tag inheritance, resource locks, budgets &amp; cost
+                  alerts, RBAC, and compliance validation.</p>
+              </div>
+              <div class="check-card">
+                <h3>Out of scope</h3>
+                <p>Virtual machines, Microsoft Entra hybrid identity, Azure Backup &amp; Site
+                  Recovery, Azure Monitor, Defender for Cloud, Sentinel, application/database
+                  deployment, and production-grade connectivity.</p>
+              </div>
+            </div>
+
+            <div class="architecture-box">
+              <h3>Business requirements</h3>
+              <ul class="clean-list">
+                <li><strong>Environment separation</strong> — Production and Development resources logically separated.</li>
+                <li><strong>Standardized naming</strong> — every resource follows an identifiable naming convention.</li>
+                <li><strong>Regional control</strong> — deployments restricted to Qatar Central or UAE North.</li>
+                <li><strong>Tag governance</strong> — mandatory metadata: Environment, Department, Owner, Cost Center, Criticality, Project.</li>
+                <li><strong>Environment validation</strong> — the Environment tag accepts only Production or Development.</li>
+                <li><strong>Tag inheritance</strong> — child resources inherit the Environment tag from their parent resource group when missing.</li>
+                <li><strong>Resource protection</strong> — Production resources protected against accidental deletion.</li>
+                <li><strong>Cost control</strong> — monthly budget with cost notifications.</li>
+                <li><strong>Access governance</strong> — administrative access follows RBAC and least-privilege principles.</li>
+                <li><strong>Compliance visibility</strong> — Azure Policy compliance reviewed and documented.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="planning">
+            <p class="eyebrow">SECTION 1</p>
+            <h2>Planning &amp; Design</h2>
+            <p>
+              The Planning and Design phase established the governance model, resource structure,
+              naming standards, deployment boundaries, and logical architecture before any technical
+              implementation began — separating Production and Development to improve resource
+              organization, operational control, cost visibility, policy enforcement, security, and
+              future scalability.
+            </p>
+
+            <div class="sub-block">
+              <h3>1.4 Subscription design</h3>
+              <p>
+                A single Azure subscription acts as the primary governance boundary for policy
+                assignments, RBAC, cost management, budgets and alerts, resource inventory, and
+                compliance reporting. Production and Development are separated through resource
+                groups rather than separate subscriptions, since this is a controlled enterprise lab.
+                In a larger production environment, separate subscriptions could instead be used for
+                Production, Development, Security, Shared Services, Connectivity, and Disaster Recovery.
+              </p>
+              <div class="project-meta">
+                <div><span>Subscription purpose</span><strong>Governance Enterprise Lab</strong></div>
+                <div><span>Governance scope</span><strong>Subscription level</strong></div>
+                <div><span>Production region</span><strong>Qatar Central</strong></div>
+                <div><span>Development region</span><strong>UAE North</strong></div>
+              </div>
+            </div>
+
+            <div class="sub-block">
+              <h3>1.5 Resource hierarchy</h3>
+              <p>The hierarchy centralizes policy enforcement at subscription scope while giving each environment its own lifecycle, ownership, and cost visibility.</p>
+              <div class="architecture-box">
+                <pre class="code-block">Microsoft Entra Tenant
+└── Azure Subscription 1
+    ├── Governance Controls
+    │   ├── Azure Policy
+    │   ├── Azure RBAC
+    │   ├── Resource Locks
+    │   ├── Cost Management
+    │   └── Compliance
+    │
+    ├── rg-ycs-prod-core-01           rg-ycs-dev-core-01
+    │   ├── vnet-ycs-prod-01          ├── vnet-ycs-dev-01
+    │   ├── snet-app-prod-01          ├── snet-app-dev-01
+    │   ├── nsg-ycs-prod-01           ├── nsg-ycs-dev-01
+    │   ├── pip-ycs-prod-01           ├── pip-ycs-dev-01
+    │   └── stycsprod01               └── stycsdev01</pre>
+              </div>
+            </div>
+
+            <div class="sub-block">
+              <h3>1.6 Naming convention</h3>
+              <p>Every resource follows the same predictable pattern:</p>
+              <div class="architecture-box">
+                <pre class="code-block">&lt;resource-type&gt;-&lt;organization&gt;-&lt;environment&gt;-&lt;workload&gt;-&lt;instance&gt;</pre>
+              </div>
+              <table class="data-table">
+                <thead><tr><th>Resource type</th><th>Production name</th><th>Development name</th></tr></thead>
+                <tbody>
+                  <tr><td>Resource Group</td><td>rg-ycs-prod-core-01</td><td>rg-ycs-dev-core-01</td></tr>
+                  <tr><td>Virtual Network</td><td>vnet-ycs-prod-01</td><td>vnet-ycs-dev-01</td></tr>
+                  <tr><td>Subnet</td><td>snet-app-prod-01</td><td>snet-app-dev-01</td></tr>
+                  <tr><td>Network Security Group</td><td>nsg-ycs-prod-01</td><td>nsg-ycs-dev-01</td></tr>
+                  <tr><td>Public IP Address</td><td>pip-ycs-prod-01</td><td>pip-ycs-dev-01</td></tr>
+                  <tr><td>Storage Account</td><td>stycsprod01</td><td>stycsdev01</td></tr>
+                </tbody>
+              </table>
+              <p class="small-note">Storage account names are globally unique, lowercase alphanumeric only, and cannot include hyphens — so they intentionally break from the standard pattern.</p>
+            </div>
+
+            <div class="sub-block">
+              <h3>1.7 Environment &amp; network design</h3>
+              <table class="data-table">
+                <thead><tr><th>Component</th><th>Production</th><th>Development</th></tr></thead>
+                <tbody>
+                  <tr><td>Virtual Network</td><td>vnet-ycs-prod-01</td><td>vnet-ycs-dev-01</td></tr>
+                  <tr><td>Address space</td><td>10.10.0.0/16</td><td>10.20.0.0/16</td></tr>
+                  <tr><td>Subnet</td><td>snet-app-prod-01 (10.10.1.0/24)</td><td>snet-app-dev-01 (10.20.1.0/24)</td></tr>
+                  <tr><td>Region</td><td>Qatar Central</td><td>UAE North</td></tr>
+                  <tr><td>Criticality</td><td>High</td><td>Medium</td></tr>
+                </tbody>
+              </table>
+              <p class="small-note">Non-overlapping address spaces allow future connectivity between the environments without conflicts.</p>
+            </div>
+
+            <div class="sub-block">
+              <h3>1.8 Tagging design</h3>
+              <p>The Resource Group acts as the authoritative source for the Environment tag; Azure Policy inherits it automatically onto child resources that don't already carry it. Approved Environment values are restricted to <strong>Production</strong> or <strong>Development</strong> — preventing inconsistent values like "Prod", "DEV", "Testing", or "Production01".</p>
+              <table class="data-table">
+                <thead><tr><th>Tag</th><th>Production value</th><th>Development value</th></tr></thead>
+                <tbody>
+                  <tr><td>Environment</td><td>Production</td><td>Development</td></tr>
+                  <tr><td>Department</td><td>IT</td><td>IT</td></tr>
+                  <tr><td>Owner</td><td>Yasser</td><td>Yasser</td></tr>
+                  <tr><td>CostCenter</td><td>CC-1001</td><td>CC-1001</td></tr>
+                  <tr><td>Criticality</td><td>High</td><td>Medium</td></tr>
+                  <tr><td>Project</td><td>EnterpriseLab</td><td>EnterpriseLab</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="sub-block">
+              <h3>1.9 Governance control design</h3>
+              <div class="step-list">
+                <div class="step"><span>01</span><div><h3>Custom Azure Policy</h3><p>Allow only Production and Development Environment values, preventing invalid classification.</p></div></div>
+                <div class="step"><span>02</span><div><h3>Tag inheritance policy</h3><p>Automatically inherits the Environment tag from the parent resource group.</p></div></div>
+                <div class="step"><span>03</span><div><h3>Allowed Locations</h3><p>Restricts deployments to Qatar Central and UAE North only.</p></div></div>
+                <div class="step"><span>04</span><div><h3>Resource Lock</h3><p>CanNotDelete lock applied to the Production resource group.</p></div></div>
+                <div class="step"><span>05</span><div><h3>Budget &amp; cost alerts</h3><p>Monthly budget with notifications at 50%, 80%, and 100% thresholds.</p></div></div>
+                <div class="step"><span>06</span><div><h3>RBAC</h3><p>Owner, Contributor, and Reader roles applied under least-privilege.</p></div></div>
+              </div>
+            </div>
+
+            <div class="callout">
+              <strong>Design decision —</strong> a single subscription with resource-group-level separation kept the lab controlled and easy to reason about, while every control (naming, tags, policy, locks, cost, RBAC) was still designed to scale cleanly into a multi-subscription enterprise landing zone later.
+            </div>
+          </section>
+
+          <section id="implementation">
+            <p class="eyebrow">SECTION 2</p>
+            <h2>Implementation</h2>
+            <p>
+              Step-by-step configuration of the Azure environment in the Azure Portal, following the
+              design established in Section 1 — from initial resource groups through networking,
+              tagging, policy, locks, cost controls, and access management.
+            </p>
+
+        <div class="sub-block">
+          <h3>2.1 Azure Portal Environment</h3>
+          <p>The Azure Portal served as the primary interface for provisioning and managing all governance controls throughout this project.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-01.jpg" alt="Azure Portal home view showing the core services used throughout the project, including Resource Groups, Virtual Networks, Storage Accounts, Policy, and Cost Management." loading="lazy">
+            <figcaption><span>Fig. 01</span>Azure Portal home view showing the core services used throughout the project, including Resource Groups, Virtual Networks, Storage Accounts, Policy, and Cost Management.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.2 Resource Group Provisioning</h3>
+          <p>Two resource groups were provisioned to separate Production and Development workloads, in line with the environment design defined in Section 1.7.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-02.jpg" alt="Resource Groups blade prior to provisioning, confirming a clean subscription before deployment began." loading="lazy">
+            <figcaption><span>Fig. 02</span>Resource Groups blade prior to provisioning, confirming a clean subscription before deployment began.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-03.jpg" alt="Create Resource Group wizard -- Basics tab configured for rg-ycs-prod-core-01 in the Qatar Central region." loading="lazy">
+            <figcaption><span>Fig. 03</span>Create Resource Group wizard -- Basics tab configured for rg-ycs-prod-core-01 in the Qatar Central region.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-04.jpg" alt="Review + create validation passed for the Production resource group prior to deployment." loading="lazy">
+            <figcaption><span>Fig. 04</span>Review + create validation passed for the Production resource group prior to deployment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-05.jpg" alt="Deployment confirmation notification following successful creation of rg-ycs-prod-core-01." loading="lazy">
+            <figcaption><span>Fig. 05</span>Deployment confirmation notification following successful creation of rg-ycs-prod-core-01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-06.jpg" alt="Create Resource Group wizard -- Basics tab configured for rg-ycs-dev-core-01 in the UAE North region." loading="lazy">
+            <figcaption><span>Fig. 06</span>Create Resource Group wizard -- Basics tab configured for rg-ycs-dev-core-01 in the UAE North region.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-07.jpg" alt="Resource Groups list confirming both rg-ycs-prod-core-01 and rg-ycs-dev-core-01 were successfully provisioned." loading="lazy">
+            <figcaption><span>Fig. 07</span>Resource Groups list confirming both rg-ycs-prod-core-01 and rg-ycs-dev-core-01 were successfully provisioned.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.3 Virtual Network & Subnet Configuration</h3>
+          <p>Non-overlapping virtual networks were deployed for each environment, matching the address plan defined in Section 1.7.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-08.jpg" alt="Create Virtual Network -- Basics tab for vnet-ycs-prod-01, deployed inside rg-ycs-prod-core-01." loading="lazy">
+            <figcaption><span>Fig. 08</span>Create Virtual Network -- Basics tab for vnet-ycs-prod-01, deployed inside rg-ycs-prod-core-01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-09.jpg" alt="Address space configuration for the Production VNet, set to 10.10.0.0/16." loading="lazy">
+            <figcaption><span>Fig. 09</span>Address space configuration for the Production VNet, set to 10.10.0.0/16.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-10.jpg" alt="Subnet configuration for snet-app-prod-01, scoped to 10.10.1.0/24 within the Production VNet." loading="lazy">
+            <figcaption><span>Fig. 10</span>Subnet configuration for snet-app-prod-01, scoped to 10.10.1.0/24 within the Production VNet.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-11.jpg" alt="Create Virtual Network -- Basics tab for vnet-ycs-dev-01, deployed inside rg-ycs-dev-core-01." loading="lazy">
+            <figcaption><span>Fig. 11</span>Create Virtual Network -- Basics tab for vnet-ycs-dev-01, deployed inside rg-ycs-dev-core-01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-12.jpg" alt="Address space and subnet configuration for the Development VNet, set to 10.20.0.0/16 with snet-app-dev-01 at 10.20.1.0/24." loading="lazy">
+            <figcaption><span>Fig. 12</span>Address space and subnet configuration for the Development VNet, set to 10.20.0.0/16 with snet-app-dev-01 at 10.20.1.0/24.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.4 Network Security Groups</h3>
+          <p>A dedicated Network Security Group was associated with each environment to control inbound and outbound traffic at the subnet level.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-13.jpg" alt="Create Network Security Group -- nsg-ycs-prod-01, scoped to the Production resource group and region." loading="lazy">
+            <figcaption><span>Fig. 13</span>Create Network Security Group -- nsg-ycs-prod-01, scoped to the Production resource group and region.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-14.jpg" alt="NSG overview for nsg-ycs-prod-01 showing the default inbound and outbound security rules." loading="lazy">
+            <figcaption><span>Fig. 14</span>NSG overview for nsg-ycs-prod-01 showing the default inbound and outbound security rules.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-15.jpg" alt="Create Network Security Group -- nsg-ycs-dev-01, scoped to the Development resource group and region." loading="lazy">
+            <figcaption><span>Fig. 15</span>Create Network Security Group -- nsg-ycs-dev-01, scoped to the Development resource group and region.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-16.jpg" alt="NSG overview for nsg-ycs-dev-01 confirming successful deployment in the Development environment." loading="lazy">
+            <figcaption><span>Fig. 16</span>NSG overview for nsg-ycs-dev-01 confirming successful deployment in the Development environment.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.5 Public IP Addresses</h3>
+          <p>A static Public IP address was provisioned per environment to support future connectivity requirements.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-17.jpg" alt="Create Public IP address -- pip-ycs-prod-01, deployed in Qatar Central." loading="lazy">
+            <figcaption><span>Fig. 17</span>Create Public IP address -- pip-ycs-prod-01, deployed in Qatar Central.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-18.jpg" alt="Public IP overview confirming successful allocation for the Production environment." loading="lazy">
+            <figcaption><span>Fig. 18</span>Public IP overview confirming successful allocation for the Production environment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-19.jpg" alt="Create Public IP address -- pip-ycs-dev-01, deployed in UAE North." loading="lazy">
+            <figcaption><span>Fig. 19</span>Create Public IP address -- pip-ycs-dev-01, deployed in UAE North.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-20.jpg" alt="Public IP overview confirming successful allocation for the Development environment." loading="lazy">
+            <figcaption><span>Fig. 20</span>Public IP overview confirming successful allocation for the Development environment.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.6 Storage Accounts</h3>
+          <p>A Storage Account was deployed in each resource group. Naming follows the exception defined in Section 1.6, as Azure Storage Account names cannot include hyphens.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-21.jpg" alt="Create Storage Account -- stycsprod01, configured with Standard performance tier inside rg-ycs-prod-core-01." loading="lazy">
+            <figcaption><span>Fig. 21</span>Create Storage Account -- stycsprod01, configured with Standard performance tier inside rg-ycs-prod-core-01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-22.jpg" alt="Storage account overview confirming successful deployment of stycsprod01." loading="lazy">
+            <figcaption><span>Fig. 22</span>Storage account overview confirming successful deployment of stycsprod01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-23.jpg" alt="Create Storage Account -- stycsdev01, configured inside rg-ycs-dev-core-01." loading="lazy">
+            <figcaption><span>Fig. 23</span>Create Storage Account -- stycsdev01, configured inside rg-ycs-dev-core-01.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-24.jpg" alt="Storage account naming validation, confirming compliance with Azure\'s lowercase, hyphen-free naming requirement." loading="lazy">
+            <figcaption><span>Fig. 24</span>Storage account naming validation, confirming compliance with Azure\'s lowercase, hyphen-free naming requirement.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-25.jpg" alt="Storage account overview confirming successful deployment of stycsdev01." loading="lazy">
+            <figcaption><span>Fig. 25</span>Storage account overview confirming successful deployment of stycsdev01.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.7 Tagging Implementation</h3>
+          <p>The approved tagging schema from Section 1.8 was applied directly to the resource groups, which act as the authoritative source for inherited metadata.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-26.jpg" alt="Tags blade on the resource group, showing the approved metadata fields: Environment, Department, Owner, CostCenter, Criticality, and Project." loading="lazy">
+            <figcaption><span>Fig. 26</span>Tags blade on the resource group, showing the approved metadata fields: Environment, Department, Owner, CostCenter, Criticality, and Project.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-27.jpg" alt="Tag values applied to the Production resource group, including Environment: Production, Department: IT, Owner: Yasser, CostCenter: CC-1001, Criticality: High, and Project: EnterpriseLab." loading="lazy">
+            <figcaption><span>Fig. 27</span>Tag values applied to the Production resource group, including Environment: Production, Department: IT, Owner: Yasser, CostCenter: CC-1001, Criticality: High, and Project: EnterpriseLab.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.8 Azure Policy -- Definitions & Assignments</h3>
+          <p>Custom and built-in Azure Policy definitions were created and assigned at the subscription scope to enforce the governance standards defined in Section 1.9.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-28.jpg" alt="Azure Policy built-in definitions library, filtered to identify tag-governance controls." loading="lazy">
+            <figcaption><span>Fig. 28</span>Azure Policy built-in definitions library, filtered to identify tag-governance controls.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-29.jpg" alt="Assign Policy wizard configuring the Require-Environment-Tag assignment based on the built-in tag definition." loading="lazy">
+            <figcaption><span>Fig. 29</span>Assign Policy wizard configuring the Require-Environment-Tag assignment based on the built-in tag definition.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-30.jpg" alt="Policy Definitions blade listing the custom and built-in definitions used across the project." loading="lazy">
+            <figcaption><span>Fig. 30</span>Policy Definitions blade listing the custom and built-in definitions used across the project.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-31.jpg" alt="New custom policy definition -- Basics tab, naming the Allowed-Environment-Tag-Values definition under the YCS Governance category." loading="lazy">
+            <figcaption><span>Fig. 31</span>New custom policy definition -- Basics tab, naming the Allowed-Environment-Tag-Values definition under the YCS Governance category.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-32.jpg" alt="Policy rule JSON editor defining the logic that restricts the Environment tag to Production or Development values." loading="lazy">
+            <figcaption><span>Fig. 32</span>Policy rule JSON editor defining the logic that restricts the Environment tag to Production or Development values.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-33.jpg" alt="Allowed-Environment-Tag-Values definition details after publishing, showing the policy rule and metadata." loading="lazy">
+            <figcaption><span>Fig. 33</span>Allowed-Environment-Tag-Values definition details after publishing, showing the policy rule and metadata.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-34.jpg" alt="Assign Policy wizard for Allowed-Environment-Tag-Values, scoped to the subscription with Deny effect." loading="lazy">
+            <figcaption><span>Fig. 34</span>Assign Policy wizard for Allowed-Environment-Tag-Values, scoped to the subscription with Deny effect.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-35.jpg" alt="Review + create confirmation for the Allowed-Environment-Tag-Values policy assignment." loading="lazy">
+            <figcaption><span>Fig. 35</span>Review + create confirmation for the Allowed-Environment-Tag-Values policy assignment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-36.jpg" alt="Policy Definitions blade confirming the Environment tag policy is published and active." loading="lazy">
+            <figcaption><span>Fig. 36</span>Policy Definitions blade confirming the Environment tag policy is published and active.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.9 Resource Locks</h3>
+          <p>A CanNotDelete lock was applied to the Production resource group to protect critical resources from accidental deletion, as required in Section 1.9.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-37.jpg" alt="Locks blade on rg-ycs-prod-core-01 prior to configuration, confirming no locks were initially present." loading="lazy">
+            <figcaption><span>Fig. 37</span>Locks blade on rg-ycs-prod-core-01 prior to configuration, confirming no locks were initially present.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-38.jpg" alt="Add lock dialog configuring Production-Delete-Lock with the Delete (CanNotDelete) lock type." loading="lazy">
+            <figcaption><span>Fig. 38</span>Add lock dialog configuring Production-Delete-Lock with the Delete (CanNotDelete) lock type.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-39.jpg" alt="Locks blade confirming the CanNotDelete lock is active on the Production resource group." loading="lazy">
+            <figcaption><span>Fig. 39</span>Locks blade confirming the CanNotDelete lock is active on the Production resource group.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-40.jpg" alt="Attempted deletion of the locked Production resource group from the Azure Portal." loading="lazy">
+            <figcaption><span>Fig. 40</span>Attempted deletion of the locked Production resource group from the Azure Portal.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-41.jpg" alt="Error message confirming the deletion request was blocked by the active resource lock." loading="lazy">
+            <figcaption><span>Fig. 41</span>Error message confirming the deletion request was blocked by the active resource lock.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.10 Cost Management & Budgets</h3>
+          <p>A monthly budget with tiered alert thresholds was configured at the subscription scope to support the cost control requirement in Section 1.2.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-42.jpg" alt="Cost Management + Billing -- Budgets blade prior to configuration." loading="lazy">
+            <figcaption><span>Fig. 42</span>Cost Management + Billing -- Budgets blade prior to configuration.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-43.jpg" alt="Create Budget -- Basics tab, naming the Enterprise-Monthly-Budget with a monthly reset period." loading="lazy">
+            <figcaption><span>Fig. 43</span>Create Budget -- Basics tab, naming the Enterprise-Monthly-Budget with a monthly reset period.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-44.jpg" alt="Budget amount configuration, defining the monthly spending threshold for the Enterprise Lab." loading="lazy">
+            <figcaption><span>Fig. 44</span>Budget amount configuration, defining the monthly spending threshold for the Enterprise Lab.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-45.jpg" alt="Alert conditions configured at 50%, 80%, and 100% of the budgeted amount." loading="lazy">
+            <figcaption><span>Fig. 45</span>Alert conditions configured at 50%, 80%, and 100% of the budgeted amount.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-46.jpg" alt="Alert recipient configuration, routing budget notifications to the project owner\'s email address." loading="lazy">
+            <figcaption><span>Fig. 46</span>Alert recipient configuration, routing budget notifications to the project owner\'s email address.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-47.jpg" alt="Budgets blade confirming the Enterprise-Monthly-Budget was created successfully." loading="lazy">
+            <figcaption><span>Fig. 47</span>Budgets blade confirming the Enterprise-Monthly-Budget was created successfully.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>2.11 Role-Based Access Control (RBAC)</h3>
+          <p>Least-privilege access was enforced using built-in Azure roles, assigned directly on the resource groups as defined in Section 1.9.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-48.jpg" alt="Access control (IAM) blade opened on the Production resource group." loading="lazy">
+            <figcaption><span>Fig. 48</span>Access control (IAM) blade opened on the Production resource group.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-49.jpg" alt="Add role assignment -- Role tab, selecting a built-in role from the job function roles list." loading="lazy">
+            <figcaption><span>Fig. 49</span>Add role assignment -- Role tab, selecting a built-in role from the job function roles list.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-50.jpg" alt="Role assignment confirmation for the Owner role, granting full management access." loading="lazy">
+            <figcaption><span>Fig. 50</span>Role assignment confirmation for the Owner role, granting full management access.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-51.jpg" alt="Add role assignment -- Members tab, selecting the user or group to receive the role." loading="lazy">
+            <figcaption><span>Fig. 51</span>Add role assignment -- Members tab, selecting the user or group to receive the role.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-52.jpg" alt="Role assignment scope confirmation prior to finalizing the assignment." loading="lazy">
+            <figcaption><span>Fig. 52</span>Role assignment scope confirmation prior to finalizing the assignment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-53.jpg" alt="Review + assign confirmation completing the Owner role assignment." loading="lazy">
+            <figcaption><span>Fig. 53</span>Review + assign confirmation completing the Owner role assignment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-54.jpg" alt="Add role assignment -- Contributor role selected for day-to-day resource management access." loading="lazy">
+            <figcaption><span>Fig. 54</span>Add role assignment -- Contributor role selected for day-to-day resource management access.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-55.jpg" alt="Role assignments list showing Owner, Contributor, and Reader roles applied across the environment." loading="lazy">
+            <figcaption><span>Fig. 55</span>Role assignments list showing Owner, Contributor, and Reader roles applied across the environment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-56.jpg" alt="Add role assignment -- Reader role configured for read-only visibility." loading="lazy">
+            <figcaption><span>Fig. 56</span>Add role assignment -- Reader role configured for read-only visibility.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-57.jpg" alt="Reader role assignment confirmation, completing the least-privilege access model." loading="lazy">
+            <figcaption><span>Fig. 57</span>Reader role assignment confirmation, completing the least-privilege access model.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-58.jpg" alt="Final Access control (IAM) -- Role assignments tab listing all configured role assignments." loading="lazy">
+            <figcaption><span>Fig. 58</span>Final Access control (IAM) -- Role assignments tab listing all configured role assignments.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+          </section>
+
+          <section id="validation">
+            <p class="eyebrow">SECTION 3</p>
+            <h2>Governance Validation &amp; Compliance</h2>
+            <p>
+              Once deployed, each governance control was validated to confirm it was enforced
+              correctly — including negative test cases that prove non-compliant actions are blocked.
+            </p>
+
+        <div class="sub-block">
+          <h3>3.1 Policy Compliance Dashboard</h3>
+          <p>Following policy assignment, the Azure Policy Compliance dashboard was used to validate that deployed resources conformed to the governance standards.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-59.jpg" alt="Azure Policy Compliance dashboard showing the overall compliance percentage across the subscription." loading="lazy">
+            <figcaption><span>Fig. 59</span>Azure Policy Compliance dashboard showing the overall compliance percentage across the subscription.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-60.jpg" alt="Compliance breakdown by individual policy definition, including the Environment tag and Allowed Locations policies." loading="lazy">
+            <figcaption><span>Fig. 60</span>Compliance breakdown by individual policy definition, including the Environment tag and Allowed Locations policies.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-61.jpg" alt="List of resources evaluated against the assigned governance policies." loading="lazy">
+            <figcaption><span>Fig. 61</span>List of resources evaluated against the assigned governance policies.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-62.jpg" alt="Non-compliant resource details identified prior to remediation." loading="lazy">
+            <figcaption><span>Fig. 62</span>Non-compliant resource details identified prior to remediation.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-63.jpg" alt="Compliance events log showing the history of policy evaluations." loading="lazy">
+            <figcaption><span>Fig. 63</span>Compliance events log showing the history of policy evaluations.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>3.2 Tag Inheritance Validation</h3>
+          <p>The tag inheritance policy was tested to confirm that child resources automatically receive the Environment tag from their parent resource group.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-64.jpg" alt="Resource-level tag inspection confirming the Environment tag was inherited from the parent resource group." loading="lazy">
+            <figcaption><span>Fig. 64</span>Resource-level tag inspection confirming the Environment tag was inherited from the parent resource group.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-65.jpg" alt="Tags blade on a child resource showing the inherited value applied automatically by the tag inheritance policy." loading="lazy">
+            <figcaption><span>Fig. 65</span>Tags blade on a child resource showing the inherited value applied automatically by the tag inheritance policy.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-66.jpg" alt="Activity log entry confirming a policy-triggered remediation task updated the resource\'s tags." loading="lazy">
+            <figcaption><span>Fig. 66</span>Activity log entry confirming a policy-triggered remediation task updated the resource\'s tags.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-67.jpg" alt="Activity log showing the policy assignment and evaluation operations recorded over time." loading="lazy">
+            <figcaption><span>Fig. 67</span>Activity log showing the policy assignment and evaluation operations recorded over time.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-68.jpg" alt="Detailed compliance state list showing tag inheritance results across both resource groups." loading="lazy">
+            <figcaption><span>Fig. 68</span>Detailed compliance state list showing tag inheritance results across both resource groups.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-69.jpg" alt="Policy Compliance dashboard after remediation, showing improved overall compliance." loading="lazy">
+            <figcaption><span>Fig. 69</span>Policy Compliance dashboard after remediation, showing improved overall compliance.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>3.3 Cost Monitoring Validation</h3>
+          <p>Budget alerts were validated to confirm that spending notifications trigger correctly at each configured threshold.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-70.jpg" alt="Budget alert notification triggered as spending approached the 50% threshold." loading="lazy">
+            <figcaption><span>Fig. 70</span>Budget alert notification triggered as spending approached the 50% threshold.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-71.jpg" alt="Budget alert notification triggered at a higher threshold, confirming the cost monitoring configuration functions as intended." loading="lazy">
+            <figcaption><span>Fig. 71</span>Budget alert notification triggered at a higher threshold, confirming the cost monitoring configuration functions as intended.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>3.4 Resource Inventory & Cost Allocation</h3>
+          <p>The final resource inventory was reviewed to confirm alignment with the intended architecture, and cost analysis was validated by resource group and tag.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-72.jpg" alt="Final resource inventory for rg-ycs-prod-core-01, confirming all governed Production resources are present." loading="lazy">
+            <figcaption><span>Fig. 72</span>Final resource inventory for rg-ycs-prod-core-01, confirming all governed Production resources are present.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-73.jpg" alt="All-resources inventory spanning both resource groups, used to validate the overall governance scope." loading="lazy">
+            <figcaption><span>Fig. 73</span>All-resources inventory spanning both resource groups, used to validate the overall governance scope.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-74.jpg" alt="Resource inventory filtered by tag to validate consistent tagging across the environment." loading="lazy">
+            <figcaption><span>Fig. 74</span>Resource inventory filtered by tag to validate consistent tagging across the environment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-75.jpg" alt="Cost analysis view broken down by resource group, supporting cost visibility per environment." loading="lazy">
+            <figcaption><span>Fig. 75</span>Cost analysis view broken down by resource group, supporting cost visibility per environment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-76.jpg" alt="Cost analysis view broken down by tag, validating cost allocation by department and cost center." loading="lazy">
+            <figcaption><span>Fig. 76</span>Cost analysis view broken down by tag, validating cost allocation by department and cost center.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>3.5 Governance Control Testing</h3>
+          <p>Each governance control was deliberately tested against a non-compliant scenario to confirm enforcement works as designed.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-77.jpg" alt="Governance validation summary reviewed prior to running enforcement tests." loading="lazy">
+            <figcaption><span>Fig. 77</span>Governance validation summary reviewed prior to running enforcement tests.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-78.jpg" alt="Confirmation detail captured during a governance control validation test." loading="lazy">
+            <figcaption><span>Fig. 78</span>Confirmation detail captured during a governance control validation test.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-79.jpg" alt="Compliance validation summary confirming that policy enforcement is active across the subscription." loading="lazy">
+            <figcaption><span>Fig. 79</span>Compliance validation summary confirming that policy enforcement is active across the subscription.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-80.jpg" alt="Attempted deployment of a resource in a non-approved Azure region, used to test the Allowed Locations policy." loading="lazy">
+            <figcaption><span>Fig. 80</span>Attempted deployment of a resource in a non-approved Azure region, used to test the Allowed Locations policy.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-81.jpg" alt="Policy denial message confirming the Allowed Locations policy blocked the out-of-region deployment." loading="lazy">
+            <figcaption><span>Fig. 81</span>Policy denial message confirming the Allowed Locations policy blocked the out-of-region deployment.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-82.jpg" alt="Attempted resource deployment with an invalid Environment tag value, used to test the tag governance policy." loading="lazy">
+            <figcaption><span>Fig. 82</span>Attempted resource deployment with an invalid Environment tag value, used to test the tag governance policy.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-83.jpg" alt="Policy denial message confirming the Allowed-Environment-Tag-Values policy blocked the non-compliant deployment." loading="lazy">
+            <figcaption><span>Fig. 83</span>Policy denial message confirming the Allowed-Environment-Tag-Values policy blocked the non-compliant deployment.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3>3.6 Environment Health Check</h3>
+          <p>A final health check confirmed the Azure environment was stable throughout the governance validation process.</p>
+          
+          <div class="shot-grid">
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-84.jpg" alt="Subscription context confirming the timestamp of the final validation pass." loading="lazy">
+            <figcaption><span>Fig. 84</span>Subscription context confirming the timestamp of the final validation pass.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-85.jpg" alt="Monitor -- Alerts blade confirming no active critical alerts were outstanding." loading="lazy">
+            <figcaption><span>Fig. 85</span>Monitor -- Alerts blade confirming no active critical alerts were outstanding.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="../assets/images/azure/fig-86.jpg" alt="Monitor -- Service Health blade confirming no active service issues, validating a stable platform for governance testing." loading="lazy">
+            <figcaption><span>Fig. 86</span>Monitor -- Service Health blade confirming no active service issues, validating a stable platform for governance testing.</figcaption>
+          </figure>
+          </div>
+        </div>
+
+          </section>
+
+          <section id="summary">
+            <p class="eyebrow">SECTION 4</p>
+            <h2>Project Summary</h2>
+            <p>
+              This project delivered a complete Azure Governance foundation for the YCS Enterprise
+              Lab — covering subscription-level design, environment separation, naming and tagging
+              standards, policy enforcement, resource protection, cost governance, and role-based
+              access control.
+            </p>
+
+            <div class="sub-block">
+              <h3>4.1 Outcomes achieved</h3>
+              <div class="check-grid">
+                <div class="check-card"><p>Production and Development fully separated using dedicated resource groups, networks, and non-overlapping address spaces.</p></div>
+                <div class="check-card"><p>A consistent, predictable naming convention applied across every resource type.</p></div>
+                <div class="check-card"><p>Standardized tagging enforced through Azure Policy, including automatic tag inheritance.</p></div>
+                <div class="check-card"><p>Custom and built-in policies restricted deployments to approved regions and enforced valid Environment values — validated through negative testing.</p></div>
+                <div class="check-card"><p>A CanNotDelete lock protected the Production resource group from accidental deletion.</p></div>
+                <div class="check-card"><p>A monthly budget with 50/80/100% alert thresholds provided proactive cost visibility.</p></div>
+                <div class="check-card"><p>RBAC applied under least-privilege, with Owner, Contributor, and Reader roles assigned appropriately.</p></div>
+                <div class="check-card"><p>The Azure Policy Compliance dashboard continuously validated governance posture.</p></div>
+              </div>
+            </div>
+
+            <div class="sub-block">
+              <h3>4.2 Skills demonstrated</h3>
+              <div class="tech-list">
+                <span>Subscription &amp; RG Design</span>
+                <span>VNet / Subnet / NSG / Public IP</span>
+                <span>Storage Accounts</span>
+                <span>Custom Azure Policy (JSON)</span>
+                <span>Policy Assignment &amp; Remediation</span>
+                <span>Resource Locks</span>
+                <span>Cost Management &amp; Budgets</span>
+                <span>RBAC &amp; Least Privilege</span>
+                <span>Governance Validation Testing</span>
+              </div>
+            </div>
+
+            <div class="callout">
+              <strong>Next steps —</strong> the items intentionally out of scope — virtual machines, hybrid identity, backup &amp; disaster recovery, monitoring, and security workloads — are natural extensions of this project and may be implemented as follow-on Azure initiatives.
+            </div>
+
+            <div class="project-nav-footer">
+              <a class="button primary" href="../index.html#projects">← Back to all projects</a>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© 2026 Yasser Alrajeh</span>
+      <span>Built with HTML, CSS, JavaScript, and GitHub Pages</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>
