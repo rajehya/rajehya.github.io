@@ -1,135 +1,427 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Yasser Alrajeh's enterprise infrastructure, cloud, and cybersecurity project portfolio." />
-  <title>Yasser Alrajeh | Enterprise Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Yasser Alrajeh - Cybersecurity, Windows Server, Azure, and Virtualization Portfolio" name="description"/>
+<title>Yasser Alrajeh | IT &amp; Cybersecurity Portfolio</title>
+<style>
+    :root {
+      --bg: #0b1220;
+      --card: #101a2c;
+      --text: #eef2f8;
+      --muted: #93a1b8;
+      --primary: #4da3ff;
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(90%, var(--max)); margin: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,.85);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { font-weight: 800; font-size: 1rem; }
+    .brand span { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 26px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero { padding: 110px 0 80px; text-align: center; }
+    .hero .eyebrow {
+      color: var(--primary);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      letter-spacing: -.03em;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 560px;
+      margin: 18px auto 0;
+      font-size: 1rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .95rem;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    .btn-primary { color: #061020; background: var(--primary); }
+    .btn-primary:hover { opacity: .9; }
+    .btn-secondary { border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--primary); }
+
+    /* Sections */
+    section { padding: 68px 0; }
+    .section-head { margin-bottom: 36px; text-align: center; }
+    .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -.02em; }
+    #certifications { border-top: 1px solid var(--border); }
+
+    /* About */
+    .about-content { max-width: 700px; margin: 0 auto; text-align: center; }
+    .about-content p { color: var(--muted); font-size: 1.02rem; }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .stat strong { display: block; font-size: 1.6rem; color: var(--primary); }
+    .stat span { color: var(--muted); font-size: .85rem; }
+
+    /* Projects */
+    #projects { border-top: 1px solid var(--border); }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+      border-radius: 999px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--primary);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 620px);
+      justify-content: center;
+      gap: 18px;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: .2s ease;
+    }
+    .project-card:hover { border-color: var(--primary); }
+    .project-code {
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .project-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .project-card p { color: var(--muted); font-size: .96rem; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
+    .tag {
+      font-size: .74rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 9px;
+      border-radius: 999px;
+    }
+    .project-link { color: var(--primary); font-weight: 700; font-size: .88rem; }
+
+    /* Certifications */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .cert {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .cert:hover { border-color: var(--primary); }
+    .cert small { color: var(--primary); text-transform: uppercase; letter-spacing: .06em; font-size: .72rem; }
+    .cert h3 { margin-top: 6px; font-size: .95rem; }
+
+    /* Certificate Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6,10,18,.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      position: relative;
+      max-width: 720px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .modal-box h3 { font-size: 1rem; margin-bottom: 14px; }
+    .modal-box img {
+      max-width: 100%;
+      max-height: 70vh;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #061020;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Contact */
+    #contact { text-align: center; }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      padding: 26px 0;
+      font-size: .85rem;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .cert-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 5%;
+        right: 5%;
+        padding: 16px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links.open { display: flex; }
+      .projects-grid, .cert-grid, .skills-grid { grid-template-columns: 1fr; }
+      .stats { gap: 28px; }
+    }
+  
+    body { font-size: 16px; }
+    .hero { padding: 104px 0 74px; }
+    .hero p { max-width: 680px; line-height: 1.75; }
+    .project-card { padding: 26px; }
+    @media (max-width: 640px) {
+      body { font-size: 15px; }
+      .hero { padding: 82px 0 58px; }
+      h1 { font-size: clamp(2rem, 10vw, 2.65rem); }
+      .project-card { padding: 20px; }
+    }
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Homepage">
-        <span class="brand-mark">YA</span>
-        <span>Yasser Alrajeh</span>
-      </a>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-      </nav>
-    </div>
-  </header>
+<header>
+<nav class="container">
+<a class="brand" href="#home">Yasser<span>.</span></a>
+<button aria-label="Open navigation" class="menu-btn" onclick="toggleMenu()">Menu</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">ENTERPRISE INFRASTRUCTURE · CLOUD · SECURITY</p>
-          <h1>Hands-on projects built around real enterprise scenarios.</h1>
-          <p class="hero-copy">
-            A practical portfolio covering Azure governance, Windows Server,
-            virtualization, monitoring, backup, and cybersecurity.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects">View Projects</a>
-            <a class="button secondary" href="https://www.linkedin.com/in/yasser-alrajeh" target="_blank" rel="noopener">LinkedIn Profile</a>
-          </div>
-        </div>
-        <div class="hero-panel">
-          <div class="metric">
-            <span>Product</span>
-            <strong>Microsoft Azure</strong>
-          </div>
-          <div class="metric">
-            <span>Service</span>
-            <strong>Azure Governance</strong>
-          </div>
-          <div class="metric">
-            <span>Solution</span>
-            <strong>Cloud Governance &amp; Compliance</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+<li><a href="#projects">Portfolio</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<section class="hero" id="home">
+<div class="container">
+<div class="eyebrow">Yasser Alrajeh</div>
+<h1>IT &amp; Cybersecurity Engineer</h1>
+<p>Enterprise IT and cybersecurity professional specializing in Windows Server, Active Directory, Azure, virtualization, and secure infrastructure operations.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#projects">View Projects</a>
+<a class="btn btn-secondary" href="https://www.linkedin.com/in/yaalrajeh/" rel="noopener" target="_blank">LinkedIn</a>
+</div>
+</div>
+</section>
 
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">FEATURED WORK</p>
-            <h2>Projects</h2>
-          </div>
-          <p>Each project includes architecture, implementation, validation, screenshots, and lessons learned.</p>
-        </div>
+<section id="projects">
+<div class="container">
+<div class="section-head">
+<h2>Featured Project</h2>
+</div>
 
-        <div class="project-grid">
-          <article class="project-card featured">
-            <div class="project-card-top">
-              <span class="tag">Microsoft Azure</span>
-              <span class="status completed">Azure Governance</span>
-            </div>
-            <div>
-              <p class="project-number">CLOUD GOVERNANCE SERVICE</p>
-              <h3>Azure Governance Enterprise Lab</h3>
-              <p>
-                A practical governance implementation using resource groups, naming conventions,
-                tags, Azure Policy, RBAC, resource locks, budgets, and cost alerts.
-              </p>
-            </div>
-            <div class="tech-list">
-              <span>Azure Policy</span>
-              <span>RBAC</span>
-              <span>Cost Management</span>
-              <span>Resource Locks</span>
-            </div>
-            <a class="project-link" href="projects/azure-governance.html">View Project <span>→</span></a>
-          </article>
+<div class="projects-grid">
+<article class="project-card" data-category="infrastructure">
+<div class="project-code">AD</div>
+<h3>Active Directory Identity &amp; File Services</h3>
+<p>Enterprise AD forest with OU design, RBAC, and AGDLP-secured file shares.</p>
+<div class="tags"><span class="tag">AD DS</span><span class="tag">RBAC</span><span class="tag">AGDLP</span></div>
+<a class="project-link" href="infrastructure/active-directory-identity-access/index.html">View Project →</a>
+</article>
 
-          <article class="project-card muted-card">
-            <div class="project-card-top">
-              <span class="tag">Infrastructure Services</span>
-              <span class="status planned">Upcoming Solutions</span>
-            </div>
-            <div>
-              <p class="project-number">PRODUCTS &amp; SERVICES</p>
-              <h3>More Enterprise Labs</h3>
-              <p>
-                Windows Server, VMware vSphere, PRTG, Nessus, Veeam, Hyper-V, and hybrid Azure projects will be added here.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section alt" id="about">
-      <div class="container about-grid">
-        <div>
-          <p class="eyebrow">ABOUT</p>
-          <h2>Yasser Alrajeh</h2>
-        </div>
-        <div>
-          <p>
-            IT systems and cybersecurity professional with hands-on experience across Windows Server,
-            Active Directory, virtualization, infrastructure security, vulnerability management,
-            cloud governance, and enterprise operations.
-          </p>
-          <p class="small-note">
-            <a class="project-link" href="https://www.linkedin.com/in/yasser-alrajeh" target="_blank" rel="noopener">Connect on LinkedIn →</a>
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="container footer-content">
-      <span>© 2026 Yasser Alrajeh</span>
-      <a href="https://www.linkedin.com/in/yasser-alrajeh" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+
+
+
+
+</div>
+</div>
+</section>
+<section id="certifications">
+<div class="container">
+<div class="section-head">
+<h2>Certifications</h2>
+</div>
+<div class="cert-grid">
+<div class="cert" onclick="openCert('certs/security-plus.jpg','Security+')"><small>CompTIA</small><h3>Security+</h3></div>
+<div class="cert" onclick="openCert('certs/cysa-plus.jpg','CySA+')"><small>CompTIA</small><h3>CySA+</h3></div>
+<div class="cert" onclick="openCert('certs/secai-plus.jpg','SecAI+')"><small>CompTIA</small><h3>SecAI+</h3></div>
+<div class="cert" onclick="openCert('certs/server-plus.jpg','Server+')"><small>CompTIA</small><h3>Server+</h3></div>
+<div class="cert" onclick="openCert('certs/mcse.jpg','MCSE')"><small>Microsoft</small><h3>MCSE</h3></div>
+<div class="cert" onclick="openCert('certs/mcsa.jpg','Microsoft Technology Associate')"><small>Microsoft</small><h3>Microsoft Technology Associate</h3></div>
+<div class="cert" onclick="openCert('certs/ecthp.jpg','eCTHP')"><small>INE</small><h3>eCTHP</h3></div>
+<div class="cert" onclick="openCert('certs/eeda.jpg','eEDA')"><small>INE</small><h3>eEDA</h3></div>
+<div class="cert" onclick="openCert('certs/ecdfp.jpg','eCDFP')"><small>INE</small><h3>eCDFP</h3></div>
+<div class="cert" onclick="openCert('certs/iso27001-lead-implementer.jpg','ISO 27001 Lead Implementer')"><small>PECB</small><h3>ISO 27001 Lead Implementer</h3></div>
+</div>
+</div>
+</section>
+<section id="contact">
+<div class="container">
+<div class="section-head">
+<h2>Let's Connect</h2>
+</div>
+<div class="contact-links">
+<a class="btn btn-primary" href="mailto:rajehya@outlook.com">Contact Me</a>
+<a class="btn btn-secondary" href="https://www.linkedin.com/in/yaalrajeh/" rel="noopener" target="_blank">LinkedIn</a>
+<a class="btn btn-secondary" href="https://www.yasseralrajeh.com" rel="noopener" target="_blank">Website</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">© <span id="year"></span> Yasser Alrajeh</div>
+</footer>
+<div class="modal-overlay" id="certModal" onclick="if(event.target===this) closeCert()">
+<div class="modal-box">
+<button aria-label="Close" class="modal-close" onclick="closeCert()">✕</button>
+<h3 id="certTitle"></h3>
+<img alt="Certificate" id="certImage" src=""/>
+</div>
+</div>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function openCert(imgSrc, title) {
+      document.getElementById('certImage').src = imgSrc;
+      document.getElementById('certTitle').textContent = title;
+      document.getElementById('certModal').classList.add('open');
+    }
+    function closeCert() {
+      document.getElementById('certModal').classList.remove('open');
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCert();
+    });
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+</script>
 </body>
 </html>
