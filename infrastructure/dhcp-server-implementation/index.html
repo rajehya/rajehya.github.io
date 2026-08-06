@@ -2,7 +2,152 @@
 
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation." name="description"/><title>Windows Server DHCP Infrastructure | Yasser Alrajeh</title>
-<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
+/* Unified project typography */
+.project-page .doc,
+.project-page .doc p,
+.project-page .doc li,
+.project-page .doc td,
+.project-page .doc th {
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+}
+
+.project-page .doc table {
+  font-size: 17px !important;
+}
+
+.project-page .doc h1,
+.project-page .doc h2,
+.project-page .doc h3,
+.project-page .doc h4 {
+  color: #0078d4 !important;
+  line-height: 1.3 !important;
+}
+
+/* Unified command and code blocks */
+.project-page .doc pre.command-block {
+  display: block !important;
+  margin: 18px 0 24px !important;
+  padding: 18px 20px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(80,167,232,.45) !important;
+  border-left: 5px solid #0078d4 !important;
+  border-radius: 10px !important;
+  background: #07111f !important;
+  color: #f5f9ff !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.20) !important;
+  white-space: pre !important;
+  text-align: left !important;
+}
+
+.project-page .doc pre.command-block code {
+  display: block !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f5f9ff !important;
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  white-space: pre !important;
+}
+
+/* Unified architecture tree */
+.project-page .doc .architecture-tree,
+.project-page .doc .architecture-tree * {
+  box-sizing: border-box !important;
+}
+
+.project-page .doc .architecture-tree {
+  display: block !important;
+  margin: 20px 0 26px !important;
+  padding: 20px 22px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(0,120,212,.42) !important;
+  border-radius: 12px !important;
+  background: rgba(0,120,212,.07) !important;
+}
+
+.project-page .doc .architecture-tree ul {
+  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 0 0 28px !important;
+  list-style: none !important;
+}
+
+.project-page .doc .architecture-tree > ul {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree li {
+  position: relative !important;
+  display: block !important;
+  margin: 10px 0 !important;
+  padding: 0 0 0 24px !important;
+  list-style: none !important;
+  min-width: max-content !important;
+}
+
+.project-page .doc .architecture-tree li::marker {
+  content: "" !important;
+}
+
+.project-page .doc .architecture-tree li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 18px !important;
+  width: 16px !important;
+  border-top: 2px solid #0078d4 !important;
+}
+
+.project-page .doc .architecture-tree li::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: -12px !important;
+  bottom: -12px !important;
+  border-left: 2px solid rgba(0,120,212,.62) !important;
+}
+
+.project-page .doc .architecture-tree li:last-child::after {
+  bottom: calc(100% - 18px) !important;
+}
+
+.project-page .doc .architecture-tree > ul > li {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree > ul > li::before,
+.project-page .doc .architecture-tree > ul > li::after {
+  display: none !important;
+}
+
+.project-page .doc .architecture-tree .tree-label {
+  display: inline-block !important;
+  padding: 7px 11px !important;
+  border: 1px solid rgba(80,167,232,.28) !important;
+  border-radius: 7px !important;
+  background: rgba(0,120,212,.13) !important;
+  color: inherit !important;
+  font-weight: 650 !important;
+}
+
+@media (max-width: 700px) {
+  .project-page .doc,
+  .project-page .doc p,
+  .project-page .doc li,
+  .project-page .doc td,
+  .project-page .doc th {
+    font-size: 17px !important;
+  }
+  .project-page .doc pre.command-block code {
+    font-size: 15px !important;
+  }
+}
+</style></head>
 <body class="project-page"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
@@ -110,15 +255,9 @@ portfolio</p></li>
 <li><p>Network connectivity</p></li>
 <li><p>DHCP reservations</p></li>
 </ul>
-<h1>4. Logical Network Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">VMware Host-Only Network: 192.168.10.0/24</span><ul><li><span class="tree-label">DC01 — AD DS &amp; DNS — 192.168.10.10</span></li><li><span class="tree-label">DHCP01 — DHCP Server — 192.168.10.20</span><ul><li><span class="tree-label">DHCP Scope: 192.168.10.100–192.168.10.200</span></li></ul></li><li><span class="tree-label">W11-CLIENT01 — DHCP Client</span></li></ul></li></ul></div>
-<p>The lab used a single VMware host-only virtual network. DC01, DHCP01,
-and W11-CLIENT01 were all connected to the same segment so that DHCP
-broadcast traffic (Discover/Request) could reach the DHCP server, with
-DC01 providing AD DS and DNS, DHCP01 providing the DHCP service, and
-W11-CLIENT01 acting as the DHCP client — all joined to the
-yasserteach.local domain.</p>
-<p>Using the same virtual network was necessary to ensure that DHCP
-broadcast messages could reach the DHCP server.</p>
+<h1>4. Logical Network Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">VMware Host-Only Network: 192.168.10.0/24</span><ul><li><span class="tree-label">DC01 — AD DS and DNS — 192.168.10.10</span></li><li><span class="tree-label">DHCP01 — DHCP Server — 192.168.10.20</span><ul><li><span class="tree-label">DHCP Scope: 192.168.10.100–192.168.10.200</span></li></ul></li><li><span class="tree-label">W11-CLIENT01 — DHCP Client</span></li></ul></li></ul></div><p>All systems use the same isolated VMware host-only network so DHCP broadcast traffic can reach DHCP01, while DC01 provides Active Directory Domain Services and DNS.</p>
+
+
 <h1>5. IP Addressing Plan (Actual Lab Values)</h1>
 <p>The following addressing structure reflects the actual values
 configured and verified in the lab, as confirmed by the configuration
@@ -547,8 +686,8 @@ configuration from the DHCP server.</p>
 <p>A new DHCP lease was requested:</p>
 <pre class="command-block"><code>ipconfig /renew</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1a7ab25d942e6dc4d62a487a989f73891cde0e06.png" style="width:4.375in;height:1.67708in"/></p>
-<p><em>ipconfig /renew — the client received IPv4 address
-192.168.10.111.</em></p>
+<pre class="command-block"><code>ipconfig /renew — the client received IPv4 address
+192.168.10.111.</code></pre>
 <p>The complete client configuration was displayed using:</p>
 <pre class="command-block"><code>ipconfig /all</code></pre>
 <p>The output was reviewed to confirm the following:</p>
@@ -569,11 +708,11 @@ configuration from the DHCP server.</p>
 DNS Servers: 192.168.10.10 Connection-specific DNS Suffix:
 yasserteach.local</p>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/89e9bdea127715bb2722cc72c9a4ae3a30cf0d32.png" style="width:4.79167in;height:3.25in"/></p>
-<p><em>ipconfig /all on W11-CLIENT01 — full lease details (IP
-192.168.10.111, DHCP Server 192.168.10.20).</em></p>
+<pre class="command-block"><code>ipconfig /all on W11-CLIENT01 — full lease details (IP
+192.168.10.111, DHCP Server 192.168.10.20).</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fb4a2971f3542cb274d1699db1a506908d0bb0a8.png" style="width:3.95833in;height:3.60417in"/></p>
-<p><em>ipconfig /all — DHCP server and DNS information on the
-client.</em></p>
+<pre class="command-block"><code>ipconfig /all — DHCP server and DNS information on the
+client.</code></pre>
 <h1>14. Understand the DHCP Lease Process</h1>
 <p>When the Windows 11 client requested an IP address, the DHCP process
 followed the DORA sequence.</p>
@@ -686,8 +825,8 @@ the deployment.</p>
 <p><strong>19.2 Display IPv4 Scopes</strong></p>
 <pre class="command-block"><code>Get-DhcpServerv4Scope</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cb5402517361fe705e4a52ee171b6eb266b71758.png" style="width:4.79167in;height:1.84375in"/></p>
-<p><em>PowerShell output — Get-DhcpServerv4Scope (192.168.10.0, Active,
-192.168.10.100–200, 8 day lease) and Get-DhcpServerDatabase.</em></p>
+<pre class="command-block"><code>PowerShell output — Get-DhcpServerv4Scope (192.168.10.0, Active,
+192.168.10.100–200, 8 day lease) and Get-DhcpServerDatabase.</code></pre>
 <p><strong>19.3 Display the DHCP Address Pool</strong></p>
 <pre class="command-block"><code>Get-DhcpServerv4ExclusionRange \
 -ComputerName DHCP01 \
@@ -701,8 +840,8 @@ the deployment.</p>
 -ComputerName DHCP01 \
 -ScopeId 192.168.10.0</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/6415b413cabecb8bc0ca92f8f26b8bcc385a8e12.png" style="width:4.375in;height:1.8125in"/></p>
-<p><em>Export-DhcpServer — exporting the DHCP configuration and active
-leases to C:\DHCP-EXPORT.xml.</em></p>
+<pre class="command-block"><code>Export-DhcpServer — exporting the DHCP configuration and active
+leases to C:\DHCP-EXPORT.xml.</code></pre>
 <p><strong>19.6 Display Reservations</strong></p>
 <pre class="command-block"><code>Get-DhcpServerv4Reservation \
 -ComputerName DHCP01 \
@@ -808,8 +947,8 @@ or unauthorized devices.</p>
 <p>DHCP audit logging can be used to record lease operations and server
 activity. The default DHCP log location is C:\Windows\System32\dhcp.</p>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bebafd65567801db49294eaceef8481b3646dea1.png" style="width:3.95833in;height:1.57292in"/></p>
-<p class="command-block"><em>Get-DhcpServerAuditLog — audit log configuration on
-DHCP01.</em></p>
+<pre class="command-block"><code>Get-DhcpServerAuditLog — audit log configuration on
+DHCP01.</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/352b960fc4d89bf8d78a76eef6b205b2b58623a3.png" style="width:4.58333in;height:3.25in"/></p>
 <p><em>Event Viewer — Microsoft-Windows-DHCP-Server Operational log
 recording server policy events.</em></p>
@@ -979,7 +1118,7 @@ from DHCP01. The client was able to:</p>
 <li><p>VMware virtual networking</p></li>
 <li><p>TCP/IP troubleshooting</p></li>
 <li><p>DNS troubleshooting</p></li>
-<li><p>PowerShell administration</p></li>
+<li><pre class="command-block"><code>PowerShell administration</code></pre></li>
 <li><p>Enterprise infrastructure documentation</p></li>
 </ul>
 <h1>26. Technologies Used</h1>
@@ -989,7 +1128,7 @@ from DHCP01. The client was able to:</p>
 <li><p>Active Directory Domain Services</p></li>
 <li><p>Windows DNS Server</p></li>
 <li><p>Windows DHCP Server</p></li>
-<li><p>PowerShell</p></li>
+<li><pre class="command-block"><code>PowerShell</code></pre></li>
 <li><p>Command Prompt</p></li>
 <li><p>VMware Workstation Pro</p></li>
 <li><p>IPv4</p></li>
