@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning."><title>Enterprise Hyper-V Virtualization | Yasser Alrajeh</title>
+<link rel="stylesheet" href="../../assets/css/style.css"></head>
+<body class="project-page"><header><nav>
+<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
+<main class="doc"><div class="container">
+<div class="meta-block"><p>Enterprise Hyper-V Virtualization</p><p>Project Category: Infrastructure</p><p>Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning.</p></div>
+<h1>ENTERPRISE HYPER-V VIRTUALIZATION INFRASTRUCTURE</h1>
+<p>Deployment, Virtual Networking, Storage Expansion, Recovery
+Validation, and VM Cloning</p>
+<h1 id="project-overview">1. Project Overview</h1>
+<p>This project demonstrates the design, deployment, and validation of a
+Microsoft Hyper-V virtualization environment on a Windows 10 Pro host.
+The environment was built to support Windows and Linux workloads while
+providing structured virtual networking, virtual storage management,
+production checkpoints, export and import recovery, and independent
+virtual machine cloning.</p>
+<h2 id="business-scenario">Business Scenario</h2>
+<p>A small organization required a centralized virtualization platform
+to improve hardware utilization, host multiple operating systems,
+simplify infrastructure testing, and provide reliable recovery and rapid
+deployment capabilities. Microsoft Hyper-V was selected because it
+integrates with Windows environments and supports the complete virtual
+machine lifecycle.</p>
+<h2 id="project-objectives">Project Objectives</h2>
+<ul>
+<li><p>Build a structured Hyper-V environment with dedicated storage
+paths.</p></li>
+<li><p>Create external and internal virtual networks for different
+connectivity requirements.</p></li>
+<li><p>Deploy Windows Server 2022, Windows 10, and Ubuntu virtual
+machines.</p></li>
+<li><p>Configure production checkpoints and validate export/import
+recovery.</p></li>
+<li><p>Expand guest storage with a dedicated VHDX data disk.</p></li>
+<li><p>Create an independent VM clone using a new unique Hyper-V
+identifier.</p></li>
+</ul>
+<h1 id="environment-and-technologies">2. Environment and
+Technologies</h1>
+<table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Component</strong></th>
+<th><strong>Configuration</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Hypervisor</strong></td>
+<td>Microsoft Hyper-V</td>
+</tr>
+<tr class="even">
+<td><strong>Host operating system</strong></td>
+<td>Windows 10 Pro</td>
+</tr>
+<tr class="odd">
+<td><strong>Server guest</strong></td>
+<td>Windows Server 2022</td>
+</tr>
+<tr class="even">
+<td><strong>Client guest</strong></td>
+<td>Windows 10</td>
+</tr>
+<tr class="odd">
+<td><strong>Linux guest</strong></td>
+<td>Ubuntu Linux</td>
+</tr>
+<tr class="even">
+<td><strong>Virtual disk format</strong></td>
+<td>VHDX</td>
+</tr>
+<tr class="odd">
+<td><strong>Partition style</strong></td>
+<td>GPT</td>
+</tr>
+<tr class="even">
+<td><strong>File system</strong></td>
+<td>NTFS</td>
+</tr>
+<tr class="odd">
+<td><strong>Networking</strong></td>
+<td>External and Internal virtual switches</td>
+</tr>
+<tr class="even">
+<td><strong>Recovery features</strong></td>
+<td>Production Checkpoints, Export, and Import</td>
+</tr>
+</tbody>
+</table>
+<h1 id="solution-architecture">3. Solution Architecture</h1>
+<table>
+<colgroup>
+<col style="width: 100%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Windows 10 Pro Hyper-V Host</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>• External Virtual Switch - Physical network and internet
+access</td>
+</tr>
+<tr class="even">
+<td>• YCS-Enterprise-Network - Internal lab communication</td>
+</tr>
+<tr class="odd">
+<td>• YCS-DC01 - Windows Server 2022</td>
+</tr>
+<tr class="even">
+<td>• Windows 10 Client - Workstation workload</td>
+</tr>
+<tr class="odd">
+<td>• Ubuntu - Linux workload</td>
+</tr>
+<tr class="even">
+<td>• VHDX Repository - Virtual machine storage</td>
+</tr>
+<tr class="odd">
+<td>• Export Repository - Portable VM copies for recovery and
+migration</td>
+</tr>
+</tbody>
+</table>
+<p>The internal virtual switch provides communication between the
+Hyper-V host and lab virtual machines without directly bridging internal
+lab traffic to the physical network. The external switch supports
+workloads that require access to the physical network or internet.</p>
+<h1 id="implementation-highlights">4. Implementation Highlights</h1>
+<h2 id="phase-1---hyper-v-environment-preparation">Phase 1 - Hyper-V
+Environment Preparation</h2>
+<p>The Hyper-V host was prepared before any virtual machines were
+created. Dedicated storage paths improved organization and simplified
+later export and recovery operations.</p>
+<ul>
+<li><p>Verified the initial Hyper-V Manager state.</p></li>
+<li><p>Configured default locations for VM configuration files and VHDX
+disks.</p></li>
+<li><p>Created an External Virtual Switch.</p></li>
+<li><p>Created the YCS-Enterprise-Network Internal Virtual
+Switch.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image1.png" style="width:5.98969in;height:2.71381in"/></p>
+<p>Initial Hyper-V Manager before deploying the virtual
+infrastructure.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image2.png" style="width:5.7918in;height:3.08468in"/></p>
+<p>Dedicated storage locations configured for virtual machines and
+virtual hard disks.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image3.png" style="width:5.78878in;height:3.13217in"/></p>
+<p>YCS-Enterprise-Network internal virtual switch created for the lab
+environment.</p>
+<h2 id="phase-2---virtual-machine-deployment-and-configuration">Phase 2
+- Virtual Machine Deployment and Configuration</h2>
+<p>The primary Windows Server virtual machine was created using a
+consistent naming convention and modern Generation 2 virtual
+hardware.</p>
+<ul>
+<li><p>Created YCS-DC01 with a dedicated storage location.</p></li>
+<li><p>Selected Generation 2 with UEFI and Secure Boot support.</p></li>
+<li><p>Enabled Dynamic Memory and assigned virtual processors.</p></li>
+<li><p>Connected the VM to YCS-Enterprise-Network.</p></li>
+<li><p>Created a 60 GB dynamically expanding VHDX disk.</p></li>
+<li><p>Attached Windows Server 2022 installation media.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image4.png" style="width:5.31163in;height:4.05422in"/></p>
+<p>Creating the primary Windows Server virtual machine.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image5.png" style="width:5.57192in;height:4.14564in"/></p>
+<p>Generation 2 selected to support UEFI and Secure Boot.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image6.png" style="width:5.35992in;height:4.06588in"/></p>
+<p>Primary dynamically expanding VHDX disk configured with a 60 GB
+capacity.</p>
+<h2 id="phase-3---security-and-recovery-configuration">Phase 3 -
+Security and Recovery Configuration</h2>
+<p>Before production use, the virtual machine settings were reviewed to
+improve startup behavior, security, and recoverability.</p>
+<ul>
+<li><p>Enabled Secure Boot for the Generation 2 VM.</p></li>
+<li><p>Selected Production Checkpoints for application-consistent
+recovery points.</p></li>
+<li><p>Configured automatic start after the Hyper-V host
+starts.</p></li>
+<li><p>Configured graceful guest shutdown when the host stops.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image7.png" style="width:5.73959in;height:5.54693in"/></p>
+<p>Production Checkpoints selected as the preferred checkpoint type.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image8.png" style="width:5.73783in;height:5.41548in"/></p>
+<p>Secure Boot configuration reviewed for the Windows Server virtual
+machine.</p>
+<p>Production Checkpoints were used as short-term recovery points before
+configuration changes. They were not treated as a replacement for a
+dedicated backup solution.</p>
+<h2 id="phase-4---multi-operating-system-deployment">Phase 4 -
+Multi-Operating-System Deployment</h2>
+<p>The environment was validated by deploying multiple guest operating
+systems and confirming that each workload started successfully.</p>
+<ul>
+<li><p>Deployed and booted Windows Server 2022.</p></li>
+<li><p>Validated the Windows 10 client VM.</p></li>
+<li><p>Deployed Ubuntu to demonstrate Linux guest support.</p></li>
+<li><p>Reviewed the final VM inventory in Hyper-V Manager.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image9.png" style="width:5.18184in;height:2.76124in"/></p>
+<p>Windows Server 2022 successfully deployed inside Hyper-V.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image10.png" style="width:5.1751in;height:2.59298in"/></p>
+<p>Windows 10 client virtual machine running successfully.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image11.png" style="width:6.05649in;height:3.24879in"/></p>
+<p>Ubuntu virtual machine running successfully on Hyper-V.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image12.png" style="width:6.10249in;height:1.1806in"/></p>
+<p>Final virtual machine inventory after deployment.</p>
+<h2 id="phase-5---virtual-machine-export-and-recovery">Phase 5 - Virtual
+Machine Export and Recovery</h2>
+<p>Hyper-V Export was used to create portable copies of the virtual
+machines for lab recovery, migration, and restoration testing.</p>
+<ul>
+<li><p>Exported the selected VM to a dedicated repository.</p></li>
+<li><p>Removed the existing VM registration to simulate a recovery
+scenario.</p></li>
+<li><p>Imported the exported VM configuration.</p></li>
+<li><p>Powered on the recovered VM to validate operating system
+integrity.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image13.png" style="width:5.71853in;height:3.05392in"/></p>
+<p>Virtual machine export completed successfully.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image14.png" style="width:5.91569in;height:4.48921in"/></p>
+<p>Imported virtual machine successfully restored and registered in
+Hyper-V Manager.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image15.png" style="width:5.98738in;height:4.54802in"/></p>
+<p>Recovered virtual machine booted successfully after import.</p>
+<h2 id="phase-6---virtual-storage-expansion">Phase 6 - Virtual Storage
+Expansion</h2>
+<p>A second virtual hard disk was added to the Windows client to
+separate operating system files from data and demonstrate guest storage
+administration.</p>
+<ul>
+<li><p>Created a dynamically expanding secondary VHDX disk.</p></li>
+<li><p>Attached the disk through the virtual SCSI controller.</p></li>
+<li><p>Initialized the new disk using GPT.</p></li>
+<li><p>Created and formatted an NTFS volume.</p></li>
+<li><p>Assigned the drive letter F: for enterprise data.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image16.png" style="width:5.68194in;height:4.34742in"/></p>
+<p>Creating the additional VHDX data disk.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image17.png" style="width:2.20963in;height:3.18869in"/></p>
+<p>Additional virtual hard disk attached through the SCSI
+controller.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image18.png" style="width:6.53488in;height:3.24043in"/></p>
+<p>Enterprise data volume created and assigned the drive letter F:.</p>
+<h2 id="phase-7---independent-virtual-machine-cloning">Phase 7 -
+Independent Virtual Machine Cloning</h2>
+<p>The exported VM was imported using the Copy the virtual machine
+option to create an independent clone with a new Hyper-V identifier.</p>
+<ul>
+<li><p>Selected Copy the virtual machine (Create a new unique
+ID).</p></li>
+<li><p>Reviewed destination paths for configuration, checkpoint, and
+VHDX files.</p></li>
+<li><p>Completed the import without replacing the original VM.</p></li>
+<li><p>Confirmed that the cloned VM was registered
+independently.</p></li>
+</ul>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image19.png" style="width:6.23843in;height:4.75393in"/></p>
+<p>Selecting Copy the virtual machine to generate a new unique Hyper-V
+ID.</p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image20.png" style="width:7in;height:1.38698in"/></p>
+<p>Cloned virtual machine successfully deployed in Hyper-V Manager.</p>
+<h1 id="validation-results">5. Validation Results</h1>
+<table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Validation Item</strong></th>
+<th><strong>Result</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hyper-V environment preparation</td>
+<td><strong>Completed</strong></td>
+</tr>
+<tr class="even">
+<td>Virtual switch configuration</td>
+<td><strong>Verified</strong></td>
+</tr>
+<tr class="odd">
+<td>Windows Server 2022 deployment</td>
+<td><strong>Operational</strong></td>
+</tr>
+<tr class="even">
+<td>Windows 10 deployment</td>
+<td><strong>Operational</strong></td>
+</tr>
+<tr class="odd">
+<td>Ubuntu deployment</td>
+<td><strong>Operational</strong></td>
+</tr>
+<tr class="even">
+<td>Production Checkpoints</td>
+<td><strong>Validated</strong></td>
+</tr>
+<tr class="odd">
+<td>VM export and import</td>
+<td><strong>Validated</strong></td>
+</tr>
+<tr class="even">
+<td>Recovered VM boot test</td>
+<td><strong>Successful</strong></td>
+</tr>
+<tr class="odd">
+<td>Secondary VHDX data disk</td>
+<td><strong>Configured</strong></td>
+</tr>
+<tr class="even">
+<td>Independent VM clone</td>
+<td><strong>Created</strong></td>
+</tr>
+</tbody>
+</table>
+<h1 id="operational-considerations-and-troubleshooting">6. Operational
+Considerations and Troubleshooting</h1>
+<ul>
+<li><p>Validated boot order and ISO attachment when preparing the
+Windows Server installation.</p></li>
+<li><p>Confirmed virtual switch assignments to avoid disconnected guest
+network adapters.</p></li>
+<li><p>Used Production Checkpoints before major configuration changes to
+provide a rollback point.</p></li>
+<li><p>Validated imported VM registration and guest boot after
+recovery.</p></li>
+<li><p>Used the new unique ID option during cloning to prevent Hyper-V
+identity conflicts.</p></li>
+<li><p>Initialized the added VHDX disk inside the guest operating system
+before creating the F: volume.</p></li>
+</ul>
+<h1 id="skills-demonstrated">7. Skills Demonstrated</h1>
+<table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Area</strong></th>
+<th><strong>Demonstrated Capability</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Virtualization</strong></td>
+<td>Microsoft Hyper-V administration; VM provisioning; Generation 2
+configuration</td>
+</tr>
+<tr class="even">
+<td><strong>Networking</strong></td>
+<td>External and Internal virtual switches; guest network
+assignment</td>
+</tr>
+<tr class="odd">
+<td><strong>Storage</strong></td>
+<td>VHDX creation; virtual disk expansion; GPT and NTFS
+configuration</td>
+</tr>
+<tr class="even">
+<td><strong>Business Continuity</strong></td>
+<td>Production Checkpoints; VM export/import; recovery validation</td>
+</tr>
+<tr class="odd">
+<td><strong>Deployment</strong></td>
+<td>Windows Server, Windows client, and Linux guest deployment</td>
+</tr>
+<tr class="even">
+<td><strong>Automation Readiness</strong></td>
+<td>Standardized VM configuration and rapid provisioning through
+cloning</td>
+</tr>
+<tr class="odd">
+<td><strong>Documentation</strong></td>
+<td>Technical evidence, validation results, and structured project
+reporting</td>
+</tr>
+</tbody>
+</table>
+<h1 id="conclusion">8. Conclusion</h1>
+<p>This project demonstrated the complete lifecycle of a Microsoft
+Hyper-V environment, from initial host preparation and virtual
+networking to multi-operating-system deployment, storage expansion,
+recovery testing, and virtual machine cloning. The final environment
+provides a practical foundation for future Windows Server, Active
+Directory, networking, and cybersecurity laboratories while
+demonstrating hands-on infrastructure administration skills relevant to
+Systems Administrator and Infrastructure Engineer roles.</p>
+
+<div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
+</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+</body></html>

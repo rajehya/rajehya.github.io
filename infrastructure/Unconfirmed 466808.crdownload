@@ -6,26 +6,26 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Enterprise Active Directory Identity &amp; File Services Infrastructure - Yasser Alrajeh" name="description"/>
 <title>Active Directory Identity &amp; Access | Yasser Alrajeh</title>
-<link href="../../assets/css/style.css" rel="stylesheet"/></head>
+<link href="../../../assets/css/style.css" rel="stylesheet"/></head>
 <body class="project-page">
 <header>
 <nav>
-<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a>
 </nav>
 </header>
 <main class="doc">
 <div class="container">
 <div class="meta-block">
-<p>Enterprise Active Directory Identity &amp; File Services Infrastructure</p>
-<p>Enterprise Windows Server Infrastructure Project</p>
-<p>Project Category: Infrastructure</p>
-<p>Platform: Microsoft Windows Server 2022</p>
-<p>Virtualization Platform: VMware Workstation</p>
-<p>Project Type: Enterprise Active Directory Infrastructure</p>
-<p>Domain Name: yasserteach.local</p>
-<p>Domain Controller: DC01</p>
-<p>Client Computer: W11-01</p>
+<p><strong>Enterprise Active Directory Identity &amp; File Services Infrastructure</strong></p>
+<p><strong>Enterprise Windows Server Infrastructure Project</strong></p>
+<p><strong>Project Category: Infrastructure</strong></p>
+<p><strong>Platform: Microsoft Windows Server 2022</strong></p>
+<p><strong>Virtualization Platform: VMware Workstation</strong></p>
+<p><strong>Project Type: Enterprise Active Directory Infrastructure</strong></p>
+<p><strong>Domain Name: yasserteach.local</strong></p>
+<p><strong>Domain Controller: DC01</strong></p>
+<p><strong>Client Computer: W11-01</strong></p>
 </div>
 <h1 class="unnumbered" id="executive-summary"><strong>Executive Summary</strong></h1>
 <p>This project demonstrates the complete deployment of an enterprise-grade Microsoft Active Directory infrastructure built entirely within a virtual environment using VMware Workstation.</p>
@@ -84,14 +84,14 @@
 </ul>
 <h1 class="unnumbered" id="project-scope"><strong>Project Scope</strong></h1>
 <p>The implementation includes the following components.</p>
-<p>Identity Services</p>
+<p><strong>Identity Services</strong></p>
 <ul>
 <li><p>Active Directory Domain Services</p></li>
 <li><p>DNS Server</p></li>
 <li><p>Kerberos Authentication</p></li>
 <li><p>LDAP Directory Services</p></li>
 </ul>
-<p>Enterprise Administration</p>
+<p><strong>Enterprise Administration</strong></p>
 <ul>
 <li><p>Organizational Units</p></li>
 <li><p>User Accounts</p></li>
@@ -101,7 +101,7 @@
 <li><p>Domain Local Groups</p></li>
 <li><p>Administrative Delegation</p></li>
 </ul>
-<p>Security</p>
+<p><strong>Security</strong></p>
 <ul>
 <li><p>Role-Based Access Control</p></li>
 <li><p>AGDLP</p></li>
@@ -109,14 +109,14 @@
 <li><p>Share Permissions</p></li>
 <li><p>Least Privilege</p></li>
 </ul>
-<p>Automation</p>
+<p><strong>Automation</strong></p>
 <ul>
 <li><p>Bulk User Creation</p></li>
 <li><p>Group Membership Automation</p></li>
 <li><p>AGDLP Automation</p></li>
 <li><p>NTFS Permission Automation</p></li>
 </ul>
-<p>File Services</p>
+<p><strong>File Services</strong></p>
 <ul>
 <li><p>Enterprise SMB Shares</p></li>
 <li><p>Department File Structure</p></li>
@@ -186,7 +186,7 @@
 </tbody>
 </table>
 <h1 class="unnumbered" id="enterprise-infrastructure"><strong>Enterprise Infrastructure</strong></h1>
-<p>Domain Information</p>
+<p><strong>Domain Information</strong></p>
 <table>
 <colgroup>
 <col style="width: 51%"/>
@@ -221,7 +221,7 @@
 </tr>
 </tbody>
 </table>
-<p>Organizational Unit Design</p>
+<p><strong>Organizational Unit Design</strong></p>
 <p>The Active Directory hierarchy was designed around a dedicated Corporate Organizational Unit to simplify administration and future expansion.</p>
 <p>The implemented Organizational Units include:</p>
 <table>
@@ -319,7 +319,7 @@
 <tbody>
 <tr class="odd">
 <td>DL_IT_RW</td>
-<td>Modify IT Folder <em>(<span dir="rtl"></span>)</em></td>
+<td>Modify IT Folder </td>
 </tr>
 <tr class="even">
 <td>DL_HR_RW</td>
@@ -341,10 +341,10 @@
 <p>The isolated network serves as the communication backbone for the following systems:</p>
 <ul>
 <li><p>DC01</p></li>
-<li><p>W11-01</p></li>
+<li><p><strong>W11-01</strong></p></li>
 </ul>
 <p>This configuration provides complete administrative control over IP addressing, DNS resolution, and Active Directory communication.</p>
-<p>Why This Matters</p>
+<p><strong>Why This Matters</strong></p>
 <p>Enterprise Active Directory environments should always be deployed on a predictable and controlled network where infrastructure services are isolated from production traffic.</p>
 <h2 class="unnumbered" id="preparing-windows-server"><strong>2.2 Preparing Windows Server</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image2.jpg"/></p>
@@ -406,7 +406,7 @@
 <li><p>Preferred DNS Server</p></li>
 </ul>
 <p>Since DC01 also hosts DNS, the DNS configuration points directly to the Domain Controller itself.</p>
-<p>Best Practice</p>
+<p><strong>Best Practice</strong></p>
 <p>Microsoft recommends assigning static IP addresses to all Domain Controllers to prevent authentication failures caused by changing network addresses.</p>
 <h2 class="unnumbered" id="validating-network-configuration"><strong>2.5 Validating Network Configuration</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image5.jpg"/></p>
@@ -427,7 +427,7 @@
 <p>The Active Directory Domain Services (AD DS) role was installed using Server Manager.</p>
 <p>During the same installation process, the DNS Server role was also deployed because Active Directory relies heavily on DNS for locating Domain Controllers and other directory services.</p>
 <p>The deployment transforms Windows Server from a standalone operating system into the foundation of an enterprise identity infrastructure.</p>
-<p>Installed Roles</p>
+<p><strong>Installed Roles</strong></p>
 <table>
 <colgroup>
 <col style="width: 61%"/>
@@ -509,7 +509,7 @@
 <p>After completing the deployment of DC01, the Active Directory Users and Computers (ADUC) management console was opened to begin configuring the enterprise directory.</p>
 <p>ADUC serves as the primary administrative interface for managing all Active Directory objects, including Organizational Units, users, computers, groups, and administrative containers.</p>
 <p>From this point onward, all identity management tasks within the yasserteach.local domain were performed through this console or automated using PowerShell.</p>
-<p>Administrative Tasks Performed</p>
+<p><strong>Administrative Tasks Performed</strong></p>
 <ul>
 <li><p>Creating Organizational Units</p></li>
 <li><p>Creating Users</p></li>
@@ -522,7 +522,7 @@
 <p>A top-level Organizational Unit named Corporate was created to serve as the primary administrative container within the yasserteach.local domain.</p>
 <p>Instead of storing users and groups in the default Active Directory containers, the Corporate OU provides a dedicated location for organizing business departments according to enterprise administration best practices.</p>
 <p>Creating a dedicated root Organizational Unit also simplifies future Group Policy deployment and delegated administration.</p>
-<p>Purpose</p>
+<p><strong>Purpose</strong></p>
 <ul>
 <li><p>Centralize administration</p></li>
 <li><p>Separate business departments</p></li>
@@ -570,7 +570,7 @@
 </tbody>
 </table>
 <p>This hierarchy closely resembles the logical structure commonly found in enterprise Active Directory environments.</p>
-<p>Benefits</p>
+<p><strong>Benefits</strong></p>
 <ul>
 <li><p>Clear separation of departments</p></li>
 <li><p>Simplified administration</p></li>
@@ -582,7 +582,7 @@
 <p><img alt="" class="doc-img" loading="lazy" src="images/image14.jpg"/></p>
 <p>After creating the Organizational Units, the directory hierarchy was reviewed to verify that each department had been placed correctly beneath the Corporate Organizational Unit.</p>
 <p>This validation ensures that future administrative tasks, such as Group Policy deployment and delegated permissions, can be applied accurately to individual departments without affecting the rest of the organization.</p>
-<p>OU Hierarchy</p>
+<p><strong>OU Hierarchy</strong></p>
 <p>yasserteach.local</p>
 <p>│</p>
 <p>└── Corporate</p>
@@ -596,7 +596,7 @@
 <p>Enterprise user accounts were created for each department within the yasserteach.local domain.</p>
 <p>Each user was placed inside the appropriate Organizational Unit according to their department, ensuring that administrative policies and future access controls could be applied consistently.</p>
 <p>Unlike local Windows accounts, these users authenticate directly against DC01, allowing centralized identity management across the environment.</p>
-<p>Administrative Benefits</p>
+<p><strong>Administrative Benefits</strong></p>
 <ul>
 <li><p>Centralized authentication</p></li>
 <li><p>Simplified user management</p></li>
@@ -613,7 +613,7 @@
 <p>To improve deployment efficiency, PowerShell was used to automate the creation of Active Directory user accounts.</p>
 <p>Rather than creating each account manually through the graphical interface, PowerShell cmdlets were used to provision multiple users in a consistent and repeatable manner.</p>
 <p>Automation reduces deployment time, minimizes human error, and aligns with enterprise administration practices.</p>
-<p>PowerShell Cmdlets Used</p>
+<p><strong>PowerShell Cmdlets Used</strong></p>
 <ul>
 <li><p>New-ADUser</p></li>
 <li><p>Set-ADUser</p></li>
@@ -735,7 +735,7 @@
 </tbody>
 </table>
 <p>The GG prefix represents Global Group, making it immediately identifiable within the Active Directory environment.</p>
-<p>Why Global Groups?</p>
+<p><strong>Why Global Groups?</strong></p>
 <p>Global Groups should contain users from the same domain and represent organizational roles rather than resource permissions.</p>
 <p>This separation improves long-term administration and follows Microsoft's recommended Active Directory design.</p>
 <h2 class="unnumbered" id="implementing-role-based-access-control"><strong>4.2 Implementing Role-Based Access Control</strong></h2>
@@ -743,7 +743,7 @@
 <p>The GG_IT Global Security Group was created to represent all users belonging to the Information Technology department.</p>
 <p>Instead of assigning permissions directly to IT users, permissions will later be granted to the group itself, allowing all members to inherit the required access automatically.</p>
 <p>This implementation follows the principle of Role-Based Access Control (RBAC), where access is granted according to job responsibilities rather than individual identities.</p>
-<p>Benefits</p>
+<p><strong>Benefits</strong></p>
 <ul>
 <li><p>Simplified permission management</p></li>
 <li><p>Reduced administrative effort</p></li>
@@ -767,8 +767,8 @@
 <li><p>Executive staff → GG_Executives</p></li>
 </ul>
 <p>This approach ensures that future permission changes only require modifying group membership instead of changing permissions on individual user accounts.</p>
-<p>Enterprise Best Practice</p>
-<p>Never assign permissions directly to user accounts.</p>
+<p><strong>Enterprise Best Practice</strong></p>
+<p><strong>Never assign permissions directly to user accounts.</strong></p>
 <p>Always assign permissions to Security Groups.</p>
 <h2 class="unnumbered" id="verifying-group-membership"><strong>4.5 Verifying Group Membership</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image24.jpg"/></p>
@@ -820,7 +820,7 @@
 <p>The following cmdlet was used:</p>
 <p>Add-ADGroupMember</p>
 <p>Automating membership assignments reduces repetitive work while ensuring that all users are added consistently.</p>
-<p>Administrative Benefits</p>
+<p><strong>Administrative Benefits</strong></p>
 <ul>
 <li><p>Faster deployment</p></li>
 <li><p>Consistent configuration</p></li>
@@ -839,7 +839,7 @@
 <p>Finance_RW</p>
 <p>The RW suffix indicates Read/Write access.</p>
 <p>These groups represent the level of access that will eventually be granted to enterprise file shares.</p>
-<p>Naming Convention</p>
+<p><strong>Naming Convention</strong></p>
 <table>
 <colgroup>
 <col style="width: 24%"/>
@@ -869,8 +869,8 @@
 <p>This naming convention allows administrators to immediately identify the purpose of each group without opening its properties.</p>
 <h2 class="unnumbered" id="automating-active-directory-administration"><strong>4.10 Automating Active Directory Administration</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image29.jpg"/></p>
-<p>Directory Administration with PowerShell</p>
-<p>Description</p>
+<p><strong>Directory Administration with PowerShell</strong></p>
+<p><strong>Description</strong></p>
 <p>PowerShell automation was extended beyond user provisioning to include Security Group creation and membership management.</p>
 <p>Throughout the project, PowerShell was used to automate:</p>
 <ul>
@@ -880,7 +880,7 @@
 <li><p>Directory administration</p></li>
 </ul>
 <p>The combination of graphical administration and scripting demonstrates enterprise-level Windows Server administration capabilities commonly expected from Infrastructure Engineers and Windows Administrators.</p>
-<p>Security Group Design Summary</p>
+<p><strong>Security Group Design Summary</strong></p>
 <table>
 <colgroup>
 <col style="width: 57%"/>
@@ -957,15 +957,15 @@
 <td>HR Folder (Read/Write)</td>
 </tr>
 <tr class="odd">
-<td>DL_IT_RW <em>(<span dir="rtl"></span>)</em></td>
+<td>DL_IT_RW </td>
 <td>IT Folder (Read/Write)</td>
 </tr>
 <tr class="even">
-<td>DL_Operations_RW <em>(<span dir="rtl"></span>)</em></td>
+<td>DL_Operations_RW </td>
 <td>Operations Folder (Read/Write)</td>
 </tr>
 <tr class="odd">
-<td>DL_Executives_RW <em>(<span dir="rtl"></span>)</em></td>
+<td>DL_Executives_RW </td>
 <td>Executive Folder (Read/Write)</td>
 </tr>
 </tbody>
@@ -1077,7 +1077,7 @@
 <li><p>Modify permissions were applied successfully.</p></li>
 <li><p>Access control matched the AGDLP design.</p></li>
 </ul>
-<p>Enterprise AGDLP Summary</p>
+<p><strong>Enterprise AGDLP Summary</strong></p>
 <table>
 <colgroup>
 <col style="width: 26%"/>
@@ -1160,7 +1160,7 @@
 <p>The validation confirmed that DC01 was successfully deployed as the first Domain Controller within the yasserteach.local forest.</p>
 <h2 class="unnumbered" id="organizational-unit-validation"><strong>6.2 Organizational Unit Validation</strong></h2>
 <p>The Organizational Unit hierarchy was reviewed to verify that every department had been placed correctly beneath the Corporate Organizational Unit.</p>
-<p>Implemented Organizational Units</p>
+<p><strong>Implemented Organizational Units</strong></p>
 <table>
 <colgroup>
 <col style="width: 74%"/>
@@ -1212,7 +1212,7 @@
 <p>The completed directory structure reflects a realistic enterprise identity management environment.</p>
 <h2 class="unnumbered" id="security-group-validation"><strong>6.4 Security Group Validation</strong></h2>
 <p>Global Security Groups were reviewed after implementation.</p>
-<p>Implemented Global Groups</p>
+<p><strong>Implemented Global Groups</strong></p>
 <table>
 <colgroup>
 <col style="width: 68%"/>
@@ -1267,7 +1267,7 @@
 <p>The same design was applied consistently across departmental resources, ensuring standardized permission management throughout the environment.</p>
 <h2 class="unnumbered" id="enterprise-file-services-validation"><strong>6.6 Enterprise File Services Validation</strong></h2>
 <p>Departmental file shares were validated after deployment.</p>
-<p>Implemented Department Folders</p>
+<p><strong>Implemented Department Folders</strong></p>
 <p>D:\Shares</p>
 <p>│</p>
 <p>├── Finance</p>
@@ -1289,7 +1289,7 @@
 <p>This confirms that the Principle of Least Privilege has been implemented successfully.</p>
 <h2 class="unnumbered" id="powershell-automation-summary"><strong>6.8 PowerShell Automation Summary</strong></h2>
 <p>Throughout the project, PowerShell was used to automate several administrative tasks.</p>
-<p>PowerShell Activities</p>
+<p><strong>PowerShell Activities</strong></p>
 <table>
 <colgroup>
 <col style="width: 80%"/>
@@ -1327,21 +1327,21 @@
 <p>Automation significantly reduced manual configuration time while improving deployment consistency.</p>
 <h2 class="unnumbered" id="microsoft-best-practices-implemented"><strong>6.9 Microsoft Best Practices Implemented</strong></h2>
 <p>The project incorporates several Microsoft enterprise administration best practices.</p>
-<p>Infrastructure</p>
+<p><strong>Infrastructure</strong></p>
 <ul>
 <li><p>Static IP addressing for Domain Controllers.</p></li>
 <li><p>Integrated DNS with Active Directory.</p></li>
 <li><p>Standardized server naming conventions.</p></li>
 <li><p>Dedicated Organizational Unit hierarchy.</p></li>
 </ul>
-<p>Identity Management</p>
+<p><strong>Identity Management</strong></p>
 <ul>
 <li><p>Department-based Organizational Units.</p></li>
 <li><p>Centralized user administration.</p></li>
 <li><p>Standardized Security Groups.</p></li>
 <li><p>Consistent naming conventions.</p></li>
 </ul>
-<p>Security</p>
+<p><strong>Security</strong></p>
 <ul>
 <li><p>Role-Based Access Control (RBAC).</p></li>
 <li><p>AGDLP permission model.</p></li>
@@ -1349,7 +1349,7 @@
 <li><p>Explicit NTFS permissions.</p></li>
 <li><p>Principle of Least Privilege.</p></li>
 </ul>
-<p>Automation</p>
+<p><strong>Automation</strong></p>
 <ul>
 <li><p>PowerShell user provisioning.</p></li>
 <li><p>PowerShell group management.</p></li>
@@ -1413,14 +1413,14 @@
 </table>
 <h2 class="unnumbered" id="skills-demonstrated"><strong>6.11 Skills Demonstrated</strong></h2>
 <p>This project demonstrates practical experience in the following areas:</p>
-<p>Windows Infrastructure</p>
+<p><strong>Windows Infrastructure</strong></p>
 <ul>
 <li><p>Windows Server Administration</p></li>
 <li><p>Active Directory Deployment</p></li>
 <li><p>DNS Administration</p></li>
 <li><p>Organizational Unit Design</p></li>
 </ul>
-<p>Identity Management</p>
+<p><strong>Identity Management</strong></p>
 <ul>
 <li><p>User Provisioning</p></li>
 </ul>
@@ -1429,13 +1429,13 @@
 <li><p>Role-Based Access Control</p></li>
 <li><p>AGDLP</p></li>
 </ul>
-<p>Automation</p>
+<p><strong>Automation</strong></p>
 <ul>
 <li><p>PowerShell Scripting</p></li>
 <li><p>Active Directory Automation</p></li>
 <li><p>NTFS Automation</p></li>
 </ul>
-<p>File Services</p>
+<p><strong>File Services</strong></p>
 <ul>
 <li><p>SMB File Sharing</p></li>
 <li><p>NTFS Permissions</p></li>
@@ -1461,7 +1461,7 @@
 <li><p>PowerShell Automation</p></li>
 </ul>
 <h1 id="enterprise-infrastructure-validation">Enterprise Infrastructure Validation </h1>
-<p>Final Conclusion</p>
+<p><strong>Final Conclusion</strong></p>
 <p>The Enterprise Active Directory Identity &amp; File Services Infrastructure project successfully demonstrates the deployment of a complete Microsoft Windows Server environment based on enterprise administration best practices.</p>
 <p>Starting from an isolated VMware virtual network, the project progressed through the deployment of DC01, the creation of the yasserteach.local forest, the design of a structured Organizational Unit hierarchy, enterprise user provisioning, Security Group implementation, Role-Based Access Control (RBAC), AGDLP permission management, centralized SMB file sharing, NTFS security, and PowerShell automation.</p>
 <p>Unlike a basic Active Directory installation, this implementation emphasizes scalability, maintainability, and security by separating identity management from permission management and automating repetitive administrative tasks.</p>

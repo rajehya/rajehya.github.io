@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation."><title>Windows Server DHCP Infrastructure | Yasser Alrajeh</title>
+<link rel="stylesheet" href="../../assets/css/style.css"></head>
+<body class="project-page"><header><nav>
+<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
+<main class="doc"><div class="container">
+<div class="meta-block"><p>Windows Server DHCP Infrastructure</p><p>Project Category: Infrastructure</p><p>Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation.</p></div>
+<h1>Enterprise DHCP Server Deployment and Management</h1>
+<p><em>Windows Server 2022 | Active Directory Domain:
+yasserteach.local</em></p>
+<h1>Project Overview</h1>
+<p>This project demonstrates the deployment and configuration of a
+centralized Dynamic Host Configuration Protocol (DHCP) service in a
+Windows Server Active Directory environment.</p>
+<p>The objective was to deploy a dedicated DHCP server that
+automatically provides network configuration to domain-joined client
+devices. The DHCP server was integrated with Active Directory Domain
+Services and configured to distribute IP addresses, subnet masks,
+default gateway information, and DNS settings.</p>
+<p>The project was implemented in a virtual lab using VMware Workstation
+and Windows Server 2022.</p>
+<h1>1. Business Scenario</h1>
+<p>A growing organization requires a centralized method for assigning
+and managing IP addresses across its internal network.</p>
+<p>Manually assigning static IP addresses to every workstation creates
+several operational problems:</p>
+<ul>
+<li><p>Increased administrative workload</p></li>
+<li><p>Duplicate IP address conflicts</p></li>
+<li><p>Incorrect subnet or gateway configurations</p></li>
+<li><p>Inconsistent DNS configuration</p></li>
+<li><p>Difficulty tracking used and available addresses</p></li>
+<li><p>Limited scalability when new devices are added</p></li>
+</ul>
+<p>To address these challenges, a dedicated Windows Server DHCP solution
+was deployed.</p>
+<p>The DHCP server automatically assigns valid TCP/IP configurations to
+client devices and provides centralized control over IP address
+allocation.</p>
+<h1>2. Project Objectives</h1>
+<p>The main objectives of this project were to:</p>
+<ul>
+<li><p>Deploy a dedicated Windows Server 2022 DHCP server</p></li>
+<li><p>Join the DHCP server to the Active Directory domain</p></li>
+<li><p>Install the Windows Server DHCP role</p></li>
+<li><p>Authorize the DHCP server in Active Directory</p></li>
+<li><p>Create and configure an IPv4 DHCP scope</p></li>
+<li><p>Configure DHCP scope options</p></li>
+<li><p>Define excluded IP address ranges</p></li>
+<li><p>Configure DHCP lease duration</p></li>
+<li><p>Activate the DHCP scope</p></li>
+<li><p>Test automatic IP address assignment</p></li>
+<li><p>Verify communication with the domain controller</p></li>
+<li><p>Verify DNS name resolution</p></li>
+<li><p>Create and test a DHCP reservation</p></li>
+<li><p>Monitor active DHCP leases</p></li>
+<li><p>Apply DHCP management and security best practices</p></li>
+<li><p>Document the complete implementation for a professional
+portfolio</p></li>
+</ul>
+<h1>3. Lab Environment</h1>
+<p><strong>3.1 Virtualization Platform</strong></p>
+<ul>
+<li><p>VMware Workstation Pro</p></li>
+<li><p>Host-only virtual network</p></li>
+<li><p>Isolated internal lab environment</p></li>
+</ul>
+<p><strong>3.2 Operating Systems</strong></p>
+<ul>
+<li><p>Windows Server 2022</p></li>
+<li><p>Windows 11 client</p></li>
+</ul>
+<p><strong>3.3 Domain Environment</strong></p>
+<ul>
+<li><p>Active Directory domain: yasserteach.local</p></li>
+<li><p>Domain Controller: DC01</p></li>
+<li><p>DHCP Server: DHCP01</p></li>
+<li><p>Client computer: W11-CLIENT01</p></li>
+</ul>
+<p><strong>3.4 Server Roles</strong></p>
+<p><strong>3.5 DC01</strong></p>
+<p>The domain controller provided the following services:</p>
+<ul>
+<li><p>Active Directory Domain Services</p></li>
+<li><p>Domain Name System</p></li>
+<li><p>Domain authentication</p></li>
+<li><p>Centralized identity management</p></li>
+</ul>
+<p><strong>3.6 DHCP01</strong></p>
+<p>The DHCP server provided:</p>
+<ul>
+<li><p>Automatic IPv4 address allocation</p></li>
+<li><p>DHCP lease management</p></li>
+<li><p>Scope management</p></li>
+<li><p>DNS server distribution</p></li>
+<li><p>Default gateway distribution</p></li>
+<li><p>DHCP reservations</p></li>
+<li><p>Centralized IP address administration</p></li>
+</ul>
+<p><strong>3.7 W11-CLIENT01</strong></p>
+<p>The Windows 11 virtual machine was used to test:</p>
+<ul>
+<li><p>Automatic IP address assignment</p></li>
+<li><p>DHCP lease acquisition</p></li>
+<li><p>DNS configuration</p></li>
+<li><p>Domain communication</p></li>
+<li><p>Network connectivity</p></li>
+<li><p>DHCP reservations</p></li>
+</ul>
+<h1>4. Logical Network Architecture</h1>
+<p>The lab used a single VMware host-only virtual network. DC01, DHCP01,
+and W11-CLIENT01 were all connected to the same segment so that DHCP
+broadcast traffic (Discover/Request) could reach the DHCP server, with
+DC01 providing AD DS and DNS, DHCP01 providing the DHCP service, and
+W11-CLIENT01 acting as the DHCP client — all joined to the
+yasserteach.local domain.</p>
+<p>Using the same virtual network was necessary to ensure that DHCP
+broadcast messages could reach the DHCP server.</p>
+<h1>5. IP Addressing Plan (Actual Lab Values)</h1>
+<p>The following addressing structure reflects the actual values
+configured and verified in the lab, as confirmed by the configuration
+and PowerShell screenshots.</p>
+<table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Device or Purpose</strong></td>
+<td><strong>Addressing Method</strong></td>
+<td><strong>Address Used in the Lab</strong></td>
+</tr>
+<tr class="even">
+<td>Network address</td>
+<td>Static</td>
+<td>192.168.10.0/24</td>
+</tr>
+<tr class="odd">
+<td>Domain Controller (DC01)</td>
+<td>Static</td>
+<td>192.168.10.10</td>
+</tr>
+<tr class="even">
+<td>DHCP Server (DHCP01)</td>
+<td>Static</td>
+<td>192.168.10.20</td>
+</tr>
+<tr class="odd">
+<td>Default Gateway</td>
+<td>Static / lab-defined</td>
+<td>192.168.10.1</td>
+</tr>
+<tr class="even">
+<td>DHCP Scope Start</td>
+<td>Dynamic</td>
+<td>192.168.10.100</td>
+</tr>
+<tr class="odd">
+<td>DHCP Scope End</td>
+<td>Dynamic</td>
+<td>192.168.10.200</td>
+</tr>
+<tr class="even">
+<td>Exclusion Range</td>
+<td>Dynamic pool exclusion</td>
+<td>192.168.10.100 – 192.168.10.110</td>
+</tr>
+<tr class="odd">
+<td>Client Lease Obtained (W11-CLIENT01)</td>
+<td>Dynamic</td>
+<td>192.168.10.111</td>
+</tr>
+<tr class="even">
+<td>Primary DNS Server</td>
+<td>Static</td>
+<td>192.168.10.10</td>
+</tr>
+<tr class="odd">
+<td>DNS Domain Name</td>
+<td>DHCP option</td>
+<td>yasserteach.local</td>
+</tr>
+<tr class="even">
+<td>Subnet Mask</td>
+<td>DHCP option</td>
+<td>255.255.255.0</td>
+</tr>
+<tr class="odd">
+<td>DHCP Lease Duration</td>
+<td>Scope setting</td>
+<td>8 days</td>
+</tr>
+</tbody>
+</table>
+<p>The infrastructure servers were assigned static IP addresses. Client
+devices received their network configuration dynamically from the DHCP
+server.</p>
+<h1>6. Project Implementation</h1>
+<p>6.1 Prepare the Virtual Machines</p>
+<p>Three virtual machines were prepared in VMware Workstation:</p>
+<ul>
+<li><p>DC01</p></li>
+<li><p>DHCP01</p></li>
+<li><p>W11-CLIENT01</p></li>
+</ul>
+<p>Each virtual machine was configured with:</p>
+<ul>
+<li><p>Sufficient memory</p></li>
+<li><p>A virtual network adapter</p></li>
+<li><p>Windows Server 2022 or Windows 11</p></li>
+<li><p>VMware host-only network connectivity</p></li>
+</ul>
+<p>All virtual machines were connected to the same VMware virtual
+network. This was an important requirement because DHCP initially
+depends on broadcast traffic. If the client and the DHCP server are
+connected to different isolated virtual networks, the DHCP Discover
+message will not reach the server.</p>
+<p>6.2 Verify the Domain Controller</p>
+<p>Before deploying DHCP, the domain controller was verified. The domain
+controller had already been configured with:</p>
+<ul>
+<li><p>Windows Server 2022</p></li>
+<li><p>Active Directory Domain Services</p></li>
+<li><p>DNS Server</p></li>
+<li><p>The yasserteach.local domain</p></li>
+<li><p>A static IPv4 address</p></li>
+</ul>
+<p>The DNS configuration on the domain controller was also checked to
+ensure that it pointed to the correct internal DNS service. The
+following command was used to review the network configuration:</p>
+<p>ipconfig /all</p>
+<p>The domain controller needed to use its own internal DNS service
+rather than an external public DNS server for Active Directory name
+resolution.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8985c241fd94228574f4277ae7862c68fc8cf1fd.png" style="width:3.95833in;height:2.82292in"/></p>
+<p><em>Add Roles and Features Wizard on DC01 — installing Active
+Directory Domain Services, DNS Server, and Group Policy Management
+(initial domain controller setup).</em></p>
+<p>6.3 Install Windows Server 2022 on DHCP01</p>
+<p>Windows Server 2022 was installed on the second virtual machine.
+After installation, the initial server configuration was completed. The
+following settings were configured:</p>
+<ul>
+<li><p>Computer name</p></li>
+<li><p>Administrator password</p></li>
+<li><p>Time zone</p></li>
+<li><p>Network adapter</p></li>
+<li><p>Static IPv4 address</p></li>
+<li><p>Preferred DNS server</p></li>
+</ul>
+<p>The server was renamed to: DHCP01. The server was restarted after the
+computer name was changed.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/0110956817723e65f1b5ed7d91fcbbfbd897a59d.png" style="width:3.125in;height:3.38542in"/></p>
+<p><em>Computer Name/Domain Changes — renaming the server to DHCP01
+(still in WORKGROUP, prior to joining the domain).</em></p>
+<p>6.4 Configure a Static IP Address on DHCP01</p>
+<p>A DHCP server must use a static IP address. A dynamic address should
+not be used because the DHCP server's own IP address must remain
+consistent for:</p>
+<ul>
+<li><p>Active Directory authorization</p></li>
+<li><p>Server administration</p></li>
+<li><p>DNS communication</p></li>
+<li><p>Monitoring</p></li>
+<li><h1>Troubleshooting</h1></li>
+<li><p>Client and administrator connectivity</p></li>
+</ul>
+<p>The Ethernet adapter properties were opened, followed by Internet
+Protocol Version 4 (TCP/IPv4). A static configuration was assigned — the
+actual values used in the lab:</p>
+<p>IP Address: 192.168.10.20 Subnet Mask: 255.255.255.0 Default Gateway:
+192.168.10.1 Preferred DNS: 192.168.10.10</p>
+<p>The preferred DNS server was configured as the IP address of DC01.
+This was necessary because DC01 hosted the DNS zone for
+yasserteach.local.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c0c19ba2c3a51a101226a32bf6e56cf8f7a366cb.png" style="width:3.33333in;height:3.66667in"/></p>
+<p><em>Internet Protocol Version 4 (TCP/IPv4) Properties — the actual
+static configuration applied on DHCP01.</em></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/aa0bd88ba0a98f03b6b2e9adba3e03e2f3acf333.png" style="width:4.79167in;height:4.04167in"/></p>
+<p><em>Verifying the static configuration and DNS server via PowerShell,
+and a successful ping test to DC01 (192.168.10.10).</em></p>
+<p>6.5 Test Communication with the Domain Controller</p>
+<p>Before joining the DHCP server to the domain, network connectivity
+was tested. The following command tested connectivity using the domain
+controller's IP address:</p>
+<p>ping 192.168.10.10</p>
+<p>Name resolution was then tested using the server name:</p>
+<p>ping DC01</p>
+<p>The domain name was also tested:</p>
+<p>ping yasserteach.local</p>
+<p>Additional DNS verification was performed with:</p>
+<p>nslookup DC01.yasserteach.local</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bc3f8b92d42e26dde26713c6407a1dec15374bdb.png" style="width:3.95833in;height:2.46875in"/></p>
+<p><em>Command Prompt — ping 192.168.10.10 from DHCP01, confirming
+successful Layer 3 connectivity to DC01.</em></p>
+<p>Successful IP communication confirmed Layer 3 connectivity.
+Successful hostname resolution confirmed that the DHCP server was using
+the correct internal DNS server.</p>
+<p>6.6 Join DHCP01 to the Active Directory Domain</p>
+<p>After confirming connectivity and DNS resolution, DHCP01 was joined
+to the Active Directory domain: yasserteach.local. Domain administrator
+credentials were provided when prompted. After the successful domain
+join, the server displayed a confirmation message welcoming it to the
+domain. DHCP01 was restarted to complete the domain membership
+process.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/5e6336679e8547963c392869ab1e9ae5b3a64f8b.png" style="width:3.95833in;height:2.69792in"/></p>
+<p><em>Joining DHCP01 to the yasserteach.local domain via Computer
+Name/Domain Changes.</em></p>
+<p>After the restart, the server was accessed using a domain
+account:</p>
+<p>YASSERTEACH\yasser</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/003cbe41ccdda0e1bda9e386287b60c7d4b80acc.png" style="width:3.125in;height:2in"/></p>
+<p><em>Signing in to DHCP01 using a YASSERTEACH domain account.</em></p>
+<p>Domain membership was verified using:</p>
+<p>systeminfo | findstr /B /C:"Domain"</p>
+<p>Expected result: Domain: yasserteach.local</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a2a36e7d7e2d3a8f8cc7951af8fb6c4851b127fc.png" style="width:3.95833in;height:1.5in"/></p>
+<p><em>systeminfo confirming domain membership: Domain:
+yasserteach.local.</em></p>
+<p>6.7 Install the DHCP Server Role</p>
+<p>The DHCP Server role was installed from Server Manager. The following
+process was used:</p>
+<ol type="1">
+<li><p>Opened Server Manager</p></li>
+<li><p>Selected Manage</p></li>
+<li><p>Selected Add Roles and Features</p></li>
+<li><p>Selected Role-based or feature-based installation</p></li>
+<li><p>Selected DHCP01</p></li>
+<li><p>Selected DHCP Server</p></li>
+<li><p>Added the required management tools</p></li>
+<li><p>Continued through the wizard</p></li>
+<li><p>Selected Install</p></li>
+<li><p>Waited for the installation to complete</p></li>
+</ol>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f6c8093f4b4a1050a0fd128065d7c5ec6705d041.png" style="width:4.375in;height:3.32292in"/></p>
+<p><em>Add Roles and Features Wizard — installing the DHCP Server role
+with management tools.</em></p>
+<p>The DHCP role could also be installed using PowerShell:</p>
+<p>Install-WindowsFeature DHCP -IncludeManagementTools</p>
+<p>The installation status could be verified using:</p>
+<p class="command-block">Get-WindowsFeature DHCP</p>
+<p>6.8 Complete the DHCP Post-Installation Configuration</p>
+<p>After installing the DHCP role, Server Manager displayed a
+post-deployment notification. The notification was opened and the DHCP
+post-installation configuration wizard was completed. The wizard
+performed two important tasks:</p>
+<ul>
+<li><p>Created the required DHCP security groups</p></li>
+<li><p>Authorized the DHCP server in Active Directory</p></li>
+</ul>
+<p>The following local security groups were created: DHCP
+Administrators, DHCP Users. The server was authorized using domain
+administrative credentials.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c96cf64e2c46d4f70f918fd9702ac1f5e4abaeff.png" style="width:4.79167in;height:3.41667in"/></p>
+<p><em>DHCP post-installation configuration wizard confirming security
+groups created and the server authorized.</em></p>
+<h1>7. DHCP Authorization in Active Directory</h1>
+<p><strong>7.1 Why DHCP Authorization Is Required</strong></p>
+<p>In an Active Directory environment, a Windows DHCP server must be
+authorized before it can distribute IP addresses. DHCP authorization
+protects the network from unauthorized or rogue DHCP servers. A rogue
+DHCP server could distribute incorrect settings such as:</p>
+<ul>
+<li><p>An incorrect default gateway</p></li>
+<li><p>A malicious DNS server</p></li>
+<li><p>An invalid subnet mask</p></li>
+<li><p>An incorrect DNS domain</p></li>
+<li><p>Conflicting IP addresses</p></li>
+</ul>
+<p>Authorization ensures that only approved DHCP servers can respond to
+client requests.</p>
+<p><strong>7.2 Verify DHCP Authorization</strong></p>
+<p>The DHCP management console was opened by running:</p>
+<p>dhcpmgmt.msc</p>
+<p>The server status was reviewed. An authorized server normally
+displays a green status indicator. Authorization could also be verified
+using PowerShell:</p>
+<p class="command-block">Get-DhcpServerInDC</p>
+<p>Expected information included:</p>
+<ul>
+<li><p>DHCP server hostname</p></li>
+<li><p>DHCP server IP address</p></li>
+<li><p>Active Directory authorization status</p></li>
+</ul>
+<p>If manual authorization was required, the following command could be
+used (using the actual DHCP01 address):</p>
+<p>Add-DhcpServerInDC ` -DnsName "DHCP01.yasserteach.local" ` -IPAddress
+192.168.10.20</p>
+<h1>8. Create an IPv4 DHCP Scope</h1>
+<p>An IPv4 scope was created to define the pool of addresses that could
+be assigned to clients. The DHCP management console was opened:</p>
+<p>Server Manager → Tools → DHCP</p>
+<p>The following path was expanded: DHCP → DHCP01 → IPv4. The IPv4 node
+was right-clicked and New Scope was selected.</p>
+<p>8.1 Scope Name and Description</p>
+<p>A descriptive scope name was entered — Corporate Client Network —
+with the description: "Provides dynamic IPv4 configuration to internal
+domain client devices." A professional scope name makes it easier for
+administrators to identify the network purpose.</p>
+<p>8.2 Configure the IP Address Range</p>
+<p>The dynamic IP address range configured in the lab:</p>
+<p>Start IP Address: 192.168.10.100 End IP Address: 192.168.10.200
+Prefix Length: /24 Subnet Mask: 255.255.255.0</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a00755a1992e722b157dddd24a4d545190e7a69f.png" style="width:4.58333in;height:3.20833in"/></p>
+<p><em>New Scope Wizard — configuring the IPv4 address range
+(192.168.10.100 – 192.168.10.200).</em></p>
+<p>8.3 Configure Exclusions</p>
+<p>An exclusion range was configured to prevent DHCP from assigning
+specific addresses. The actual exclusion range configured in the
+lab:</p>
+<p>192.168.10.100 – 192.168.10.110</p>
+<p>Excluded addresses can be used for:</p>
+<ul>
+<li><p>Servers</p></li>
+<li><p>Network devices</p></li>
+<li><p>Printers</p></li>
+<li><p>Firewalls</p></li>
+<li><p>Access points</p></li>
+<li><p>Management interfaces</p></li>
+<li><p>Future infrastructure devices</p></li>
+</ul>
+<p>Addresses assigned manually to infrastructure systems should not be
+included in the dynamic DHCP pool.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/558815cc008d027acee35d791f5abd4a7ea12f7a.png" style="width:3.95833in;height:3.28125in"/></p>
+<p><em>New Scope Wizard — Add Exclusions and Delay (192.168.10.100 –
+192.168.10.110).</em></p>
+<p>8.4 Configure Lease Duration</p>
+<p>The DHCP lease duration configured in the lab was 8 days, confirmed
+later via Get-DhcpServerv4Scope. The lease duration determines how long
+a client can use an assigned address before renewing it. A longer lease
+is suitable for stable corporate networks where devices remain connected
+for long periods. A shorter lease may be more appropriate for:</p>
+<ul>
+<li><p>Guest networks</p></li>
+<li><p>Training environments</p></li>
+<li><p>Wireless networks</p></li>
+<li><p>Networks with frequent client changes</p></li>
+</ul>
+<p>For this lab, the default lease duration was sufficient.</p>
+<h1>9. Configure DHCP Scope Options</h1>
+<p>DHCP scope options provide clients with additional network
+information. The following options were configured.</p>
+<p><strong>9.1 Option 003: Router</strong></p>
+<p>The default gateway address configured:</p>
+<p>192.168.10.1</p>
+<p>This option tells clients where to send traffic destined for other
+networks. In a completely isolated host-only lab without routing, the
+gateway may be omitted or configured according to the virtual network
+design.</p>
+<p><strong>9.2 Option 006: DNS Servers</strong></p>
+<p>The internal DNS server configured:</p>
+<p>192.168.10.10</p>
+<p>This was the IP address of DC01. Using the domain controller as the
+DNS server allowed clients to resolve:</p>
+<ul>
+<li><p>Domain controller names</p></li>
+<li><p>Active Directory service records</p></li>
+<li><p>Domain names</p></li>
+<li><p>Internal hostnames</p></li>
+<li><p>Domain resources</p></li>
+</ul>
+<p>Using a public DNS server directly on a domain client could prevent
+Active Directory domain discovery and internal name resolution.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/482aff13e240f64121d9263174bafc6f056c0f07.png" style="width:3.95833in;height:3.30208in"/></p>
+<p><em>New Scope Wizard — Domain Name and DNS Servers, configured with
+192.168.10.10.</em></p>
+<p><strong>9.3 Option 015: DNS Domain Name</strong></p>
+<p>The internal DNS domain was configured as: yasserteach.local. This
+option provides clients with the domain suffix used for internal DNS
+queries.</p>
+<p><strong>9.4 Scope Option Summary</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Option</strong></td>
+<td><strong>Name</strong></td>
+<td><strong>Configured Value</strong></td>
+</tr>
+<tr class="even">
+<td>003</td>
+<td>Router</td>
+<td>192.168.10.1</td>
+</tr>
+<tr class="odd">
+<td>006</td>
+<td>DNS Servers</td>
+<td>192.168.10.10 (DC01)</td>
+</tr>
+<tr class="even">
+<td>015</td>
+<td>DNS Domain Name</td>
+<td>yasserteach.local</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b6407c029a76f9473d3b84651b6335070f39b226.png" style="width:4.375in;height:2.17708in"/></p>
+<p><em>DHCP console — Scope Options showing the configured Router, DNS
+Servers, and DNS Domain Name values.</em></p>
+<h1>10. Activate the DHCP Scope</h1>
+<p>After reviewing the scope settings, the scope was activated. An
+inactive scope cannot distribute IP addresses. The activated scope
+appeared under: IPv4 → Corporate Client Network. The scope contained the
+following management sections:</p>
+<ul>
+<li><p>Address Pool</p></li>
+<li><p>Address Leases</p></li>
+<li><p>Reservations</p></li>
+<li><p>Scope Options</p></li>
+<li><p>Policies</p></li>
+</ul>
+<p>The scope status was verified as active.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/eee90620c2f14523595ac27905a823a755077c95.png" style="width:4.79167in;height:1.5in"/></p>
+<p><em>DHCP console showing the Corporate Client Network scope with an
+Active status.</em></p>
+<h1>11. Verify the DHCP Server Service</h1>
+<p>The DHCP Server service was checked using the Services console and
+PowerShell:</p>
+<p class="command-block">Get-Service DHCPServer</p>
+<p>Expected status: Running / Automatic. If required, the service could
+be started using:</p>
+<p>Start-Service DHCPServer</p>
+<p>The startup type could be configured using:</p>
+<p class="command-block">Set-Service DHCPServer -StartupType Automatic</p>
+<h1>12. Prepare the Windows 11 DHCP Client</h1>
+<p>A Windows 11 virtual machine was used to test the DHCP deployment.
+The Windows 11 network adapter was connected to the same VMware
+host-only network as DC01 and DHCP01. The IPv4 adapter configuration was
+changed to "Obtain an IP address automatically" and "Obtain DNS server
+address automatically", allowing the computer to request its network
+configuration from the DHCP server.</p>
+<h1>13. Request a DHCP Lease</h1>
+<p>The existing network configuration was released:</p>
+<p>ipconfig /release</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4d460d58d2301d06589ba28e3dac28ae6eea8bbd.png" style="width:4.375in;height:1.48958in"/></p>
+<p><em>ipconfig /release on W11-CLIENT01.</em></p>
+<p>A new DHCP lease was requested:</p>
+<p>ipconfig /renew</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1a7ab25d942e6dc4d62a487a989f73891cde0e06.png" style="width:4.375in;height:1.67708in"/></p>
+<p><em>ipconfig /renew — the client received IPv4 address
+192.168.10.111.</em></p>
+<p>The complete client configuration was displayed using:</p>
+<p>ipconfig /all</p>
+<p>The output was reviewed to confirm the following:</p>
+<ul>
+<li><p>DHCP Enabled: Yes</p></li>
+<li><p>Valid IPv4 address from the configured scope</p></li>
+<li><p>Correct subnet mask</p></li>
+<li><p>Correct default gateway</p></li>
+<li><p>Correct DNS server</p></li>
+<li><p>Correct DNS suffix</p></li>
+<li><p>DHCP server address</p></li>
+<li><p>Lease obtained time</p></li>
+<li><p>Lease expiration time</p></li>
+</ul>
+<p>Actual output obtained on W11-CLIENT01:</p>
+<p>DHCP Enabled: Yes IPv4 Address: 192.168.10.111 Subnet Mask:
+255.255.255.0 Default Gateway: 192.168.10.1 DHCP Server: 192.168.10.20
+DNS Servers: 192.168.10.10 Connection-specific DNS Suffix:
+yasserteach.local</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/89e9bdea127715bb2722cc72c9a4ae3a30cf0d32.png" style="width:4.79167in;height:3.25in"/></p>
+<p><em>ipconfig /all on W11-CLIENT01 — full lease details (IP
+192.168.10.111, DHCP Server 192.168.10.20).</em></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fb4a2971f3542cb274d1699db1a506908d0bb0a8.png" style="width:3.95833in;height:3.60417in"/></p>
+<p><em>ipconfig /all — DHCP server and DNS information on the
+client.</em></p>
+<h1>14. Understand the DHCP Lease Process</h1>
+<p>When the Windows 11 client requested an IP address, the DHCP process
+followed the DORA sequence.</p>
+<p><strong>14.1 DHCP Discover</strong></p>
+<p>The client broadcast a DHCP Discover message to locate available DHCP
+servers.</p>
+<p><strong>14.2 DHCP Offer</strong></p>
+<p>DHCP01 responded with an available IP address and configuration
+information.</p>
+<p><strong>14.3 DHCP Request</strong></p>
+<p>The client requested the offered IP address.</p>
+<p><strong>14.4 DHCP Acknowledgment</strong></p>
+<p>DHCP01 approved the request and created the lease.</p>
+<p>The process is summarized as: Discover → Offer → Request →
+Acknowledge. This process is commonly known as DHCP DORA.</p>
+<h1>15. Verify the DHCP Lease on the Server</h1>
+<p>On DHCP01, the following location was opened: DHCP Console → IPv4 →
+Corporate Client Network → Address Leases. The Windows 11 client
+appeared in the lease list. The lease record contained information such
+as:</p>
+<ul>
+<li><p>Assigned IP address</p></li>
+<li><p>Client hostname</p></li>
+<li><p>Lease expiration date</p></li>
+<li><p>Client identifier</p></li>
+<li><p>Lease status</p></li>
+<li><p>Address type</p></li>
+</ul>
+<p>This confirmed that the DHCP server had successfully issued and
+recorded the client lease.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/06f23300c2221288274fa7731369d2258ddc7af9.png" style="width:4.79167in;height:1.63542in"/></p>
+<p><em>DHCP Address Leases console — W11-CLIENT01 listed with IP
+192.168.10.111.</em></p>
+<h1>16. Connectivity Testing</h1>
+<p>After the client received its DHCP configuration, several
+connectivity tests were performed.</p>
+<p><strong>16.1 Test the DHCP Server</strong></p>
+<p>ping DHCP01</p>
+<p><strong>16.2 Test the Domain Controller by IP Address</strong></p>
+<p>ping 192.168.10.10</p>
+<p><strong>16.3 Test the Domain Controller by Hostname</strong></p>
+<p>ping DC01</p>
+<p><strong>16.4 Test the Domain Name</strong></p>
+<p>ping yasserteach.local</p>
+<p><strong>16.5 Test DNS Resolution</strong></p>
+<p>nslookup DC01.yasserteach.local</p>
+<p><strong>16.6 Display the DNS Configuration</strong></p>
+<p>ipconfig /all</p>
+<p>These tests verified: client-to-server communication, TCP/IP
+configuration, internal DNS resolution, domain connectivity, and correct
+DHCP option distribution.</p>
+<h1>17. Create a DHCP Reservation</h1>
+<p>A DHCP reservation was created to provide a specific client with the
+same IP address whenever it requested a lease. Reservations are useful
+for devices that require predictable addresses but should remain
+centrally managed through DHCP. Examples include:</p>
+<ul>
+<li><p>Network printers</p></li>
+<li><p>IP phones</p></li>
+<li><p>Security cameras</p></li>
+<li><p>Application appliances</p></li>
+<li><p>Monitoring devices</p></li>
+<li><p>Administrative workstations</p></li>
+</ul>
+<p>17.1 Obtain the Client MAC Address</p>
+<p>On the Windows 11 client, the following command was used:</p>
+<p>ipconfig /all</p>
+<p>The physical address of the Ethernet adapter was recorded — the
+actual MAC address of W11-CLIENT01:</p>
+<p>00-0C-29-21-DD-8A</p>
+<p>The MAC address could also be displayed using:</p>
+<p>getmac</p>
+<p>17.2 Create the Reservation</p>
+<p>On DHCP01, the following location was opened: IPv4 → Corporate Client
+Network → Reservations. A new reservation was created with:</p>
+<p>Reservation Name: W11-CLIENT01 IP Address: 192.168.10.111 MAC
+Address: 00-0C-29-21-DD-8A Description: Reserved address for Windows 11
+test client Supported Type: Both</p>
+<p>The reserved IP address (192.168.10.111) was the same address the
+client had already been leasing, taken from the scope range.</p>
+<p>17.3 Test the Reservation</p>
+<p>On the Windows 11 client, the existing address was released and
+renewed:</p>
+<p>ipconfig /release ipconfig /renew</p>
+<p>The configuration was checked again with ipconfig /all. The client
+received the reserved IP address (192.168.10.111). The DHCP console was
+also reviewed to verify that the reservation was active.</p>
+<h1>18. DHCP Management Verification</h1>
+<p>The following DHCP components were reviewed after implementation.</p>
+<p><strong>18.1 Address Pool</strong></p>
+<p>Confirmed the configured dynamic address range and exclusions.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b82a1078932ae91e9d4bdedea8df1ddeec267e2b.png" style="width:3.95833in;height:2.11458in"/></p>
+<p><em>DHCP console tree — Address Pool node under the Corporate Client
+Network scope.</em></p>
+<p><strong>18.2 Address Leases</strong></p>
+<p>Confirmed the addresses currently assigned to clients.</p>
+<p><strong>18.3 Reservations</strong></p>
+<p>Confirmed the permanently mapped client address.</p>
+<p><strong>18.4 Scope Options</strong></p>
+<p>Confirmed the gateway, DNS server, and DNS domain settings.</p>
+<p><strong>18.5 Server Authorization</strong></p>
+<p>Confirmed that DHCP01 was authorized in Active Directory.</p>
+<p><strong>18.6 DHCP Service</strong></p>
+<p>Confirmed that the DHCP Server service was running automatically.</p>
+<h1>19. PowerShell Verification Commands</h1>
+<p>The following PowerShell commands can be used to verify and document
+the deployment.</p>
+<p><strong>19.1 Display Authorized DHCP Servers</strong></p>
+<p class="command-block">Get-DhcpServerInDC</p>
+<p><strong>19.2 Display IPv4 Scopes</strong></p>
+<p class="command-block">Get-DhcpServerv4Scope</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cb5402517361fe705e4a52ee171b6eb266b71758.png" style="width:4.79167in;height:1.84375in"/></p>
+<p><em>PowerShell output — Get-DhcpServerv4Scope (192.168.10.0, Active,
+192.168.10.100–200, 8 day lease) and Get-DhcpServerDatabase.</em></p>
+<p><strong>19.3 Display the DHCP Address Pool</strong></p>
+<p class="command-block">Get-DhcpServerv4ExclusionRange ` -ComputerName DHCP01 ` -ScopeId
+192.168.10.0</p>
+<p><strong>19.4 Display Scope Options</strong></p>
+<p class="command-block">Get-DhcpServerv4OptionValue ` -ComputerName DHCP01 ` -ScopeId
+192.168.10.0</p>
+<p><strong>19.5 Display Active Leases</strong></p>
+<p class="command-block">Get-DhcpServerv4Lease ` -ComputerName DHCP01 ` -ScopeId
+192.168.10.0</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/6415b413cabecb8bc0ca92f8f26b8bcc385a8e12.png" style="width:4.375in;height:1.8125in"/></p>
+<p><em>Export-DhcpServer — exporting the DHCP configuration and active
+leases to C:\DHCP-EXPORT.xml.</em></p>
+<p><strong>19.6 Display Reservations</strong></p>
+<p class="command-block">Get-DhcpServerv4Reservation ` -ComputerName DHCP01 ` -ScopeId
+192.168.10.0</p>
+<p><strong>19.7 Check the DHCP Service</strong></p>
+<p class="command-block">Get-Service DHCPServer</p>
+<p><strong>19.8 Display DHCP Server Statistics</strong></p>
+<p class="command-block">Get-DhcpServerv4Statistics ` -ComputerName DHCP01</p>
+<h1>20. Troubleshooting Performed</h1>
+<p>During the project, network communication and DHCP functionality were
+affected by the virtual network configuration. The main troubleshooting
+areas included:</p>
+<ul>
+<li><p>VMware network adapter configuration</p></li>
+<li><p>DNS server configuration</p></li>
+<li><p>Server-to-server connectivity</p></li>
+<li><p>DHCP authorization</p></li>
+<li><p>DHCP scope activation</p></li>
+<li><p>Client automatic addressing</p></li>
+<li><p>Windows Firewall verification</p></li>
+</ul>
+<p><strong>20.1 Servers Could Not Communicate Correctly</strong></p>
+<p><strong>Symptom:</strong> The servers were installed correctly, but
+communication between the virtual machines was inconsistent. IP-based
+connectivity and name-based connectivity did not always produce the same
+results.</p>
+<p><strong>Root Cause:</strong> The virtual machines were not initially
+operating through the correct common VMware virtual network. DHCP
+requires the client broadcast traffic to reach the DHCP server; if the
+virtual machines are connected to different VMware network segments,
+DHCP requests cannot reach DHCP01.</p>
+<p><strong>Resolution:</strong> The network adapters for the virtual
+machines were reviewed and connected to the same VMware host-only
+network. The affected virtual machines were powered on again after the
+virtual network configuration was corrected, and connectivity was
+retested using ping &lt;server-IP&gt;, ping DC01, and ping DHCP01.
+Communication was successfully restored.</p>
+<p><strong>20.2 IP Connectivity Worked but Name Resolution
+Failed</strong></p>
+<p><strong>Symptom:</strong> The server could communicate with the
+domain controller using its IP address, but hostname or domain
+resolution failed (ping by IP address succeeded; ping by hostname
+failed).</p>
+<p><strong>Root Cause:</strong> The affected server or client was not
+using the domain controller as its preferred DNS server. Active
+Directory clients must query the internal DNS server hosting the Active
+Directory DNS zone.</p>
+<p><strong>Resolution:</strong> The preferred DNS server was changed to
+the IP address of DC01 (192.168.10.10). The DNS client cache was cleared
+(ipconfig /flushdns) and DNS registration was refreshed (ipconfig
+/registerdns). Name resolution was tested again with nslookup
+DC01.yasserteach.local and ping DC01 — the hostname resolved
+successfully.</p>
+<p><strong>20.3 DHCP Server Was Installed but Did Not Distribute
+Addresses</strong></p>
+<p><strong>Verification Performed:</strong> DHCP Server role
+installation, DHCP service status, DHCP server authorization, scope
+activation, available addresses in the pool, client and server VMware
+network, client automatic IPv4 configuration, and DHCP scope options
+were all checked.</p>
+<p><strong>Resolution:</strong> The DHCP server was authorized in Active
+Directory, the IPv4 scope was activated, and all virtual machines were
+placed on the same VMware host-only network. The Windows 11 client then
+successfully received an address using ipconfig /release and ipconfig
+/renew.</p>
+<p><strong>20.4 Windows Firewall Was Reviewed</strong></p>
+<p>Windows Firewall rules were checked during troubleshooting to confirm
+that required DHCP and network traffic was not being blocked. However,
+firewall rules were not treated as the only possible cause — the virtual
+network configuration, DNS settings, DHCP authorization, and active
+scope configuration were also validated. This troubleshooting approach
+helped identify the underlying network configuration problem instead of
+repeatedly applying the same firewall checks.</p>
+<h1>21. Security Considerations</h1>
+<p>Several security practices were applied or considered during the
+deployment.</p>
+<p><strong>21.1 Active Directory Authorization</strong></p>
+<p>Only an authorized DHCP server was permitted to distribute
+addresses.</p>
+<p><strong>21.2 Dedicated Server Role</strong></p>
+<p>The DHCP role was deployed on a dedicated member server rather than
+directly on the domain controller. This improves role separation,
+troubleshooting, security administration, service management, and future
+scalability.</p>
+<p><strong>21.3 Controlled Address Pool</strong></p>
+<p>Only a defined range of addresses (192.168.10.100–200) was made
+available for dynamic assignment.</p>
+<p><strong>21.4 Exclusion Ranges</strong></p>
+<p>Infrastructure addresses (192.168.10.100–110) were protected from
+accidental DHCP allocation.</p>
+<p><strong>21.5 Centralized DNS Distribution</strong></p>
+<p>Clients were configured to use the internal DNS server (DC01,
+192.168.10.10) rather than arbitrary external DNS services.</p>
+<p><strong>21.6 Least Privilege Administration</strong></p>
+<p>DHCP management can be delegated through the DHCP Administrators
+group. Administrators do not necessarily need full Domain Admin
+privileges for routine DHCP management.</p>
+<p><strong>21.7 Monitoring Leases</strong></p>
+<p>Active leases and reservations can be reviewed to identify unexpected
+or unauthorized devices.</p>
+<p><strong>21.8 Audit Logging</strong></p>
+<p>DHCP audit logging can be used to record lease operations and server
+activity. The default DHCP log location is C:\Windows\System32\dhcp.</p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bebafd65567801db49294eaceef8481b3646dea1.png" style="width:3.95833in;height:1.57292in"/></p>
+<p class="command-block"><em>Get-DhcpServerAuditLog — audit log configuration on
+DHCP01.</em></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/352b960fc4d89bf8d78a76eef6b205b2b58623a3.png" style="width:4.58333in;height:3.25in"/></p>
+<p><em>Event Viewer — Microsoft-Windows-DHCP-Server Operational log
+recording server policy events.</em></p>
+<h1>22. DHCP Best Practices Applied</h1>
+<p>The project followed several Windows Server DHCP best practices:</p>
+<ul>
+<li><p>Used a dedicated DHCP member server</p></li>
+<li><p>Assigned static IP addresses to infrastructure servers</p></li>
+<li><p>Used the domain controller as the internal DNS server</p></li>
+<li><p>Authorized the DHCP server in Active Directory</p></li>
+<li><p>Used a controlled DHCP address pool</p></li>
+<li><p>Reserved infrastructure addresses outside the dynamic
+range</p></li>
+<li><p>Configured DHCP scope options centrally</p></li>
+<li><p>Used descriptive scope names</p></li>
+<li><p>Tested both IP connectivity and DNS resolution</p></li>
+<li><p>Verified client leases from the server</p></li>
+<li><p>Used reservations for predictable client addressing</p></li>
+<li><p>Documented the complete addressing structure</p></li>
+<li><p>Kept the client and DHCP server on the same virtual
+network</p></li>
+<li><p>Verified DHCP services after configuration</p></li>
+</ul>
+<h1>23. Validation Checklist</h1>
+<table>
+<colgroup>
+<col style="width: 72%"/>
+<col style="width: 27%"/>
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Validation Item</strong></td>
+<td><strong>Result</strong></td>
+</tr>
+<tr class="even">
+<td>DHCP01 has a static IP address</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>DHCP01 uses DC01 as DNS</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>DHCP01 joined yasserteach.local</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>DHCP Server role installed</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>DHCP management tools installed</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>DHCP server authorized in Active Directory</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>IPv4 scope created</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Address pool configured</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>Exclusion range configured</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Lease duration configured</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>DHCP scope options configured</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Scope activated</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>DHCP Server service running</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Windows client configured for automatic addressing</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>Windows client received a valid lease</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Correct subnet mask received</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>Correct DNS server received</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Correct DNS suffix received</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>Client appeared under Address Leases</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>Client communicated with DC01</td>
+<td>Successful</td>
+</tr>
+<tr class="even">
+<td>Client resolved internal DNS names</td>
+<td>Successful</td>
+</tr>
+<tr class="odd">
+<td>DHCP reservation created and tested</td>
+<td>Successful</td>
+</tr>
+</tbody>
+</table>
+<h1>24. Final Results</h1>
+<p>The Windows Server DHCP deployment was completed successfully. The
+final solution provided:</p>
+<ul>
+<li><p>Centralized IPv4 address allocation</p></li>
+<li><p>Automated client network configuration</p></li>
+<li><p>Active Directory-integrated DHCP authorization</p></li>
+<li><p>Centralized DNS server distribution</p></li>
+<li><p>DNS domain suffix distribution</p></li>
+<li><p>Controlled dynamic address allocation</p></li>
+<li><p>Excluded infrastructure address ranges</p></li>
+<li><p>DHCP lease tracking</p></li>
+<li><p>Client reservations</p></li>
+<li><p>Improved IP address consistency</p></li>
+<li><p>Reduced manual configuration</p></li>
+<li><p>Easier network administration</p></li>
+<li><p>A scalable foundation for additional client devices</p></li>
+</ul>
+<p>The Windows 11 client successfully obtained its network configuration
+from DHCP01. The client was able to:</p>
+<ul>
+<li><p>Receive a valid IPv4 address</p></li>
+<li><p>Identify the DHCP server</p></li>
+<li><p>Use the correct subnet mask</p></li>
+<li><p>Use the internal DNS server</p></li>
+<li><p>Resolve the Active Directory domain</p></li>
+<li><p>Communicate with the domain controller</p></li>
+<li><p>Receive a reserved address when configured</p></li>
+</ul>
+<h1>25. Skills Demonstrated</h1>
+<ul>
+<li><p>Windows Server 2022 administration</p></li>
+<li><p>DHCP Server deployment</p></li>
+<li><p>DHCP scope configuration</p></li>
+<li><p>DHCP scope options</p></li>
+<li><p>DHCP lease management</p></li>
+<li><p>DHCP reservations</p></li>
+<li><p>Active Directory integration</p></li>
+<li><p>DHCP server authorization</p></li>
+<li><p>IPv4 subnet configuration</p></li>
+<li><p>DNS client configuration</p></li>
+<li><p>Windows 11 network configuration</p></li>
+<li><p>VMware virtual networking</p></li>
+<li><p>TCP/IP troubleshooting</p></li>
+<li><p>DNS troubleshooting</p></li>
+<li><p>PowerShell administration</p></li>
+<li><p>Enterprise infrastructure documentation</p></li>
+</ul>
+<h1>26. Technologies Used</h1>
+<ul>
+<li><p>Windows Server 2022</p></li>
+<li><p>Windows 11</p></li>
+<li><p>Active Directory Domain Services</p></li>
+<li><p>Windows DNS Server</p></li>
+<li><p>Windows DHCP Server</p></li>
+<li><p>PowerShell</p></li>
+<li><p>Command Prompt</p></li>
+<li><p>VMware Workstation Pro</p></li>
+<li><p>IPv4</p></li>
+<li><p>TCP/IP</p></li>
+<li><p>DNS</p></li>
+<li><p>DHCP</p></li>
+<li><p>Active Directory</p></li>
+</ul>
+<h1>27. Project Outcome</h1>
+<p>This project successfully simulated a real-world enterprise DHCP
+deployment. Instead of manually configuring every endpoint, client
+devices can now automatically obtain their network configuration from a
+centrally managed Windows Server DHCP service.</p>
+<p>The project demonstrates the ability to design, deploy, secure, test,
+troubleshoot, and document a core Microsoft infrastructure service
+within an Active Directory environment.</p>
+<h1>28. Short Project Summary</h1>
+<p><strong>28.1 Enterprise DHCP Server Deployment</strong></p>
+<p>Deployed a dedicated Windows Server 2022 DHCP server in an Active
+Directory domain environment. Configured a centralized IPv4 scope,
+exclusions, lease duration, gateway, internal DNS server, and DNS domain
+options. Authorized the DHCP server in Active Directory and validated
+automatic address allocation using a Windows 11 client.</p>
+<p>Created and tested a DHCP reservation, monitored active leases, and
+resolved VMware virtual networking and DNS name-resolution issues. The
+final solution provided centralized, consistent, and scalable network
+configuration for domain client devices.</p>
+<h1>29. Resume Project Description</h1>
+<p><strong>29.1 Enterprise DHCP Server Deployment — Windows Server
+2022</strong></p>
+<ul>
+<li><p>Deployed and configured a dedicated Windows Server 2022 DHCP
+server.</p></li>
+<li><p>Integrated and authorized the DHCP server within Active
+Directory.</p></li>
+<li><p>Created an IPv4 scope with address pools, exclusions, and lease
+settings.</p></li>
+<li><p>Configured gateway, DNS server, and DNS domain DHCP
+options.</p></li>
+<li><p>Tested DHCP address allocation using a Windows 11
+client.</p></li>
+<li><p>Created and validated a MAC-based DHCP reservation.</p></li>
+<li><p>Monitored active leases and verified server statistics using
+PowerShell.</p></li>
+<li><p>Troubleshot VMware network segmentation and internal DNS
+resolution.</p></li>
+<li><p>Documented the complete implementation, testing, and final
+results.</p></li>
+</ul>
+
+<div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
+</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+</body></html>
