@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning."><title>Enterprise Hyper-V Virtualization | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css"></head>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning." name="description"/><title>Enterprise Hyper-V Virtualization | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container">
 <div class="meta-block"><p>Enterprise Hyper-V Virtualization</p><p>Project Category: Infrastructure</p><p>Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning.</p></div>
@@ -95,41 +96,7 @@ Technologies</h1>
 </tbody>
 </table>
 <h1 id="solution-architecture">3. Solution Architecture</h1>
-<table>
-<colgroup>
-<col style="width: 100%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Windows 10 Pro Hyper-V Host</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>• External Virtual Switch - Physical network and internet
-access</td>
-</tr>
-<tr class="even">
-<td>• YCS-Enterprise-Network - Internal lab communication</td>
-</tr>
-<tr class="odd">
-<td>• YCS-DC01 - Windows Server 2022</td>
-</tr>
-<tr class="even">
-<td>• Windows 10 Client - Workstation workload</td>
-</tr>
-<tr class="odd">
-<td>• Ubuntu - Linux workload</td>
-</tr>
-<tr class="even">
-<td>• VHDX Repository - Virtual machine storage</td>
-</tr>
-<tr class="odd">
-<td>• Export Repository - Portable VM copies for recovery and
-migration</td>
-</tr>
-</tbody>
-</table>
+<div class="architecture-tree"><ul><li><span class="tree-label">Windows 10 Pro Hyper-V Host</span><ul><li><span class="tree-label">External Virtual Switch</span><ul><li><span class="tree-label">Physical Network / Internet Access</span></li></ul></li><li><span class="tree-label">YCS-Enterprise-Network</span><ul><li><span class="tree-label">YCS-DC01 — Windows Server 2022</span></li><li><span class="tree-label">Windows 10 Client</span></li><li><span class="tree-label">Ubuntu Linux</span></li></ul></li><li><span class="tree-label">VHDX Repository</span></li><li><span class="tree-label">Export Repository</span></li></ul></li></ul></div>
 <p>The internal virtual switch provides communication between the
 Hyper-V host and lab virtual machines without directly bridging internal
 lab traffic to the physical network. The external switch supports
@@ -399,9 +366,8 @@ provides a practical foundation for future Windows Server, Active
 Directory, networking, and cybersecurity laboratories while
 demonstrating hands-on infrastructure administration skills relevant to
 Systems Administrator and Infrastructure Engineer roles.</p>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
