@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine."><title>Azure Key Vault Secrets Management | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css"></head>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine." name="description"/><title>Azure Key Vault Secrets Management | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container">
 <div class="meta-block"><p>Azure Key Vault Secrets Management</p><p>Project Category: Cloud Security</p><p>Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine.</p></div>
@@ -163,12 +164,8 @@ Azure Key Vault.</p></li>
 </tr>
 </tbody>
 </table>
-<h1>5. Project Architecture</h1>
-<p>Microsoft Azure | Resource Group: rg-ycs-keyvault-lab-01 |
-+-------------------+-------------------+ | | Azure Key Vault Ubuntu VM
-kv-ycs-01 vm-ycs-app-01 | | |&lt;---------- Azure CLI + SSH
-----------&gt;| | +-- ApiKey +-- DatabasePassword +--
-StorageConnectionString</p>
+<h1>5. Project Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Microsoft Azure</span><ul><li><span class="tree-label">Resource Group: rg-ycs-keyvault-lab-01</span><ul><li><span class="tree-label">Azure Key Vault: kv-ycs-01</span><ul><li><span class="tree-label">ApiKey</span></li><li><span class="tree-label">DatabasePassword</span></li><li><span class="tree-label">StorageConnectionString</span></li></ul></li><li><span class="tree-label">Ubuntu VM: vm-ycs-app-01</span><ul><li><span class="tree-label">SSH</span></li><li><span class="tree-label">Azure CLI</span></li><li><span class="tree-label">Device Code Authentication</span></li></ul></li></ul></li></ul></li></ul></div>
+
 <h1>6. Technologies Used</h1>
 <ul>
 <li><p>Microsoft Azure</p></li>
@@ -384,7 +381,7 @@ source (client) IP address is redacted for privacy.</em></p>
 <p>8.7 Connect to the Linux Virtual Machine</p>
 <p>A secure SSH session was established from Windows PowerShell.</p>
 <p>Command executed:</p>
-<p class="command-block">ssh azureuser@20.246.80.154</p>
+<pre class="command-block"><code>ssh azureuser@20.246.80.154</code></pre>
 <p>After entering the local account password, the connection was
 successfully established. The administrator was presented with the
 Ubuntu login banner and shell prompt.</p>
@@ -410,7 +407,7 @@ Ubuntu virtual machine.</em></p>
 <p>Azure CLI authentication was initiated using Device Code
 authentication.</p>
 <p>Command executed:</p>
-<p class="command-block">az login --use-device-code</p>
+<pre class="command-block"><code>az login --use-device-code</code></pre>
 <p>Azure generated a temporary authentication code and instructed the
 user to visit Microsoft's device login portal. This authentication
 method is commonly used for systems without a graphical web browser.</p>
@@ -434,7 +431,7 @@ terminal.</p>
 <p>After completing the Device Code authentication process, the active
 Azure subscription was verified using Azure CLI.</p>
 <p>Command executed:</p>
-<p class="command-block">az account show</p>
+<pre class="command-block"><code>az account show</code></pre>
 <p><strong>Purpose</strong></p>
 <p>The command displays information about the currently authenticated
 Azure account and confirms that Azure CLI is connected to the correct
@@ -460,7 +457,9 @@ privacy).</em></p>
 <p>After authentication was verified, Azure CLI was used to display all
 secrets stored inside Azure Key Vault.</p>
 <p>Command executed:</p>
-<p class="command-block">az keyvault secret list \ --vault-name kv-ycs-01 \ --output table</p>
+<pre class="command-block"><code>az keyvault secret list \
+--vault-name kv-ycs-01 \
+--output table</code></pre>
 <p><strong>Result</strong></p>
 <p>Azure CLI successfully returned the following secrets:</p>
 <table>
@@ -497,8 +496,10 @@ status confirmed as enabled.</em></p>
 <p>The API key stored inside Azure Key Vault was retrieved using Azure
 CLI.</p>
 <p>Command executed:</p>
-<p class="command-block">az keyvault secret show \ --vault-name kv-ycs-01 \ --name ApiKey \
---query value -o tsv</p>
+<pre class="command-block"><code>az keyvault secret show \
+--vault-name kv-ycs-01 \
+--name ApiKey \
+--query value -o tsv</code></pre>
 <p><strong>Purpose</strong></p>
 <p>Instead of storing API credentials inside application source code,
 Azure Key Vault securely stores the secret and returns it only after
@@ -512,8 +513,10 @@ returned value is redacted for this portfolio.</em></p>
 <p>The database password was retrieved directly from Azure Key
 Vault.</p>
 <p>Command executed:</p>
-<p class="command-block">az keyvault secret show \ --vault-name kv-ycs-01 \ --name
-DatabasePassword \ --query value -o tsv</p>
+<pre class="command-block"><code>az keyvault secret show \
+--vault-name kv-ycs-01 \
+--name DatabasePassword \
+--query value -o tsv</code></pre>
 <p><strong>Purpose</strong></p>
 <p>This command demonstrates secure retrieval of database credentials
 without embedding passwords inside application configuration files.</p>
@@ -528,8 +531,10 @@ portfolio.</em></p>
 <p>The final secret retrieved from Azure Key Vault was the storage
 connection string.</p>
 <p>Command executed:</p>
-<p class="command-block">az keyvault secret show \ --vault-name kv-ycs-01 \ --name
-StorageConnectionString \ --query value -o tsv</p>
+<pre class="command-block"><code>az keyvault secret show \
+--vault-name kv-ycs-01 \
+--name StorageConnectionString \
+--query value -o tsv</code></pre>
 <p><strong>Purpose</strong></p>
 <p>Applications commonly use storage connection strings to access Azure
 Storage Accounts. Storing them in Azure Key Vault prevents accidental
@@ -603,7 +608,7 @@ this project:</p>
 <p><strong>11.2 Linux Administration</strong></p>
 <ul>
 <li><p>Ubuntu Server</p></li>
-<li><p>SSH Remote Access</p></li>
+<li><pre class="command-block"><code>SSH Remote Access</code></pre></li>
 <li><p>Command Line Administration</p></li>
 </ul>
 <p><strong>11.3 Azure CLI</strong></p>
@@ -634,8 +639,7 @@ resources directly from Linux.</p></li>
 account credentials.</p></li>
 <li><p>Secrets should never be hardcoded inside application source code
 or configuration files.</p></li>
-<li><p>SSH provides a secure encrypted channel for Linux
-administration.</p></li>
+<li><pre class="command-block"><code>SSH provides a secure encrypted channel for Linux administration.</code></pre></li>
 </ul>
 <h1>13. Best Practices</h1>
 <p>The following best practices were applied throughout the project:</p>
@@ -686,9 +690,8 @@ application secrets from Azure Key Vault. The implementation reflects
 real-world cloud administration practices and provides a strong
 foundation for secure application credential management in enterprise
 Azure environments.</p>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
