@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Enterprise Active Directory Identity &amp; File Services Infrastructure - Yasser Alrajeh" name="description"/>
 <title>Active Directory Identity &amp; Access | Yasser Alrajeh</title>
-<link href="../../assets/css/style.css" rel="stylesheet"/></head>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page">
 <header>
 <nav>
@@ -411,7 +411,7 @@
 <h2 class="unnumbered" id="validating-network-configuration"><strong>2.5 Validating Network Configuration</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image5.jpg"/></p>
 <p>The command:</p>
-<p>ipconfig /all</p>
+<pre class="command-block"><code>ipconfig /all</code></pre>
 <p>was executed to verify the network configuration before Active Directory installation.</p>
 <p>Validation confirmed:</p>
 <ul>
@@ -582,15 +582,15 @@
 <p><img alt="" class="doc-img" loading="lazy" src="images/image14.jpg"/></p>
 <p>After creating the Organizational Units, the directory hierarchy was reviewed to verify that each department had been placed correctly beneath the Corporate Organizational Unit.</p>
 <p>This validation ensures that future administrative tasks, such as Group Policy deployment and delegated permissions, can be applied accurately to individual departments without affecting the rest of the organization.</p>
-<p>OU Hierarchy</p>
-<p>yasserteach.local</p>
-<p>│</p>
-<p>└── Corporate</p>
-<p>├── IT</p>
-<p>├── HR</p>
-<p>├── Finance</p>
-<p>├── Operations</p>
-<p>└── Executives</p>
+<div class="architecture-tree"><ul><li><span class="tree-label">yasserteach.local</span><ul><li><span class="tree-label">Corporate</span><ul><li><span class="tree-label">IT</span></li><li><span class="tree-label">Finance</span></li><li><span class="tree-label">HR</span></li><li><span class="tree-label">Sales</span></li><li><span class="tree-label">Management</span></li><li><span class="tree-label">Security Groups</span></li><li><span class="tree-label">Service Accounts</span></li></ul></li></ul></li></ul></div>
+
+
+
+
+
+
+
+
 <h2 class="unnumbered" id="creating-enterprise-user-accounts"><strong>3.5 Creating Enterprise User Accounts</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image15.jpg"/></p>
 <p>Enterprise user accounts were created for each department within the yasserteach.local domain.</p>
@@ -615,9 +615,9 @@
 <p>Automation reduces deployment time, minimizes human error, and aligns with enterprise administration practices.</p>
 <p>PowerShell Cmdlets Used</p>
 <ul>
-<li><p>New-ADUser</p></li>
-<li><p>Set-ADUser</p></li>
-<li><p>Enable-ADAccount</p></li>
+<li><pre class="command-block"><code>New-ADUser</code></pre></li>
+<li><pre class="command-block"><code>Set-ADUser</code></pre></li>
+<li><pre class="command-block"><code>Enable-ADAccount</code></pre></li>
 </ul>
 <h2 class="unnumbered" id="completed-enterprise-user-directory"><strong>3.8 Completed Enterprise User Directory</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image18.jpg"/></p>
@@ -818,7 +818,7 @@
 <p><img alt="" class="doc-img" loading="lazy" src="images/image26.jpg"/></p>
 <p>Rather than manually assigning every user through the graphical interface, PowerShell was used to automate Security Group membership.</p>
 <p>The following cmdlet was used:</p>
-<p>Add-ADGroupMember</p>
+<pre class="command-block"><code>Add-ADGroupMember</code></pre>
 <p>Automating membership assignments reduces repetitive work while ensuring that all users are added consistently.</p>
 <p>Administrative Benefits</p>
 <ul>
@@ -1001,7 +1001,7 @@
 <p><img alt="" class="doc-img" loading="lazy" src="images/image32.jpg"/></p>
 <p>PowerShell was used to automate the nesting of Global Groups into Domain Local Groups.</p>
 <p>The following PowerShell cmdlet was used:</p>
-<p>Add-ADGroupMember</p>
+<pre class="command-block"><code>Add-ADGroupMember</code></pre>
 <p>Instead of manually configuring every relationship, PowerShell provides a faster and more consistent deployment process.</p>
 <p>Automation ensures that every department follows the same permission model while reducing administrative effort.</p>
 <h2 class="unnumbered" id="designing-the-enterprise-file-structure"><strong>5.4 Designing the Enterprise File Structure</strong></h2>
