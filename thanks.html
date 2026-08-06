@@ -6,6 +6,80 @@
   <meta name="description" content="Message sent successfully"/>
   <title>Message Sent | Yasser Alrajeh</title>
   <link href="assets/css/style.css" rel="stylesheet"/>
+
+<style>
+  .contact-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .success-main {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 64px 0;
+    text-align: center;
+  }
+
+  .success-content {
+    width: min(92%, 680px);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--azure), var(--azure-light));
+    box-shadow: 0 12px 30px rgba(0,120,212,.28);
+  }
+
+  .success-content h1 {
+    max-width: none;
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -.025em;
+  }
+
+  .success-content p {
+    max-width: 560px;
+    margin: 16px auto 26px;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .success-content .btn {
+    min-width: 170px;
+  }
+
+  @media (max-width: 640px) {
+    .success-main {
+      padding: 48px 0;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      font-size: 1.75rem;
+    }
+
+    .success-content h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
 </head>
 <body class="contact-page">
 <header>
