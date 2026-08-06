@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Enterprise Azure governance implementation covering naming, tagging, Policy, RBAC, locks, compliance, and cost controls." name="description"/><title>Azure Governance Enterprise Lab | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
+/* Unified project typography */
+.project-page .doc,
+.project-page .doc p,
+.project-page .doc li,
+.project-page .doc td,
+.project-page .doc th {
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+}
+
+.project-page .doc table {
+  font-size: 17px !important;
+}
+
+.project-page .doc h1,
+.project-page .doc h2,
+.project-page .doc h3,
+.project-page .doc h4 {
+  color: #0078d4 !important;
+  line-height: 1.3 !important;
+}
+
+/* Unified command and code blocks */
+.project-page .doc pre.command-block {
+  display: block !important;
+  margin: 18px 0 24px !important;
+  padding: 18px 20px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(80,167,232,.45) !important;
+  border-left: 5px solid #0078d4 !important;
+  border-radius: 10px !important;
+  background: #07111f !important;
+  color: #f5f9ff !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.20) !important;
+  white-space: pre !important;
+  text-align: left !important;
+}
+
+.project-page .doc pre.command-block code {
+  display: block !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f5f9ff !important;
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  white-space: pre !important;
+}
+
+/* Unified architecture tree */
+.project-page .doc .architecture-tree,
+.project-page .doc .architecture-tree * {
+  box-sizing: border-box !important;
+}
+
+.project-page .doc .architecture-tree {
+  display: block !important;
+  margin: 20px 0 26px !important;
+  padding: 20px 22px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(0,120,212,.42) !important;
+  border-radius: 12px !important;
+  background: rgba(0,120,212,.07) !important;
+}
+
+.project-page .doc .architecture-tree ul {
+  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 0 0 28px !important;
+  list-style: none !important;
+}
+
+.project-page .doc .architecture-tree > ul {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree li {
+  position: relative !important;
+  display: block !important;
+  margin: 10px 0 !important;
+  padding: 0 0 0 24px !important;
+  list-style: none !important;
+  min-width: max-content !important;
+}
+
+.project-page .doc .architecture-tree li::marker {
+  content: "" !important;
+}
+
+.project-page .doc .architecture-tree li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 18px !important;
+  width: 16px !important;
+  border-top: 2px solid #0078d4 !important;
+}
+
+.project-page .doc .architecture-tree li::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: -12px !important;
+  bottom: -12px !important;
+  border-left: 2px solid rgba(0,120,212,.62) !important;
+}
+
+.project-page .doc .architecture-tree li:last-child::after {
+  bottom: calc(100% - 18px) !important;
+}
+
+.project-page .doc .architecture-tree > ul > li {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree > ul > li::before,
+.project-page .doc .architecture-tree > ul > li::after {
+  display: none !important;
+}
+
+.project-page .doc .architecture-tree .tree-label {
+  display: inline-block !important;
+  padding: 7px 11px !important;
+  border: 1px solid rgba(80,167,232,.28) !important;
+  border-radius: 7px !important;
+  background: rgba(0,120,212,.13) !important;
+  color: inherit !important;
+  font-weight: 650 !important;
+}
+
+@media (max-width: 700px) {
+  .project-page .doc,
+  .project-page .doc p,
+  .project-page .doc li,
+  .project-page .doc td,
+  .project-page .doc th {
+    font-size: 17px !important;
+  }
+  .project-page .doc pre.command-block code {
+    font-size: 15px !important;
+  }
+}
+</style>
+<style id="project-screenshot-size-fix">
+/* Balanced screenshot sizing: clear without filling the entire screen */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(94vw, 1120px) !important;
+  max-width: 1120px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: min(100%, 940px) !important;
+  max-width: 940px !important;
+  height: auto !important;
+  max-height: 680px !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc img.doc-img.is-portrait {
+  width: auto !important;
+  max-width: min(100%, 700px) !important;
+  max-height: 720px !important;
+}
+body.project-page main.doc img.doc-img.is-wide {
+  width: min(100%, 1000px) !important;
+  max-width: 1000px !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 92vw !important; }
+  body.project-page main.doc img.doc-img,
+  body.project-page main.doc img.doc-img.is-portrait,
+  body.project-page main.doc img.doc-img.is-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+</style>
+<style>
+/* Unified project navigation and lightbox safety */
+.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
+.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
+.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
+.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
+.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
+.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
+.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
+.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
+@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
+</style><style id="project-image-description-style">
+.project-page .project-figure { margin: 30px 0 42px; }
+.project-page .project-image-description {
+  max-width: 940px;
+  margin: 14px auto 0;
+  color: #d7e3f1;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+  font-weight: 400;
+  text-align: left;
+}
+.project-page .project-cover-wrap { justify-content: center !important; }
+.project-page .project-cover-image { margin-inline: auto !important; }
+@media (max-width: 700px) {
+  .project-page .project-image-description { font-size: 17px !important; }
+}
+</style></head>
+<body class="project-page" id="page-top"><header><nav>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
+<main class="doc"><div class="container">
+<section class="project-hero"><h1 class="project-main-title">Azure Governance Enterprise Lab</h1>
+<div class="project-cover-wrap"><img alt="Azure Governance project cover" class="project-cover-image" src="images/project-cover-azure-governance.png"/></div>
+<table class="project-summary-table"><tbody>
+<tr><th scope="row">Project Category</th><td>Cloud Governance and Security</td></tr>
+<tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr>
+<tr><th scope="row">Core Technologies</th><td>Azure Policy, RBAC, Resource Locks, Cost Management</td></tr>
+<tr><th scope="row">Project Focus</th><td>Subscription-level governance for Production and Development</td></tr>
+</tbody></table></section>
+<h1>Project Overview</h1>
+<p>This enterprise lab implements a subscription-level Azure governance foundation for two logically separated environments. It combines standardized naming and tagging, approved-region enforcement, policy-driven remediation, role-based access control, deletion protection, cost monitoring, and compliance validation.</p>
+<h1>1. Business Scenario and Requirements</h1>
+<p>YCS Enterprise Lab represents a small-to-medium organization hosting controlled Production workloads and an isolated Development environment in Microsoft Azure. The governance model must improve resource organization, operational control, security management, policy enforcement, cost visibility, and future scalability.</p>
+<table class=""><tbody><tr><th>Requirement</th><th>Description</th></tr><tr><td>Environment separation</td><td>Production and Development resources must be logically separated.</td></tr><tr><td>Standardized naming</td><td>All Azure resources must follow an identifiable naming convention.</td></tr><tr><td>Regional control</td><td>Resources may only be deployed in Qatar Central or UAE North.</td></tr><tr><td>Tag governance</td><td>Resources must use approved metadata, including Environment, Department, Owner, Cost Center, Criticality, and Project.</td></tr><tr><td>Environment validation</td><td>The Environment tag must contain only Production or Development.</td></tr><tr><td>Tag inheritance</td><td>Resources should inherit the Environment tag from their parent Resource Group when it is missing.</td></tr><tr><td>Resource protection</td><td>Production resources must be protected against accidental deletion.</td></tr><tr><td>Cost control</td><td>A monthly budget and cost notifications must be configured.</td></tr><tr><td>Access governance</td><td>Administrative access must follow role-based access control and least-privilege principles.</td></tr><tr><td>Compliance visibility</td><td>Azure Policy compliance must be reviewed and documented.</td></tr></tbody></table>
+<h1>2. Scope and Architecture</h1>
+<p>The project covers subscription-level governance, separate resource groups, standardized resource names and tags, core networking and storage resources for validation, custom and built-in Azure Policy assignments, approved locations, tag inheritance, resource locks, monthly budgets, RBAC, and compliance testing.</p>
+<h2>2.1 Subscription Design</h2>
+<table class=""><tbody><tr><th>Component</th><th>Value</th></tr><tr><td>Subscription</td><td>Azure subscription 1</td></tr><tr><td>Subscription purpose</td><td>Azure Governance Enterprise Lab</td></tr><tr><td>Governance scope</td><td>Subscription level</td></tr><tr><td>Production region</td><td>Qatar Central</td></tr><tr><td>Development region</td><td>UAE North</td></tr><tr><td>Approved regions</td><td>Qatar Central and UAE North</td></tr><tr><td>Project owner</td><td>Yasser Alrajeh</td></tr></tbody></table>
+<p>A single subscription was selected for this controlled lab. Production and Development are separated by resource group while Azure Policy, RBAC, Cost Management, budgets, and compliance reporting are centrally governed at subscription scope.</p>
+<h2>2.2 Resource Hierarchy</h2>
+<div class="architecture-tree"><ul><li><span class="tree-label">Microsoft Entra Tenant</span><ul><li><span class="tree-label">Azure Subscription 1</span><ul><li><span class="tree-label">Governance Controls</span><ul><li>Azure Policy</li><li>Azure RBAC</li><li>Resource Locks</li><li>Cost Management</li><li>Compliance</li></ul></li><li><span class="tree-label">rg-ycs-prod-core-01</span><ul><li>vnet-ycs-prod-01</li><li>snet-app-prod-01</li><li>nsg-ycs-prod-01</li><li>pip-ycs-prod-01</li><li>stycsprod01</li></ul></li><li><span class="tree-label">rg-ycs-dev-core-01</span><ul><li>vnet-ycs-dev-01</li><li>snet-app-dev-01</li><li>nsg-ycs-dev-01</li><li>pip-ycs-dev-01</li><li>stycsdev01</li></ul></li></ul></li></ul></li></ul></div>
+<h1>3. Naming, Environment, and Tagging Design</h1>
+<h2>3.1 Naming Convention</h2>
+<pre class="command-block"><code>&lt;resource-type&gt;-&lt;organization&gt;-&lt;environment&gt;-&lt;workload&gt;-&lt;instance&gt;</code></pre>
+<table class=""><tbody><tr><th>Component</th><th>Example</th><th>Meaning</th></tr><tr><td>Resource type</td><td>rg, vnet, snet, nsg, pip</td><td>Identifies the Azure resource type.</td></tr><tr><td>Organization</td><td>ycs</td><td>Identifies the organization or lab.</td></tr><tr><td>Environment</td><td>prod, dev</td><td>Identifies Production or Development.</td></tr><tr><td>Workload</td><td>core, app</td><td>Identifies the workload or function.</td></tr><tr><td>Instance</td><td>01</td><td>Identifies the resource instance.</td></tr></tbody></table>
+<table class=""><tbody><tr><th>Resource Type</th><th>Production Name</th><th>Development Name</th></tr><tr><td>Resource Group</td><td>rg-ycs-prod-core-01</td><td>rg-ycs-dev-core-01</td></tr><tr><td>Virtual Network</td><td>vnet-ycs-prod-01</td><td>vnet-ycs-dev-01</td></tr><tr><td>Subnet</td><td>snet-app-prod-01</td><td>snet-app-dev-01</td></tr><tr><td>Network Security Group</td><td>nsg-ycs-prod-01</td><td>nsg-ycs-dev-01</td></tr><tr><td>Public IP Address</td><td>pip-ycs-prod-01</td><td>pip-ycs-dev-01</td></tr><tr><td>Storage Account</td><td>stycsprod01</td><td>stycsdev01</td></tr></tbody></table>
+<p>Storage accounts use a compliant exception because Azure requires globally unique lowercase alphanumeric names without hyphens.</p>
+<h2>3.2 Environment Design</h2>
+<table class=""><tbody><tr><th>Environment</th><th>Resource Group</th><th>Region</th><th>Criticality</th><th>Purpose</th></tr><tr><td>Production</td><td>rg-ycs-prod-core-01</td><td>Qatar Central</td><td>High</td><td>Hosts controlled production resources.</td></tr><tr><td>Development</td><td>rg-ycs-dev-core-01</td><td>UAE North</td><td>Medium</td><td>Hosts development and testing resources.</td></tr></tbody></table>
+<h3>Production Network</h3><table class=""><tbody><tr><th>Component</th><th>Configuration</th></tr><tr><td>Virtual Network</td><td>vnet-ycs-prod-01</td></tr><tr><td>Address space</td><td>10.10.0.0/16</td></tr><tr><td>Subnet</td><td>snet-app-prod-01</td></tr><tr><td>Subnet range</td><td>10.10.1.0/24</td></tr><tr><td>NSG</td><td>nsg-ycs-prod-01</td></tr><tr><td>Public IP</td><td>pip-ycs-prod-01</td></tr><tr><td>Storage Account</td><td>stycsprod01</td></tr></tbody></table>
+<h3>Development Network</h3><table class=""><tbody><tr><th>Component</th><th>Configuration</th></tr><tr><td>Virtual Network</td><td>vnet-ycs-dev-01</td></tr><tr><td>Address space</td><td>10.20.0.0/16</td></tr><tr><td>Subnet</td><td>snet-app-dev-01</td></tr><tr><td>Subnet range</td><td>10.20.1.0/24</td></tr><tr><td>NSG</td><td>nsg-ycs-dev-01</td></tr><tr><td>Public IP</td><td>pip-ycs-dev-01</td></tr><tr><td>Storage Account</td><td>stycsdev01</td></tr></tbody></table>
+<h2>3.3 Tagging Strategy</h2>
+<table class=""><tbody><tr><th>Tag</th><th>Production Value</th><th>Development Value</th><th>Purpose</th></tr><tr><td>Environment</td><td>Production</td><td>Development</td><td>Identifies the deployment environment.</td></tr><tr><td>Department</td><td>IT</td><td>IT</td><td>Identifies the responsible department.</td></tr><tr><td>Owner</td><td>Yasser</td><td>Yasser</td><td>Identifies the resource owner.</td></tr><tr><td>CostCenter</td><td>CC-1001</td><td>CC-1001</td><td>Supports cost allocation and reporting.</td></tr><tr><td>Criticality</td><td>High</td><td>Medium</td><td>Identifies the business impact level.</td></tr><tr><td>Project</td><td>EnterpriseLab</td><td>EnterpriseLab</td><td>Associates resources with the project.</td></tr></tbody></table>
+<p>The <code class="inline-command">Environment</code> value is restricted to <code class="inline-command">Production</code> or <code class="inline-command">Development</code>. Child resources inherit the value from their parent resource group when it is missing.</p>
+<h1>4. Governance Control Design</h1>
+<table class=""><tbody><tr><th>Governance Control</th><th>Planned Configuration</th><th>Purpose</th></tr><tr><td>Custom Azure Policy</td><td>Allow only Production and Development Environment values</td><td>Prevent invalid environment classification.</td></tr><tr><td>Tag inheritance policy</td><td>Inherit Environment from Resource Group</td><td>Apply consistent metadata automatically.</td></tr><tr><td>Allowed Locations</td><td>Qatar Central and UAE North</td><td>Restrict deployments to approved regions.</td></tr><tr><td>Resource Lock</td><td>CanNotDelete on Production Resource Group</td><td>Prevent accidental deletion.</td></tr><tr><td>Budget</td><td>Monthly Enterprise Lab budget</td><td>Monitor and control cloud spending.</td></tr><tr><td>Cost alerts</td><td>50%, 80%, and 100%</td><td>Notify the owner as spending increases.</td></tr><tr><td>RBAC</td><td>Owner, Contributor, and Reader roles</td><td>Apply least-privilege access.</td></tr><tr><td>Compliance</td><td>Azure Policy Compliance dashboard</td><td>Validate governance implementation.</td></tr></tbody></table>
+<h1>5. Implementation</h1>
+<p>The Azure Portal was used to deploy and validate the governed environment. The screenshots below retain the strongest implementation evidence while repetitive wizard screens and duplicate appendix images were omitted.</p>
+<h2>5.1 Resource Groups and Core Resources</h2>
+<p>Dedicated Production and Development resource groups were provisioned in approved regions. Non-overlapping VNets, subnets, NSGs, public IP addresses, and storage accounts provided representative resources for governance testing.</p>
+<figure class="project-figure"><img alt="Azure Portal home view showing the core services used throughout the project, including Resource Groups, Virtual Networks, Storage Accounts, Policy, and Cost Management." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-01.png"/><figcaption class="project-image-description">Azure Portal home view showing the core services used throughout the project, including Resource Groups, Virtual Networks, Storage Accounts, Policy, and Cost Management.</figcaption></figure><figure class="project-figure"><img alt="Resource Groups list confirming both rg-ycs-prod-core-01 and rg-ycs-dev-core-01 were successfully provisioned." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-07.png"/><figcaption class="project-image-description">Resource Groups list confirming both rg-ycs-prod-core-01 and rg-ycs-dev-core-01 were successfully provisioned.</figcaption></figure><figure class="project-figure"><img alt="Address space configuration for the Production VNet, set to 10.10.0.0/16." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-09.png"/><figcaption class="project-image-description">Address space configuration for the Production VNet, set to 10.10.0.0/16.</figcaption></figure><figure class="project-figure"><img alt="Subnet configuration for snet-app-prod-01, scoped to 10.10.1.0/24 within the Production VNet." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-10.png"/><figcaption class="project-image-description">Subnet configuration for snet-app-prod-01, scoped to 10.10.1.0/24 within the Production VNet.</figcaption></figure><figure class="project-figure"><img alt="Address space and subnet configuration for the Development VNet, set to 10.20.0.0/16 with snet-app-dev-01 at 10.20.1.0/24." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-12.png"/><figcaption class="project-image-description">Address space and subnet configuration for the Development VNet, set to 10.20.0.0/16 with snet-app-dev-01 at 10.20.1.0/24.</figcaption></figure><figure class="project-figure"><img alt="NSG overview for nsg-ycs-prod-01 showing the default inbound and outbound security rules." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-14.png"/><figcaption class="project-image-description">NSG overview for nsg-ycs-prod-01 showing the default inbound and outbound security rules.</figcaption></figure><figure class="project-figure"><img alt="Public IP overview confirming successful allocation for the Development environment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-20.png"/><figcaption class="project-image-description">Public IP overview confirming successful allocation for the Development environment.</figcaption></figure><figure class="project-figure"><img alt="Create Storage Account – stycsprod01, configured with Standard performance tier inside rg-ycs-prod-core-01." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-21.png"/><figcaption class="project-image-description">Create Storage Account – stycsprod01, configured with Standard performance tier inside rg-ycs-prod-core-01.</figcaption></figure><figure class="project-figure"><img alt="Storage account overview confirming successful deployment of stycsdev01." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-25.png"/><figcaption class="project-image-description">Storage account overview confirming successful deployment of stycsdev01.</figcaption></figure>
+<h2>5.2 Tagging Implementation</h2>
+<p>The approved metadata schema was applied to the environment, including Environment, Department, Owner, CostCenter, Criticality, and Project.</p>
+<figure class="project-figure"><img alt="Tag values applied to the Production resource group, including Environment: Production, Department: IT, Owner: Yasser, CostCenter: CC-1001, Criticality: High, and Project: EnterpriseLab." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-27.png"/><figcaption class="project-image-description">Tag values applied to the Production resource group, including Environment: Production, Department: IT, Owner: Yasser, CostCenter: CC-1001, Criticality: High, and Project: EnterpriseLab.</figcaption></figure>
+<h2>5.3 Azure Policy</h2>
+<p>Built-in and custom policies were assigned at subscription scope. A custom JSON rule restricted the Environment tag to approved values, while location policy limited deployments to Qatar Central and UAE North. Tag inheritance and remediation standardized child resources.</p>
+<figure class="project-figure"><img alt="Policy rule JSON editor defining the logic that restricts the Environment tag to Production or Development values." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-32.png"/><figcaption class="project-image-description">Policy rule JSON editor defining the logic that restricts the Environment tag to Production or Development values.</figcaption></figure><figure class="project-figure"><img alt="Review + create confirmation for the Allowed-Environment-Tag-Values policy assignment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-35.png"/><figcaption class="project-image-description">Review + create confirmation for the Allowed-Environment-Tag-Values policy assignment.</figcaption></figure>
+<h2>5.4 Resource Protection</h2>
+<p>A <code class="inline-command">CanNotDelete</code> lock protected the Production resource group. A controlled deletion attempt verified that Azure blocked the request.</p>
+<figure class="project-figure"><img alt="Locks blade confirming the CanNotDelete lock is active on the Production resource group." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-39.png"/><figcaption class="project-image-description">Locks blade confirming the CanNotDelete lock is active on the Production resource group.</figcaption></figure><figure class="project-figure"><img alt="Error message confirming the deletion request was blocked by the active resource lock." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-41.png"/><figcaption class="project-image-description">Error message confirming the deletion request was blocked by the active resource lock.</figcaption></figure>
+<h2>5.5 Cost Governance</h2>
+<p>A monthly enterprise budget was created with notifications at 50%, 80%, and 100% to provide proactive visibility before spending exceeds the planned threshold.</p>
+<figure class="project-figure"><img alt="Alert conditions configured at 50%, 80%, and 100% of the budgeted amount." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-45.png"/><figcaption class="project-image-description">Alert conditions configured at 50%, 80%, and 100% of the budgeted amount.</figcaption></figure><figure class="project-figure"><img alt="Budgets blade confirming the Enterprise-Monthly-Budget was created successfully." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-47.png"/><figcaption class="project-image-description">Budgets blade confirming the Enterprise-Monthly-Budget was created successfully.</figcaption></figure>
+<h2>5.6 Role-Based Access Control</h2>
+<p>Owner, Contributor, and Reader roles were assigned at appropriate scopes to demonstrate least privilege and separation of duties.</p>
+<figure class="project-figure"><img alt="Role assignments list showing Owner, Contributor, and Reader roles applied across the environment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-55.png"/><figcaption class="project-image-description">Role assignments list showing Owner, Contributor, and Reader roles applied across the environment.</figcaption></figure><figure class="project-figure"><img alt="Final Access control (IAM) – Role assignments tab listing all configured role assignments." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-58.png"/><figcaption class="project-image-description">Final Access control (IAM) – Role assignments tab listing all configured role assignments.</figcaption></figure>
+<h1>6. Governance Validation and Compliance</h1>
+<h2>6.1 Policy Compliance and Remediation</h2>
+<p>The Policy Compliance dashboard was reviewed before and after remediation. Resource-level inspection confirmed inherited tags, and compliance improved after the remediation task completed.</p>
+<figure class="project-figure"><img alt="Azure Policy Compliance dashboard showing the overall compliance percentage across the subscription." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-59.png"/><figcaption class="project-image-description">Azure Policy Compliance dashboard showing the overall compliance percentage across the subscription.</figcaption></figure><figure class="project-figure"><img alt="Non-compliant resource details identified prior to remediation." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-62.png"/><figcaption class="project-image-description">Non-compliant resource details identified prior to remediation.</figcaption></figure><figure class="project-figure"><img alt="Resource-level tag inspection confirming the Environment tag was inherited from the parent resource group." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-64.png"/><figcaption class="project-image-description">Resource-level tag inspection confirming the Environment tag was inherited from the parent resource group.</figcaption></figure><figure class="project-figure"><img alt="Policy Compliance dashboard after remediation, showing improved overall compliance." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-69.png"/><figcaption class="project-image-description">Policy Compliance dashboard after remediation, showing improved overall compliance.</figcaption></figure>
+<h2>6.2 Cost Monitoring and Inventory</h2>
+<p>Budget notifications, resource inventory, and cost analysis were validated across resource groups and tags to support ownership and cost allocation.</p>
+<figure class="project-figure"><img alt="Budget alert notification triggered as spending approached the 50% threshold." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-70.png"/><figcaption class="project-image-description">Budget alert notification triggered as spending approached the 50% threshold.</figcaption></figure><figure class="project-figure"><img alt="All-resources inventory spanning both resource groups, used to validate the overall governance scope." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-73.png"/><figcaption class="project-image-description">All-resources inventory spanning both resource groups, used to validate the overall governance scope.</figcaption></figure><figure class="project-figure"><img alt="Cost analysis view broken down by resource group, supporting cost visibility per environment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-75.png"/><figcaption class="project-image-description">Cost analysis view broken down by resource group, supporting cost visibility per environment.</figcaption></figure><figure class="project-figure"><img alt="Cost analysis view broken down by tag, validating cost allocation by department and cost center." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-76.png"/><figcaption class="project-image-description">Cost analysis view broken down by tag, validating cost allocation by department and cost center.</figcaption></figure>
+<h2>6.3 Negative Testing</h2>
+<p>Two deliberate non-compliant deployments confirmed enforcement: a resource in a non-approved region and a resource using an invalid Environment value were both denied by Azure Policy.</p>
+<figure class="project-figure"><img alt="Policy denial message confirming the Allowed Locations policy blocked the out-of-region deployment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-81.png"/><figcaption class="project-image-description">Policy denial message confirming the Allowed Locations policy blocked the out-of-region deployment.</figcaption></figure><figure class="project-figure"><img alt="Policy denial message confirming the Allowed-Environment-Tag-Values policy blocked the non-compliant deployment." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-83.png"/><figcaption class="project-image-description">Policy denial message confirming the Allowed-Environment-Tag-Values policy blocked the non-compliant deployment.</figcaption></figure>
+<h2>6.4 Final Health Check</h2>
+<p>The final review confirmed no active critical alerts were outstanding at the end of the governance validation cycle.</p>
+<figure class="project-figure"><img alt="Monitor – Alerts blade confirming no active critical alerts were outstanding." class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/figure-85.png"/><figcaption class="project-image-description">Monitor – Alerts blade confirming no active critical alerts were outstanding.</figcaption></figure>
+
+
+
+
+<h1>7. Project Conclusion</h1><p>This project established a practical Azure governance foundation across Production and Development environments. The final implementation combined standardized naming and tagging, Azure Policy enforcement, RBAC, resource locks, budget controls, compliance monitoring, remediation, and negative testing. Together, these controls improved security, operational consistency, cost visibility, and protection against non-compliant or accidental changes while keeping the environment manageable at subscription scope.</p></div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main>
+<footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+<script id="project-screenshot-ratio-classifier">document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('main.doc img.doc-img').forEach(function(img){function classify(){if(!img.naturalWidth||!img.naturalHeight)return;var ratio=img.naturalWidth/img.naturalHeight;img.classList.remove('is-portrait','is-wide');if(ratio<1.05)img.classList.add('is-portrait');else if(ratio>1.75)img.classList.add('is-wide')}if(img.complete)classify();else img.addEventListener('load',classify,{once:true})})});</script>
+</body></html>
