@@ -147,79 +147,71 @@
     font-size: 15px !important;
   }
 }
+</style>
+<style id="project-screenshot-size-fix">
+/* Balanced screenshot sizing: clear without filling the entire screen */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(94vw, 1120px) !important;
+  max-width: 1120px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: min(100%, 940px) !important;
+  max-width: 940px !important;
+  height: auto !important;
+  max-height: 680px !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc img.doc-img.is-portrait {
+  width: auto !important;
+  max-width: min(100%, 700px) !important;
+  max-height: 720px !important;
+}
+body.project-page main.doc img.doc-img.is-wide {
+  width: min(100%, 1000px) !important;
+  max-width: 1000px !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 92vw !important; }
+  body.project-page main.doc img.doc-img,
+  body.project-page main.doc img.doc-img.is-portrait,
+  body.project-page main.doc img.doc-img.is-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+</style>
+<style>
+/* Unified project navigation and lightbox safety */
+.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
+.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
+.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
+.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
+.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
+.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
+.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
+.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
+@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
 </style></head>
-<body class="project-page"><header><nav>
+<body class="project-page" id="page-top"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container">
-<div class="meta-block"><p>Azure Key Vault Secrets Management</p><p>Project Category: Cloud Security</p><p>Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine.</p></div>
-<h1>Azure Key Vault Secrets Management using Azure CLI</h1>
-<p><em>Microsoft Azure | Cloud Security | Ubuntu Server 24.04
-LTS</em></p>
-<h1>Project Overview</h1>
-<table>
-<colgroup>
-<col style="width: 33%"/>
-<col style="width: 66%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Property</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>Project Title</td>
-<td>Azure Key Vault Secrets Management using Azure CLI on Linux Virtual
-Machine</td>
-</tr>
-<tr class="odd">
-<td>Project Category</td>
-<td>Cloud Security</td>
-</tr>
-<tr class="even">
-<td>Project Duration</td>
-<td>Approximately 3 Hours</td>
-</tr>
-</tbody>
-</table>
-<p>This project demonstrates the deployment of a secure Azure Key Vault
-environment for protecting sensitive application secrets. The
-implementation includes creating a dedicated Resource Group, deploying
-an Azure Key Vault instance, storing multiple application secrets,
-provisioning an Ubuntu virtual machine, securely connecting via SSH,
-installing Azure CLI, authenticating to Azure using Device Code
-authentication, and retrieving secrets directly from Azure Key Vault
-through command-line operations.</p>
-<p>The project follows Microsoft's recommended approach for centralized
-secret management by eliminating hardcoded credentials and allowing
-secure access to sensitive information only when required.</p>
-<h1>1. Business Scenario</h1>
-<p>Modern cloud applications often require access to sensitive
-information such as API keys, database passwords, and storage connection
-strings. Storing these values inside application source code or
-configuration files introduces significant security risks.</p>
-<p>To address this challenge, Azure Key Vault provides a centralized and
-secure solution for storing, managing, and accessing secrets while
-maintaining strict access control and auditability.</p>
-<p>In this project, Azure Key Vault is used as a centralized secret
-repository, while an Ubuntu virtual machine retrieves the stored secrets
-securely using Azure CLI after successful authentication.</p>
-<h1>2. Project Objectives</h1>
-<p>The primary objectives of this project were:</p>
-<ul>
-<li><p>Deploy an Azure Key Vault.</p></li>
-<li><p>Create a dedicated Resource Group.</p></li>
-<li><p>Store sensitive application secrets securely.</p></li>
-<li><p>Deploy an Ubuntu Linux virtual machine.</p></li>
-<li><p>Configure secure SSH remote access.</p></li>
-<li><p>Install Azure CLI.</p></li>
-<li><p>Authenticate the virtual machine with Azure.</p></li>
-<li><p>Retrieve secrets using Azure CLI.</p></li>
-<li><p>Verify successful communication between the virtual machine and
-Azure Key Vault.</p></li>
-<li><p>Demonstrate secure cloud-based secret management.</p></li>
-</ul>
-<h1>3. Lab Environment</h1>
+<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Key Vault Secrets Management</h1><div class="project-cover-wrap"><img alt="Azure Key Vault Secrets Management project cover" class="project-cover-image" src="images/project-cover-key-vault.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Security</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Key Vault, Azure CLI, Linux</td></tr><tr><th scope="row">Project Focus</th><td>Secure secrets storage and controlled retrieval</td></tr></tbody></table></section>
+<h1>Project Overview</h1><p>Built a centralized secrets-management solution in Azure Key Vault and validated secure secret retrieval from an Ubuntu virtual machine through Azure CLI.</p><h1>1. Business Scenario</h1><p>Application credentials should not be stored in source code or local configuration files. This implementation moves API keys, database passwords, and connection strings into a controlled vault with authenticated access.</p><h1>2. Project Objectives</h1><ul><li>Deploy and configure Azure Key Vault.</li><li>Store application secrets securely.</li><li>Configure an Ubuntu VM and Azure CLI.</li><li>Authenticate to Azure and retrieve authorized secrets.</li><li>Validate access controls and successful secret retrieval.</li></ul><h1>3. Lab Environment</h1>
 <table>
 <colgroup>
 <col style="width: 50%"/>
@@ -361,7 +353,7 @@ resources under a single management boundary.</p>
 <p>Using a dedicated Resource Group simplifies administration, access
 control, cost tracking, and resource cleanup after the project is
 completed.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/379296dc756682ff82f0da12102d1549d21f4f2e.png" style="width:4.79167in;height:1.33333in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/379296dc756682ff82f0da12102d1549d21f4f2e.png"/></p>
 <p><em>Resource Manager — Resource groups showing rg-ycs-keyvault-lab-01
 in East US 2.</em></p>
 <p>8.2 Deploy Azure Key Vault</p>
@@ -398,7 +390,7 @@ Manager.</p>
 <p>The Key Vault acts as a centralized and highly secure repository for
 storing application secrets, passwords, certificates, and cryptographic
 keys.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/853489aeef6cd0f27d0f6a0edba34084995be87f.png" style="width:4.79167in;height:2.21875in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/853489aeef6cd0f27d0f6a0edba34084995be87f.png"/></p>
 <p><em>Deployment overview confirming kv-ycs-01 was deployed
 successfully to rg-ycs-keyvault-lab-01.</em></p>
 <p>8.3 Create Application Secrets</p>
@@ -429,7 +421,7 @@ successfully to rg-ycs-keyvault-lab-01.</em></p>
 </table>
 <p>All secrets are encrypted at rest by Azure Key Vault and protected
 through Azure security controls.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/56fde3f38d23dbbfeeee5cbd21c128cf1b04cc23.png" style="width:4.79167in;height:1.84375in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/56fde3f38d23dbbfeeee5cbd21c128cf1b04cc23.png"/></p>
 <p><em>kv-ycs-01 Secrets pane confirming ApiKey, DatabasePassword, and
 StorageConnectionString were created and enabled.</em></p>
 <p>8.4 Verify Secret Configuration</p>
@@ -446,7 +438,7 @@ configuration.</p>
 </ul>
 <p>The secret was confirmed as enabled and ready for secure
 retrieval.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c3ce7bc45994ff4996e30f6a61044e75b9a07e8d.png" style="width:3.33333in;height:2.95833in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c3ce7bc45994ff4996e30f6a61044e75b9a07e8d.png"/></p>
 <p><em>StorageConnectionString secret properties — confirmed enabled.
 The secret value is redacted for this portfolio.</em></p>
 <p>8.5 Create Ubuntu Virtual Machine</p>
@@ -519,7 +511,7 @@ retrieves secrets from Azure Key Vault.</p>
 <p>Azure verified that TCP port 22 was accessible through the Network
 Security Group. This validation confirms that remote administrative
 access is available.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/39705dfd758df7ad739a0ced39a225c6fb914854.png" style="width:4.58333in;height:2.53125in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/39705dfd758df7ad739a0ced39a225c6fb914854.png"/></p>
 <p><em>Native SSH connection blade — port 22 verified as accessible. The
 source (client) IP address is redacted for privacy.</em></p>
 <p>8.7 Connect to the Linux Virtual Machine</p>
@@ -529,7 +521,7 @@ source (client) IP address is redacted for privacy.</em></p>
 <p>After entering the local account password, the connection was
 successfully established. The administrator was presented with the
 Ubuntu login banner and shell prompt.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f51040a637e87ac604e4379493896b6373a4f143.png" style="width:3.95833in;height:3.25in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f51040a637e87ac604e4379493896b6373a4f143.png"/></p>
 <p><em>Windows PowerShell — SSH session established, Ubuntu 24.04.4 LTS
 login banner displayed.</em></p>
 <p>8.8 Install Azure CLI</p>
@@ -544,7 +536,7 @@ with Azure resources.</p>
 </ul>
 <p>Azure CLI provides a command-line interface for managing Azure
 resources directly from Linux.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/28e6697704f40d6b3cc752043b1682913994262e.png" style="width:4.375in;height:3.35417in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/28e6697704f40d6b3cc752043b1682913994262e.png"/></p>
 <p><em>Azure CLI package installation completing successfully on the
 Ubuntu virtual machine.</em></p>
 <p>8.9 Authenticate Azure CLI</p>
@@ -555,20 +547,20 @@ authentication.</p>
 <p>Azure generated a temporary authentication code and instructed the
 user to visit Microsoft's device login portal. This authentication
 method is commonly used for systems without a graphical web browser.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/64db1aff7ef1cf1239babeea290076b4b1726398.png" style="width:4.79167in;height:0.23958in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/64db1aff7ef1cf1239babeea290076b4b1726398.png"/></p>
 <pre class="command-block"><code>az login --use-device-code — Azure generates a one-time device
 code (redacted here since it grants sign-in access).</code></pre>
 <p>8.10 Complete Microsoft Authentication</p>
 <p>The authentication code generated by Azure CLI was entered into
 Microsoft's authentication page.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4b0993819ee90572461fc2c5039423118381b491.png" style="width:3.33333in;height:2.54167in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4b0993819ee90572461fc2c5039423118381b491.png"/></p>
 <p><em>Microsoft device login page — entering the one-time code
 (redacted).</em></p>
 <p>After successful authentication, Azure confirmed that the Linux
 virtual machine was authorized to access Azure resources. This completed
 the secure authentication process without exposing passwords inside the
 terminal.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8a68666f547d73c3c62741e733208976df6cc76d.png" style="width:3.54167in;height:2.97917in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8a68666f547d73c3c62741e733208976df6cc76d.png"/></p>
 <p><em>Microsoft Azure CLI confirming successful sign-in.</em></p>
 <h1>9. Azure CLI Operations, Validation, and Project Outcome</h1>
 <p>9.1 Verify Azure Authentication</p>
@@ -593,7 +585,7 @@ subscription.</p>
 </ul>
 <p>This validation confirms that Azure CLI is fully authenticated and
 authorized to communicate with Azure resources.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1c80f6e38f5b511cbaa7e22603a0a9c6c9b04b52.png" style="width:4.79167in;height:1.19792in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1c80f6e38f5b511cbaa7e22603a0a9c6c9b04b52.png"/></p>
 <pre class="command-block"><code>az account show — subscription and tenant details confirmed
 (tenant/subscription IDs and account email redacted for
 privacy).</code></pre>
@@ -633,7 +625,7 @@ Vault.</p></li>
 <li><p>The authenticated account has sufficient permissions to enumerate
 stored secrets.</p></li>
 </ul>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/48149ee8fa9ca4a3e0efce6df5928f034657e930.png" style="width:4.79167in;height:0.40625in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/48149ee8fa9ca4a3e0efce6df5928f034657e930.png"/></p>
 <pre class="command-block"><code>az keyvault secret list — all three secrets returned with their
 status confirmed as enabled.</code></pre>
 <p>9.3 Retrieve the API Key</p>
@@ -650,7 +642,7 @@ Azure Key Vault securely stores the secret and returns it only after
 successful authentication.</p>
 <p><strong>Result</strong></p>
 <p>Azure CLI successfully returned the stored API key.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1596514d51ed4abcad787598f5991adba1cfee60.png" style="width:4.16667in;height:0.6875in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1596514d51ed4abcad787598f5991adba1cfee60.png"/></p>
 <pre class="command-block"><code>az keyvault secret show — ApiKey retrieved successfully. The
 returned value is redacted for this portfolio.</code></pre>
 <p>9.4 Retrieve the Database Password</p>
@@ -667,7 +659,7 @@ without embedding passwords inside application configuration files.</p>
 <p><strong>Result</strong></p>
 <p>The password was successfully returned by Azure Key Vault after
 verifying the user's identity and permissions.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/67103ef5c0451a6fcd3ac6d533912cfc4935290f.png" style="width:4.16667in;height:0.67708in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/67103ef5c0451a6fcd3ac6d533912cfc4935290f.png"/></p>
 <pre class="command-block"><code>az keyvault secret show — DatabasePassword retrieved
 successfully. The returned value is redacted for this
 portfolio.</code></pre>
@@ -686,7 +678,7 @@ exposure and simplifies credential management.</p>
 <p><strong>Result</strong></p>
 <p>Azure CLI successfully retrieved the connection string stored in the
 Key Vault.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7df92c695cd9e4393bc3d13f0742df655fc4a558.png" style="width:4.79167in;height:0.58333in"/></p>
+<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7df92c695cd9e4393bc3d13f0742df655fc4a558.png"/></p>
 <pre class="command-block"><code>az keyvault secret show — StorageConnectionString retrieved
 successfully. The returned value is redacted for this
 portfolio.</code></pre>
@@ -741,101 +733,21 @@ this project:</p>
 </tr>
 </tbody>
 </table>
-<h1>11. Skills Demonstrated</h1>
-<p><strong>11.1 Microsoft Azure</strong></p>
-<ul>
-<li><p>Azure Resource Groups</p></li>
-<li><p>Azure Virtual Machines</p></li>
-<li><p>Azure Key Vault</p></li>
-<li><p>Azure Resource Manager</p></li>
-</ul>
-<p><strong>11.2 Linux Administration</strong></p>
-<ul>
-<li><p>Ubuntu Server</p></li>
-<li><pre class="command-block"><code>SSH Remote Access</code></pre></li>
-<li><p>Command Line Administration</p></li>
-</ul>
-<p><strong>11.3 Azure CLI</strong></p>
-<ul>
-<li><p>Azure Authentication</p></li>
-<li><p>Subscription Management</p></li>
-<li><p>Key Vault Administration</p></li>
-<li><p>Secret Enumeration</p></li>
-<li><p>Secret Retrieval</p></li>
-</ul>
-<p><strong>11.4 Cloud Security</strong></p>
-<ul>
-<li><p>Centralized Secret Management</p></li>
-<li><p>Secure Credential Storage</p></li>
-<li><p>Identity-Based Authentication</p></li>
-<li><p>Separation of Secrets from Application Code</p></li>
-<li><p>Secure Administrative Access</p></li>
-</ul>
-<h1>12. Lessons Learned</h1>
-<p>During the implementation of this project, several important Azure
-administration concepts were reinforced:</p>
-<ul>
-<li><p>Azure Key Vault provides a centralized repository for sensitive
-information.</p></li>
-<li><p>Azure CLI offers a secure and efficient method for managing Azure
-resources directly from Linux.</p></li>
-<li><p>Device Code authentication allows secure login without exposing
-account credentials.</p></li>
-<li><p>Secrets should never be hardcoded inside application source code
-or configuration files.</p></li>
-<li><pre class="command-block"><code>SSH provides a secure encrypted channel for Linux administration.</code></pre></li>
-</ul>
-<h1>13. Best Practices</h1>
-<p>The following best practices were applied throughout the project:</p>
-<ul>
-<li><p>Store secrets in Azure Key Vault instead of application
-files.</p></li>
-<li><p>Use Azure CLI for secure administrative operations.</p></li>
-<li><p>Authenticate through Microsoft Entra ID before accessing Azure
-resources.</p></li>
-<li><p>Limit administrative access to authorized users only.</p></li>
-<li><p>Retrieve secrets only when required by applications or
-administrators.</p></li>
-<li><p>Keep sensitive values outside source code repositories.</p></li>
-</ul>
-<h1>14. Project Outcome</h1>
-<p>The project successfully implemented a secure Azure Key Vault
-solution for centralized secret management within Microsoft Azure.</p>
-<p>A dedicated Resource Group and Azure Key Vault were deployed,
-followed by the creation of multiple application secrets. An Ubuntu
-Server virtual machine was provisioned and accessed securely using SSH.
-Azure CLI was installed and authenticated through Microsoft Entra ID
-using Device Code authentication.</p>
-<p>After authentication, Azure CLI successfully communicated with Azure
-Key Vault, listed all available secrets, and securely retrieved the
-stored API key, database password, and storage connection string.</p>
-<p>This project demonstrates practical experience with Azure
-administration, Linux management, Azure CLI, secure authentication, and
-centralized secrets management, reflecting common operational tasks
-performed in enterprise cloud environments.</p>
-<h1>15. Technologies Used</h1>
-<ul>
-<li><p>Microsoft Azure</p></li>
-<li><p>Azure Resource Manager (ARM)</p></li>
-<li><p>Azure Key Vault</p></li>
-<li><p>Azure Virtual Machines</p></li>
-<li><p>Ubuntu Server 24.04 LTS</p></li>
-<li><p>Microsoft Entra ID</p></li>
-<li><p>Azure CLI</p></li>
-<li><p>OpenSSH</p></li>
-<li><p>Windows PowerShell</p></li>
-</ul>
-<h1>16. Project Summary</h1>
-<p>This project demonstrates a complete end-to-end implementation of
-secure secret management using Microsoft Azure. It covers infrastructure
-deployment, Linux virtual machine administration, Azure CLI
-configuration, identity-based authentication, and secure retrieval of
-application secrets from Azure Key Vault. The implementation reflects
-real-world cloud administration practices and provides a strong
-foundation for secure application credential management in enterprise
-Azure environments.</p>
-<div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
-</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
+</div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+<script id="project-screenshot-ratio-classifier">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
+    function classify() {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      img.classList.remove('is-portrait', 'is-wide');
+      if (ratio < 1.05) img.classList.add('is-portrait');
+      else if (ratio > 1.75) img.classList.add('is-wide');
+    }
+    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
+  });
+});
+</script>
 </body></html>
