@@ -97,11 +97,11 @@ h1, h2, h3 { margin-top: 0; }
 .hero-actions, .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .hero-portrait-wrap { display: flex; justify-content: center; align-items: center; }
 .hero-portrait {
-  width: min(100%, 410px);
-  aspect-ratio: 4 / 5;
+  width: min(100%, 390px);
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center 22%;
-  border-radius: 28px;
+  border-radius: 50%;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }

@@ -143,3 +143,13 @@
     font-size: 15px !important;
   }
 }
+
+
+/* Unified concise project subtitle */
+.project-page .project-subtitle {
+  margin: -8px 0 28px;
+  color: var(--muted, #aebbc9);
+  font-size: 1rem !important;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
