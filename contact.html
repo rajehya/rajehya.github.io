@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contact Yasser Alrajeh"/>
+  <title>Contact | Yasser Alrajeh</title>
+  <link href="assets/css/style.css" rel="stylesheet"/>
+</head>
+<body class="contact-page">
+<header>
+  <nav class="container">
+    <a class="brand" href="index.html">
+      <img alt="Yasser Alrajeh" class="brand-avatar" src="assets/images/yasser-alrajeh.jpg"/>
+      <span class="brand-name">Yasser Alrajeh</span>
+    </a>
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </nav>
+</header>
+
+<main class="contact-main">
+  <div class="container contact-container">
+    <div class="contact-heading">
+      <div class="eyebrow">Get in Touch</div>
+      <h1>Contact Me</h1>
+      <p>Send me a message using the form below.</p>
+    </div>
+
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="fd6280ae-131a-4ada-a21b-ebcbbab0f07c"/>
+      <input type="hidden" name="subject" value="New Contact Message from Yasser Alrajeh Portfolio"/>
+      <input type="hidden" name="from_name" value="Yasser Alrajeh Portfolio"/>
+      <input type="hidden" name="redirect" value="https://yasseralrajeh.com/thanks.html"/>
+      <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off"/>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message-subject">Subject</label>
+        <input id="message-subject" name="message_subject" type="text" placeholder="Message subject" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="7" placeholder="Write your message here" required></textarea>
+      </div>
+
+      <button class="btn btn-primary form-submit" type="submit">Send Message</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> Yasser Alrajeh</div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
