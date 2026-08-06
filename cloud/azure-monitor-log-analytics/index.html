@@ -2,7 +2,152 @@
 
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries." name="description"/><title>Azure Monitor &amp; Log Analytics | Yasser Alrajeh</title>
-<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
+/* Unified project typography */
+.project-page .doc,
+.project-page .doc p,
+.project-page .doc li,
+.project-page .doc td,
+.project-page .doc th {
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+}
+
+.project-page .doc table {
+  font-size: 17px !important;
+}
+
+.project-page .doc h1,
+.project-page .doc h2,
+.project-page .doc h3,
+.project-page .doc h4 {
+  color: #0078d4 !important;
+  line-height: 1.3 !important;
+}
+
+/* Unified command and code blocks */
+.project-page .doc pre.command-block {
+  display: block !important;
+  margin: 18px 0 24px !important;
+  padding: 18px 20px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(80,167,232,.45) !important;
+  border-left: 5px solid #0078d4 !important;
+  border-radius: 10px !important;
+  background: #07111f !important;
+  color: #f5f9ff !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.20) !important;
+  white-space: pre !important;
+  text-align: left !important;
+}
+
+.project-page .doc pre.command-block code {
+  display: block !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f5f9ff !important;
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  white-space: pre !important;
+}
+
+/* Unified architecture tree */
+.project-page .doc .architecture-tree,
+.project-page .doc .architecture-tree * {
+  box-sizing: border-box !important;
+}
+
+.project-page .doc .architecture-tree {
+  display: block !important;
+  margin: 20px 0 26px !important;
+  padding: 20px 22px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(0,120,212,.42) !important;
+  border-radius: 12px !important;
+  background: rgba(0,120,212,.07) !important;
+}
+
+.project-page .doc .architecture-tree ul {
+  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 0 0 28px !important;
+  list-style: none !important;
+}
+
+.project-page .doc .architecture-tree > ul {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree li {
+  position: relative !important;
+  display: block !important;
+  margin: 10px 0 !important;
+  padding: 0 0 0 24px !important;
+  list-style: none !important;
+  min-width: max-content !important;
+}
+
+.project-page .doc .architecture-tree li::marker {
+  content: "" !important;
+}
+
+.project-page .doc .architecture-tree li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 18px !important;
+  width: 16px !important;
+  border-top: 2px solid #0078d4 !important;
+}
+
+.project-page .doc .architecture-tree li::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: -12px !important;
+  bottom: -12px !important;
+  border-left: 2px solid rgba(0,120,212,.62) !important;
+}
+
+.project-page .doc .architecture-tree li:last-child::after {
+  bottom: calc(100% - 18px) !important;
+}
+
+.project-page .doc .architecture-tree > ul > li {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree > ul > li::before,
+.project-page .doc .architecture-tree > ul > li::after {
+  display: none !important;
+}
+
+.project-page .doc .architecture-tree .tree-label {
+  display: inline-block !important;
+  padding: 7px 11px !important;
+  border: 1px solid rgba(80,167,232,.28) !important;
+  border-radius: 7px !important;
+  background: rgba(0,120,212,.13) !important;
+  color: inherit !important;
+  font-weight: 650 !important;
+}
+
+@media (max-width: 700px) {
+  .project-page .doc,
+  .project-page .doc p,
+  .project-page .doc li,
+  .project-page .doc td,
+  .project-page .doc th {
+    font-size: 17px !important;
+  }
+  .project-page .doc pre.command-block code {
+    font-size: 15px !important;
+  }
+}
+</style></head>
 <body class="project-page"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
@@ -112,24 +257,9 @@ resource utilization, and respond quickly to operational incidents.</p>
 </tr>
 </tbody>
 </table>
-<h1>4. Solution Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Ubuntu Linux VM</span><ul><li><span class="tree-label">Azure Monitor Agent (AMA)</span><ul><li><span class="tree-label">Data Collection Rule (DCR)</span><ul><li><span class="tree-label">Azure Monitor Workspace</span></li><li><span class="tree-label">Log Analytics Workspace</span><ul><li><span class="tree-label">KQL Queries</span></li></ul></li><li><span class="tree-label">Azure Monitor Alerts</span><ul><li><span class="tree-label">Action Group</span></li></ul></li></ul></li></ul></li></ul></li></ul></div>
-<p>The monitoring solution consists of:</p>
-<ul>
-<li><p>Ubuntu Linux Virtual Machine</p></li>
-<li><p>Azure Monitor Agent (AMA)</p></li>
-<li><p>Data Collection Rule (DCR)</p></li>
-<li><p>Azure Monitor Workspace</p></li>
-<li><p>Log Analytics Workspace</p></li>
-<li><p>Azure Monitor Alerts</p></li>
-<li><p>Azure Action Group</p></li>
-</ul>
-<p>The Azure Monitor Agent continuously collects telemetry from the
-Ubuntu virtual machine and forwards monitoring data through the Data
-Collection Rule. Performance metrics are stored in Azure Monitor while
-operational logs are centralized within Log Analytics Workspace for
-analysis using Kusto Query Language (KQL).</p>
+<h1>4. Solution Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Ubuntu Linux Virtual Machine</span><ul><li><span class="tree-label">Azure Monitor Agent (AMA)</span><ul><li><span class="tree-label">Data Collection Rule (DCR)</span><ul><li><span class="tree-label">Azure Monitor Workspace</span></li><li><span class="tree-label">Log Analytics Workspace</span><ul><li><span class="tree-label">KQL Queries</span></li></ul></li><li><span class="tree-label">Azure Monitor Alerts</span><ul><li><span class="tree-label">Action Group</span></li></ul></li></ul></li></ul></li></ul></li></ul></div><p>The Azure Monitor Agent collects telemetry from the Ubuntu virtual machine and sends it through the Data Collection Rule. Metrics are stored in Azure Monitor, logs are analyzed in Log Analytics with KQL, and alerts trigger the Action Group.</p>
 <h1>5. Implementation</h1>
-<p>5.1 Deploy Ubuntu Virtual Machine</p>
+<h2>5.1 Deploy Ubuntu Virtual Machine</h2>
 <p>A Linux virtual machine running Ubuntu Server was deployed in
 Microsoft Azure and configured for secure remote administration using
 SSH.</p>
@@ -139,7 +269,7 @@ vm-monitor-01_group.</em></p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/edfdcbc7fef15e2603f8820f15578083c745141e.png" style="width:4.16667in;height:0.875in"/></p>
 <p><em>Secure SSH connection established to the Ubuntu virtual
 machine.</em></p>
-<p>5.2 Configure Azure Monitor</p>
+<h2>5.2 Configure Azure Monitor</h2>
 <p>Azure Monitor was enabled to provide infrastructure monitoring for
 the virtual machine.</p>
 <p>VM Insights was configured to monitor:</p>
@@ -152,12 +282,12 @@ the virtual machine.</p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/14774884bc77cdafd299bdc1cddc1c04df17cb85.png" style="width:4.79167in;height:2.63542in"/></p>
 <p><em>Azure Monitor blade for vm-monitor-01 after enabling
 monitoring.</em></p>
-<p>5.3 Install Azure Monitor Agent</p>
+<h2>5.3 Install Azure Monitor Agent</h2>
 <p>Azure Monitor Agent (AMA) was installed on the Ubuntu virtual
 machine.</p>
 <p>The agent continuously collects system performance metrics and
 operational telemetry from the operating system.</p>
-<p>5.4 Configure Data Collection Rule</p>
+<h2>5.4 Configure Data Collection Rule</h2>
 <p>A Data Collection Rule (DCR) was configured to define which
 monitoring data should be collected.</p>
 <p>Collected telemetry included:</p>
@@ -187,14 +317,14 @@ counters.</em></p>
 dcr-monitor-01.</em></p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7766ccb89ab6846eb080b980b576395fb2076722.png" style="width:4.79167in;height:2.02083in"/></p>
 <p><em>Data Collection Rule deployment completed successfully.</em></p>
-<p>5.5 Configure Log Analytics Workspace</p>
+<h2>5.5 Configure Log Analytics Workspace</h2>
 <p>The virtual machine was connected to Log Analytics Workspace to
 enable centralized storage, querying, and analysis of monitoring
 data.</p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/28a6d9c0e912fc6e0b6e77513f0b6aad8494b027.png" style="width:3.54167in;height:3.40625in"/></p>
 <p><em>Data Collection Rule destination configured to Log Analytics
 Workspace law-monitor-01.</em></p>
-<p>5.6 Monitor Virtual Machine Performance</p>
+<h2>5.6 Monitor Virtual Machine Performance</h2>
 <p>Real-time monitoring was successfully enabled for:</p>
 <ul>
 <li><p>CPU utilization</p></li>
@@ -202,8 +332,7 @@ Workspace law-monitor-01.</em></p>
 <li><p>Disk activity</p></li>
 <li><p>VM heartbeat</p></li>
 </ul>
-<p>Performance data was continuously collected and displayed within
-Azure Monitor.</p>
+<pre class="command-block"><code>Performance data was continuously collected and displayed within Azure Monitor.</code></pre>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/82dcf5b3364514554a08a80e5772dd0cf5a9db22.png" style="width:4.375in;height:1.95833in"/></p>
 <p><em>VM availability and CPU utilization metrics.</em></p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fa3ef2506585078bb791ebd88a31c58539698bda.png" style="width:3.54167in;height:2.61458in"/></p>
@@ -221,22 +350,21 @@ Azure Monitor.</p>
 operations.</em></p>
 <h1>6. Kusto Query Language (KQL)</h1>
 <p>Monitoring data was analyzed using Kusto Query Language (KQL).</p>
-<p>6.1 Heartbeat Monitoring</p>
-<p>Heartbeat</p>
-<p>| where Computer == "vm-monitor-01"</p>
-<p>| sort by TimeGenerated desc</p>
+<h2>6.1 Heartbeat Monitoring</h2>
+<pre class="command-block"><code>Heartbeat
+| where Computer == "vm-monitor-01"
+| sort by TimeGenerated desc</code></pre>
 <p>This query verifies that the virtual machine continuously reports its
 operational status.</p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/aca1948ad0c0e98eab0ba40bbd2c4e5a93541814.png" style="width:4.58333in;height:2.79167in"/></p>
-<p><em>Heartbeat query results confirming continuous agent
-reporting.</em></p>
-<p>6.2 CPU Utilization</p>
-<p>InsightsMetrics</p>
-<p>| where TimeGenerated &gt; ago(30m)</p>
-<p>| where Namespace == "Processor"</p>
-<p>| where Name == "UtilizationPercentage"</p>
-<p>| summarize AvgCPU = avg(Val) by bin(TimeGenerated, 1m)</p>
-<p>| render timechart</p>
+<p><em>Heartbeat query results confirming continuous agent reporting.</em></p>
+<h2>6.2 CPU Utilization</h2>
+<pre class="command-block"><code>InsightsMetrics
+| where TimeGenerated &gt; ago(30m)
+| where Namespace == "Processor"
+| where Name == "UtilizationPercentage"
+| summarize AvgCPU = avg(Val) by bin(TimeGenerated, 1m)
+| render timechart</code></pre>
 <p>This query visualizes processor utilization over time.</p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/27512dfe2337033b0ebcf7568706c6eec0a8244f.png" style="width:4.79167in;height:1.39583in"/></p>
 <p><em>Confirming the UtilizationPercentage metric exists under the
@@ -246,32 +374,29 @@ Processor namespace.</em></p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/60c345429e02645ec47c87a52dc104850fb09773.png" style="width:4.79167in;height:1.79167in"/></p>
 <p><em>Query saved as a chart inside an Azure Monitor Workbook for
 dashboarding.</em></p>
-<p>6.3 Memory Performance</p>
-<p>Perf</p>
-<p>| where TimeGenerated &gt; ago(30m)</p>
-<p>| where ObjectName == "Memory"</p>
-<p>| summarize AvgMemory = avg(CounterValue) by bin(TimeGenerated,
-1m)</p>
-<p>| render timechart</p>
+<h2>6.3 Memory Performance</h2>
+<pre class="command-block"><code>Perf
+| where TimeGenerated &gt; ago(30m)
+| where ObjectName == "Memory"
+| summarize AvgMemory = avg(CounterValue) by bin(TimeGenerated, 1m)
+| render timechart</code></pre>
 <p>This chart displays memory performance collected from the Ubuntu
 virtual machine.</p>
-<p>6.4 Disk Read Performance</p>
-<p>Perf</p>
-<p>| where TimeGenerated &gt; ago(30m)</p>
-<p>| where ObjectName == "Logical Disk"</p>
-<p>| where CounterName == "Disk Reads/sec"</p>
-<p>| summarize AvgReads = avg(CounterValue) by bin(TimeGenerated,
-1m)</p>
-<p>| render timechart</p>
+<h2>6.4 Disk Read Performance</h2>
+<pre class="command-block"><code>Perf
+| where TimeGenerated &gt; ago(30m)
+| where ObjectName == "Logical Disk"
+| where CounterName == "Disk Reads/sec"
+| summarize AvgReads = avg(CounterValue) by bin(TimeGenerated, 1m)
+| render timechart</code></pre>
 <p>This chart visualizes disk read operations over time.</p>
-<p>6.5 Disk Write Performance</p>
-<p>Perf</p>
-<p>| where TimeGenerated &gt; ago(30m)</p>
-<p>| where ObjectName == "Logical Disk"</p>
-<p>| where CounterName == "Disk Writes/sec"</p>
-<p>| summarize AvgDiskWrites = avg(CounterValue) by bin(TimeGenerated,
-1m)</p>
-<p>| render timechart</p>
+<h2>6.5 Disk Write Performance</h2>
+<pre class="command-block"><code>Perf
+| where TimeGenerated &gt; ago(30m)
+| where ObjectName == "Logical Disk"
+| where CounterName == "Disk Writes/sec"
+| summarize AvgDiskWrites = avg(CounterValue) by bin(TimeGenerated, 1m)
+| render timechart</code></pre>
 <p>This chart visualizes disk write operations over time.</p>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/3529df653254302238ef88cdc6fcff4dc5aad2cd.png" style="width:4.79167in;height:3.11458in"/></p>
 <p><em>Disk write operations query saved as a Workbook chart ("Disk
