@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries."><title>Azure Monitor &amp; Log Analytics | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css"></head>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries." name="description"/><title>Azure Monitor &amp; Log Analytics | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container">
 <div class="meta-block"><p>Azure Monitor &amp; Log Analytics</p><p>Project Category: Cloud Monitoring</p><p>Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries.</p></div>
@@ -111,7 +112,7 @@ resource utilization, and respond quickly to operational incidents.</p>
 </tr>
 </tbody>
 </table>
-<h1>4. Solution Architecture</h1>
+<h1>4. Solution Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Ubuntu Linux VM</span><ul><li><span class="tree-label">Azure Monitor Agent (AMA)</span><ul><li><span class="tree-label">Data Collection Rule (DCR)</span><ul><li><span class="tree-label">Azure Monitor Workspace</span></li><li><span class="tree-label">Log Analytics Workspace</span><ul><li><span class="tree-label">KQL Queries</span></li></ul></li><li><span class="tree-label">Azure Monitor Alerts</span><ul><li><span class="tree-label">Action Group</span></li></ul></li></ul></li></ul></li></ul></li></ul></div>
 <p>The monitoring solution consists of:</p>
 <ul>
 <li><p>Ubuntu Linux Virtual Machine</p></li>
@@ -307,7 +308,7 @@ email action.</em></p>
 <h1>9. Alert Validation</h1>
 <p>CPU load was intentionally generated on the Ubuntu virtual machine
 using:</p>
-<p>stress-ng --cpu 2 --timeout 10m</p>
+<pre class="command-block"><code>stress-ng --cpu 2 --timeout 10m</code></pre>
 <p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f278f8b38a7b23b132c638b5b8586be1e6fd1b34.png" style="width:4.79167in;height:2.76042in"/></p>
 <p><em>Installing and running stress-ng to generate CPU load on the
 Ubuntu VM.</em></p>
@@ -364,9 +365,8 @@ monitoring services. The implementation provides centralized monitoring,
 real-time performance analysis, automated alerting, operational
 visibility, and KQL-based analytics, reflecting practical experience
 with enterprise cloud monitoring and operations.</p>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
