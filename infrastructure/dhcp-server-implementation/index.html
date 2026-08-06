@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation."><title>Windows Server DHCP Infrastructure | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css"></head>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation." name="description"/><title>Windows Server DHCP Infrastructure | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container">
 <div class="meta-block"><p>Windows Server DHCP Infrastructure</p><p>Project Category: Infrastructure</p><p>Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation.</p></div>
@@ -109,7 +110,7 @@ portfolio</p></li>
 <li><p>Network connectivity</p></li>
 <li><p>DHCP reservations</p></li>
 </ul>
-<h1>4. Logical Network Architecture</h1>
+<h1>4. Logical Network Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">VMware Host-Only Network: 192.168.10.0/24</span><ul><li><span class="tree-label">DC01 — AD DS &amp; DNS — 192.168.10.10</span></li><li><span class="tree-label">DHCP01 — DHCP Server — 192.168.10.20</span><ul><li><span class="tree-label">DHCP Scope: 192.168.10.100–192.168.10.200</span></li></ul></li><li><span class="tree-label">W11-CLIENT01 — DHCP Client</span></li></ul></li></ul></div>
 <p>The lab used a single VMware host-only virtual network. DC01, DHCP01,
 and W11-CLIENT01 were all connected to the same segment so that DHCP
 broadcast traffic (Discover/Request) could reach the DHCP server, with
@@ -232,7 +233,7 @@ controller had already been configured with:</p>
 <p>The DNS configuration on the domain controller was also checked to
 ensure that it pointed to the correct internal DNS service. The
 following command was used to review the network configuration:</p>
-<p>ipconfig /all</p>
+<pre class="command-block"><code>ipconfig /all</code></pre>
 <p>The domain controller needed to use its own internal DNS service
 rather than an external public DNS server for Active Directory name
 resolution.</p>
@@ -287,13 +288,13 @@ and a successful ping test to DC01 (192.168.10.10).</em></p>
 <p>Before joining the DHCP server to the domain, network connectivity
 was tested. The following command tested connectivity using the domain
 controller's IP address:</p>
-<p>ping 192.168.10.10</p>
+<pre class="command-block"><code>ping 192.168.10.10</code></pre>
 <p>Name resolution was then tested using the server name:</p>
-<p>ping DC01</p>
+<pre class="command-block"><code>ping DC01</code></pre>
 <p>The domain name was also tested:</p>
-<p>ping yasserteach.local</p>
+<pre class="command-block"><code>ping yasserteach.local</code></pre>
 <p>Additional DNS verification was performed with:</p>
-<p>nslookup DC01.yasserteach.local</p>
+<pre class="command-block"><code>nslookup DC01.yasserteach.local</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bc3f8b92d42e26dde26713c6407a1dec15374bdb.png" style="width:3.95833in;height:2.46875in"/></p>
 <p><em>Command Prompt — ping 192.168.10.10 from DHCP01, confirming
 successful Layer 3 connectivity to DC01.</em></p>
@@ -340,9 +341,9 @@ process was used:</p>
 <p><em>Add Roles and Features Wizard — installing the DHCP Server role
 with management tools.</em></p>
 <p>The DHCP role could also be installed using PowerShell:</p>
-<p>Install-WindowsFeature DHCP -IncludeManagementTools</p>
+<pre class="command-block"><code>Install-WindowsFeature DHCP -IncludeManagementTools</code></pre>
 <p>The installation status could be verified using:</p>
-<p class="command-block">Get-WindowsFeature DHCP</p>
+<pre class="command-block"><code>Get-WindowsFeature DHCP</code></pre>
 <p>6.8 Complete the DHCP Post-Installation Configuration</p>
 <p>After installing the DHCP role, Server Manager displayed a
 post-deployment notification. The notification was opened and the DHCP
@@ -379,7 +380,7 @@ client requests.</p>
 <p>The server status was reviewed. An authorized server normally
 displays a green status indicator. Authorization could also be verified
 using PowerShell:</p>
-<p class="command-block">Get-DhcpServerInDC</p>
+<pre class="command-block"><code>Get-DhcpServerInDC</code></pre>
 <p>Expected information included:</p>
 <ul>
 <li><p>DHCP server hostname</p></li>
@@ -388,8 +389,9 @@ using PowerShell:</p>
 </ul>
 <p>If manual authorization was required, the following command could be
 used (using the actual DHCP01 address):</p>
-<p>Add-DhcpServerInDC ` -DnsName "DHCP01.yasserteach.local" ` -IPAddress
-192.168.10.20</p>
+<pre class="command-block"><code>Add-DhcpServerInDC \
+-DnsName "DHCP01.yasserteach.local" \
+-IPAddress 192.168.10.20</code></pre>
 <h1>8. Create an IPv4 DHCP Scope</h1>
 <p>An IPv4 scope was created to define the pool of addresses that could
 be assigned to clients. The DHCP management console was opened:</p>
@@ -524,12 +526,12 @@ Active status.</em></p>
 <h1>11. Verify the DHCP Server Service</h1>
 <p>The DHCP Server service was checked using the Services console and
 PowerShell:</p>
-<p class="command-block">Get-Service DHCPServer</p>
+<pre class="command-block"><code>Get-Service DHCPServer</code></pre>
 <p>Expected status: Running / Automatic. If required, the service could
 be started using:</p>
-<p>Start-Service DHCPServer</p>
+<pre class="command-block"><code>Start-Service DHCPServer</code></pre>
 <p>The startup type could be configured using:</p>
-<p class="command-block">Set-Service DHCPServer -StartupType Automatic</p>
+<pre class="command-block"><code>Set-Service DHCPServer -StartupType Automatic</code></pre>
 <h1>12. Prepare the Windows 11 DHCP Client</h1>
 <p>A Windows 11 virtual machine was used to test the DHCP deployment.
 The Windows 11 network adapter was connected to the same VMware
@@ -539,16 +541,16 @@ address automatically", allowing the computer to request its network
 configuration from the DHCP server.</p>
 <h1>13. Request a DHCP Lease</h1>
 <p>The existing network configuration was released:</p>
-<p>ipconfig /release</p>
+<pre class="command-block"><code>ipconfig /release</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4d460d58d2301d06589ba28e3dac28ae6eea8bbd.png" style="width:4.375in;height:1.48958in"/></p>
-<p><em>ipconfig /release on W11-CLIENT01.</em></p>
+<pre class="command-block"><code>ipconfig /release on W11-CLIENT01.</code></pre>
 <p>A new DHCP lease was requested:</p>
-<p>ipconfig /renew</p>
+<pre class="command-block"><code>ipconfig /renew</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1a7ab25d942e6dc4d62a487a989f73891cde0e06.png" style="width:4.375in;height:1.67708in"/></p>
 <p><em>ipconfig /renew — the client received IPv4 address
 192.168.10.111.</em></p>
 <p>The complete client configuration was displayed using:</p>
-<p>ipconfig /all</p>
+<pre class="command-block"><code>ipconfig /all</code></pre>
 <p>The output was reviewed to confirm the following:</p>
 <ul>
 <li><p>DHCP Enabled: Yes</p></li>
@@ -609,17 +611,17 @@ recorded the client lease.</p>
 <p>After the client received its DHCP configuration, several
 connectivity tests were performed.</p>
 <p><strong>16.1 Test the DHCP Server</strong></p>
-<p>ping DHCP01</p>
+<pre class="command-block"><code>ping DHCP01</code></pre>
 <p><strong>16.2 Test the Domain Controller by IP Address</strong></p>
-<p>ping 192.168.10.10</p>
+<pre class="command-block"><code>ping 192.168.10.10</code></pre>
 <p><strong>16.3 Test the Domain Controller by Hostname</strong></p>
-<p>ping DC01</p>
+<pre class="command-block"><code>ping DC01</code></pre>
 <p><strong>16.4 Test the Domain Name</strong></p>
-<p>ping yasserteach.local</p>
+<pre class="command-block"><code>ping yasserteach.local</code></pre>
 <p><strong>16.5 Test DNS Resolution</strong></p>
-<p>nslookup DC01.yasserteach.local</p>
+<pre class="command-block"><code>nslookup DC01.yasserteach.local</code></pre>
 <p><strong>16.6 Display the DNS Configuration</strong></p>
-<p>ipconfig /all</p>
+<pre class="command-block"><code>ipconfig /all</code></pre>
 <p>These tests verified: client-to-server communication, TCP/IP
 configuration, internal DNS resolution, domain connectivity, and correct
 DHCP option distribution.</p>
@@ -638,7 +640,7 @@ centrally managed through DHCP. Examples include:</p>
 </ul>
 <p>17.1 Obtain the Client MAC Address</p>
 <p>On the Windows 11 client, the following command was used:</p>
-<p>ipconfig /all</p>
+<pre class="command-block"><code>ipconfig /all</code></pre>
 <p>The physical address of the Ethernet adapter was recorded — the
 actual MAC address of W11-CLIENT01:</p>
 <p>00-0C-29-21-DD-8A</p>
@@ -655,7 +657,7 @@ client had already been leasing, taken from the scope range.</p>
 <p>17.3 Test the Reservation</p>
 <p>On the Windows 11 client, the existing address was released and
 renewed:</p>
-<p>ipconfig /release ipconfig /renew</p>
+<pre class="command-block"><code>ipconfig /release ipconfig /renew</code></pre>
 <p>The configuration was checked again with ipconfig /all. The client
 received the reserved IP address (192.168.10.111). The DHCP console was
 also reviewed to verify that the reservation was active.</p>
@@ -680,31 +682,36 @@ Network scope.</em></p>
 <p>The following PowerShell commands can be used to verify and document
 the deployment.</p>
 <p><strong>19.1 Display Authorized DHCP Servers</strong></p>
-<p class="command-block">Get-DhcpServerInDC</p>
+<pre class="command-block"><code>Get-DhcpServerInDC</code></pre>
 <p><strong>19.2 Display IPv4 Scopes</strong></p>
-<p class="command-block">Get-DhcpServerv4Scope</p>
+<pre class="command-block"><code>Get-DhcpServerv4Scope</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cb5402517361fe705e4a52ee171b6eb266b71758.png" style="width:4.79167in;height:1.84375in"/></p>
 <p><em>PowerShell output — Get-DhcpServerv4Scope (192.168.10.0, Active,
 192.168.10.100–200, 8 day lease) and Get-DhcpServerDatabase.</em></p>
 <p><strong>19.3 Display the DHCP Address Pool</strong></p>
-<p class="command-block">Get-DhcpServerv4ExclusionRange ` -ComputerName DHCP01 ` -ScopeId
-192.168.10.0</p>
+<pre class="command-block"><code>Get-DhcpServerv4ExclusionRange \
+-ComputerName DHCP01 \
+-ScopeId 192.168.10.0</code></pre>
 <p><strong>19.4 Display Scope Options</strong></p>
-<p class="command-block">Get-DhcpServerv4OptionValue ` -ComputerName DHCP01 ` -ScopeId
-192.168.10.0</p>
+<pre class="command-block"><code>Get-DhcpServerv4OptionValue \
+-ComputerName DHCP01 \
+-ScopeId 192.168.10.0</code></pre>
 <p><strong>19.5 Display Active Leases</strong></p>
-<p class="command-block">Get-DhcpServerv4Lease ` -ComputerName DHCP01 ` -ScopeId
-192.168.10.0</p>
+<pre class="command-block"><code>Get-DhcpServerv4Lease \
+-ComputerName DHCP01 \
+-ScopeId 192.168.10.0</code></pre>
 <p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/6415b413cabecb8bc0ca92f8f26b8bcc385a8e12.png" style="width:4.375in;height:1.8125in"/></p>
 <p><em>Export-DhcpServer — exporting the DHCP configuration and active
 leases to C:\DHCP-EXPORT.xml.</em></p>
 <p><strong>19.6 Display Reservations</strong></p>
-<p class="command-block">Get-DhcpServerv4Reservation ` -ComputerName DHCP01 ` -ScopeId
-192.168.10.0</p>
+<pre class="command-block"><code>Get-DhcpServerv4Reservation \
+-ComputerName DHCP01 \
+-ScopeId 192.168.10.0</code></pre>
 <p><strong>19.7 Check the DHCP Service</strong></p>
-<p class="command-block">Get-Service DHCPServer</p>
+<pre class="command-block"><code>Get-Service DHCPServer</code></pre>
 <p><strong>19.8 Display DHCP Server Statistics</strong></p>
-<p class="command-block">Get-DhcpServerv4Statistics ` -ComputerName DHCP01</p>
+<pre class="command-block"><code>Get-DhcpServerv4Statistics \
+-ComputerName DHCP01</code></pre>
 <h1>20. Troubleshooting Performed</h1>
 <p>During the project, network communication and DHCP functionality were
 affected by the virtual network configuration. The main troubleshooting
@@ -1032,9 +1039,8 @@ resolution.</p></li>
 <li><p>Documented the complete implementation, testing, and final
 results.</p></li>
 </ul>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
