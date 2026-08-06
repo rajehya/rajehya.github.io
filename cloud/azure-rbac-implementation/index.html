@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Role-based access control implementation using Microsoft Entra ID groups and least privilege."><title>Azure RBAC Implementation | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css"></head>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Role-based access control implementation using Microsoft Entra ID groups and least privilege." name="description"/><title>Azure RBAC Implementation | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/></head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container">
 <div class="meta-block"><p>Azure RBAC Implementation</p><p>Project Category: Cloud Security</p><p>Role-based access control implementation using Microsoft Entra ID groups and least privilege.</p></div>
@@ -79,20 +80,20 @@ resource type)</td>
 name as the resource group (rg-identity-prod) rather than a separate
 name such as "law-identity-prod" — this reflects the actual resource
 name used in the lab.</em></p>
-<h1>4. Project Architecture</h1>
-<p>Azure Subscription</p>
-<p>|</p>
-<p>+-- Resource Group: rg-identity-prod</p>
-<p>| |</p>
-<p>| +-- Virtual Network</p>
-<p>| +-- Storage Account</p>
-<p>| +-- Log Analytics Workspace</p>
-<p>|</p>
-<p>+-- Microsoft Entra ID</p>
-<p>|</p>
-<p>+-- Users</p>
-<p>+-- Security Groups</p>
-<p>+-- Azure RBAC Roles</p>
+<h1>4. Project Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Azure Subscription</span><ul><li><span class="tree-label">Resource Group: rg-identity-prod</span><ul><li><span class="tree-label">Virtual Network</span></li><li><span class="tree-label">Storage Account</span></li><li><span class="tree-label">Log Analytics Workspace</span></li></ul></li><li><span class="tree-label">Microsoft Entra ID</span><ul><li><span class="tree-label">Users</span></li><li><span class="tree-label">Security Groups</span></li><li><span class="tree-label">Azure RBAC Roles</span></li></ul></li></ul></li></ul></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1>5. Implementation</h1>
 <p>5.1 Create the Resource Group</p>
 <p>A dedicated Resource Group was created to isolate all project
@@ -360,9 +361,8 @@ risks.</p></li>
 <li><p>Use RBAC to simplify access management in enterprise cloud
 environments.</p></li>
 </ul>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
