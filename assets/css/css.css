@@ -1,0 +1,146 @@
+/* Shared readability and project-document enhancements */
+.project-page .doc,
+.project-page .doc p,
+.project-page .doc li,
+.project-page .doc td,
+.project-page .doc th {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.project-page .doc h1 {
+  line-height: 1.25;
+  margin-top: 2.1rem;
+  margin-bottom: 1rem;
+}
+
+.project-page .doc h2 {
+  line-height: 1.35;
+  margin-top: 1.7rem;
+  margin-bottom: .8rem;
+}
+
+.project-page .doc h3 {
+  line-height: 1.4;
+  margin-top: 1.4rem;
+  margin-bottom: .7rem;
+}
+
+.project-page .doc table {
+  font-size: 16px;
+}
+
+.command-block {
+  margin: 1rem 0 1.4rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border: 1px solid rgba(80, 167, 232, .38);
+  border-left: 4px solid #0078d4;
+  border-radius: 10px;
+  background: #07111f;
+  color: #f5f9ff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.command-block code {
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #f5f9ff;
+}
+
+code.inline-command {
+  padding: .14rem .38rem;
+  border: 1px solid rgba(80, 167, 232, .3);
+  border-radius: 5px;
+  background: rgba(0, 120, 212, .12);
+  color: inherit;
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+  font-size: .94em;
+}
+
+.architecture-tree {
+  margin: 1.2rem 0 1.7rem;
+  padding: 1.2rem 1.25rem;
+  overflow-x: auto;
+  border: 1px solid rgba(80, 167, 232, .3);
+  border-radius: 12px;
+  background: rgba(0, 120, 212, .055);
+}
+
+.architecture-tree ul {
+  position: relative;
+  margin: 0;
+  padding-left: 1.45rem;
+  list-style: none;
+}
+
+.architecture-tree > ul {
+  padding-left: 0;
+}
+
+.architecture-tree li {
+  position: relative;
+  margin: .45rem 0;
+  padding-left: 1.15rem;
+  min-width: max-content;
+}
+
+.architecture-tree li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .9rem;
+  width: .8rem;
+  border-top: 2px solid #0078d4;
+}
+
+.architecture-tree li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -.55rem;
+  bottom: -.55rem;
+  border-left: 2px solid rgba(0, 120, 212, .55);
+}
+
+.architecture-tree li:last-child::after {
+  bottom: calc(100% - .9rem);
+}
+
+.architecture-tree > ul > li {
+  padding-left: 0;
+  font-weight: 700;
+}
+
+.architecture-tree > ul > li::before,
+.architecture-tree > ul > li::after {
+  display: none;
+}
+
+.architecture-tree .tree-label {
+  display: inline-block;
+  padding: .25rem .55rem;
+  border-radius: 6px;
+  background: rgba(0, 120, 212, .12);
+}
+
+@media (max-width: 700px) {
+  .project-page .doc,
+  .project-page .doc p,
+  .project-page .doc li,
+  .project-page .doc td,
+  .project-page .doc th {
+    font-size: 16px;
+  }
+
+  .command-block code {
+    font-size: 14px;
+  }
+
+  .architecture-tree {
+    padding: 1rem;
+  }
+}
