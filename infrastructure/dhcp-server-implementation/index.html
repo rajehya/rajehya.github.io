@@ -147,66 +147,71 @@
     font-size: 15px !important;
   }
 }
+</style>
+<style id="project-screenshot-size-fix">
+/* Balanced screenshot sizing: clear without filling the entire screen */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(94vw, 1120px) !important;
+  max-width: 1120px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: min(100%, 940px) !important;
+  max-width: 940px !important;
+  height: auto !important;
+  max-height: 680px !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc img.doc-img.is-portrait {
+  width: auto !important;
+  max-width: min(100%, 700px) !important;
+  max-height: 720px !important;
+}
+body.project-page main.doc img.doc-img.is-wide {
+  width: min(100%, 1000px) !important;
+  max-width: 1000px !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 92vw !important; }
+  body.project-page main.doc img.doc-img,
+  body.project-page main.doc img.doc-img.is-portrait,
+  body.project-page main.doc img.doc-img.is-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+</style>
+<style>
+/* Unified project navigation and lightbox safety */
+.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
+.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
+.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
+.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
+.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
+.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
+.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
+.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
+@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
 </style></head>
-<body class="project-page"><header><nav>
+<body class="project-page" id="page-top"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container">
-<div class="meta-block"><p>Windows Server DHCP Infrastructure</p><p>Project Category: Infrastructure</p><p>Enterprise DHCP deployment with scopes, reservations, options, authorization, and validation.</p></div>
-<h1>Enterprise DHCP Server Deployment and Management</h1>
-<p><em>Windows Server 2022 | Active Directory Domain:
-yasserteach.local</em></p>
-<h1>Project Overview</h1>
-<p>This project demonstrates the deployment and configuration of a
-centralized Dynamic Host Configuration Protocol (DHCP) service in a
-Windows Server Active Directory environment.</p>
-<p>The objective was to deploy a dedicated DHCP server that
-automatically provides network configuration to domain-joined client
-devices. The DHCP server was integrated with Active Directory Domain
-Services and configured to distribute IP addresses, subnet masks,
-default gateway information, and DNS settings.</p>
-<p>The project was implemented in a virtual lab using VMware Workstation
-and Windows Server 2022.</p>
-<h1>1. Business Scenario</h1>
-<p>A growing organization requires a centralized method for assigning
-and managing IP addresses across its internal network.</p>
-<p>Manually assigning static IP addresses to every workstation creates
-several operational problems:</p>
-<ul>
-<li><p>Increased administrative workload</p></li>
-<li><p>Duplicate IP address conflicts</p></li>
-<li><p>Incorrect subnet or gateway configurations</p></li>
-<li><p>Inconsistent DNS configuration</p></li>
-<li><p>Difficulty tracking used and available addresses</p></li>
-<li><p>Limited scalability when new devices are added</p></li>
-</ul>
-<p>To address these challenges, a dedicated Windows Server DHCP solution
-was deployed.</p>
-<p>The DHCP server automatically assigns valid TCP/IP configurations to
-client devices and provides centralized control over IP address
-allocation.</p>
-<h1>2. Project Objectives</h1>
-<p>The main objectives of this project were to:</p>
-<ul>
-<li><p>Deploy a dedicated Windows Server 2022 DHCP server</p></li>
-<li><p>Join the DHCP server to the Active Directory domain</p></li>
-<li><p>Install the Windows Server DHCP role</p></li>
-<li><p>Authorize the DHCP server in Active Directory</p></li>
-<li><p>Create and configure an IPv4 DHCP scope</p></li>
-<li><p>Configure DHCP scope options</p></li>
-<li><p>Define excluded IP address ranges</p></li>
-<li><p>Configure DHCP lease duration</p></li>
-<li><p>Activate the DHCP scope</p></li>
-<li><p>Test automatic IP address assignment</p></li>
-<li><p>Verify communication with the domain controller</p></li>
-<li><p>Verify DNS name resolution</p></li>
-<li><p>Create and test a DHCP reservation</p></li>
-<li><p>Monitor active DHCP leases</p></li>
-<li><p>Apply DHCP management and security best practices</p></li>
-<li><p>Document the complete implementation for a professional
-portfolio</p></li>
-</ul>
-<h1>3. Lab Environment</h1>
+<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Windows Server DHCP Infrastructure</h1><div class="project-cover-wrap"><img alt="Windows Server DHCP Infrastructure project cover" class="project-cover-image" src="images/project-cover-dhcp.webp"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Network Infrastructure</td></tr><tr><th scope="row">Platform</th><td>Microsoft Windows Server 2022</td></tr><tr><th scope="row">Core Technologies</th><td>DHCP, Active Directory, IPv4</td></tr><tr><th scope="row">Project Focus</th><td>Centralized IP address allocation and client configuration</td></tr></tbody></table></section>
+<h1>Project Overview</h1><p>Deployed an Active Directory-authorized DHCP service with a managed IPv4 scope, exclusions, options, reservations, lease monitoring, and client validation.</p><h1>1. Business Scenario</h1><p>Manual IP configuration is difficult to maintain and can cause address conflicts, incorrect gateways, and inconsistent DNS settings. A centralized DHCP service provides controlled and repeatable network configuration.</p><h1>2. Project Objectives</h1><ul><li>Install and authorize the DHCP server role.</li><li>Create and activate an IPv4 scope.</li><li>Configure exclusions, lease duration, gateway, and DNS options.</li><li>Validate automatic addressing on a Windows client.</li><li>Create a reservation and verify active leases.</li></ul><h1>3. Lab Environment</h1>
 <p><strong>3.1 Virtualization Platform</strong></p>
 <ul>
 <li><p>VMware Workstation Pro</p></li>
@@ -256,8 +261,6 @@ portfolio</p></li>
 <li><p>DHCP reservations</p></li>
 </ul>
 <h1>4. Logical Network Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">VMware Host-Only Network: 192.168.10.0/24</span><ul><li><span class="tree-label">DC01 — AD DS and DNS — 192.168.10.10</span></li><li><span class="tree-label">DHCP01 — DHCP Server — 192.168.10.20</span><ul><li><span class="tree-label">DHCP Scope: 192.168.10.100–192.168.10.200</span></li></ul></li><li><span class="tree-label">W11-CLIENT01 — DHCP Client</span></li></ul></li></ul></div><p>All systems use the same isolated VMware host-only network so DHCP broadcast traffic can reach DHCP01, while DC01 provides Active Directory Domain Services and DNS.</p>
-
-
 <h1>5. IP Addressing Plan (Actual Lab Values)</h1>
 <p>The following addressing structure reflects the actual values
 configured and verified in the lab, as confirmed by the configuration
@@ -376,7 +379,7 @@ following command was used to review the network configuration:</p>
 <p>The domain controller needed to use its own internal DNS service
 rather than an external public DNS server for Active Directory name
 resolution.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8985c241fd94228574f4277ae7862c68fc8cf1fd.png" style="width:3.95833in;height:2.82292in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8985c241fd94228574f4277ae7862c68fc8cf1fd.png"/></p>
 <p><em>Add Roles and Features Wizard on DC01 — installing Active
 Directory Domain Services, DNS Server, and Group Policy Management
 (initial domain controller setup).</em></p>
@@ -394,7 +397,7 @@ following settings were configured:</p>
 </ul>
 <p>The server was renamed to: DHCP01. The server was restarted after the
 computer name was changed.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/0110956817723e65f1b5ed7d91fcbbfbd897a59d.png" style="width:3.125in;height:3.38542in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/0110956817723e65f1b5ed7d91fcbbfbd897a59d.png"/></p>
 <p><em>Computer Name/Domain Changes — renaming the server to DHCP01
 (still in WORKGROUP, prior to joining the domain).</em></p>
 <p>6.4 Configure a Static IP Address on DHCP01</p>
@@ -417,10 +420,10 @@ actual values used in the lab:</p>
 <p>The preferred DNS server was configured as the IP address of DC01.
 This was necessary because DC01 hosted the DNS zone for
 yasserteach.local.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c0c19ba2c3a51a101226a32bf6e56cf8f7a366cb.png" style="width:3.33333in;height:3.66667in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c0c19ba2c3a51a101226a32bf6e56cf8f7a366cb.png"/></p>
 <p><em>Internet Protocol Version 4 (TCP/IPv4) Properties — the actual
 static configuration applied on DHCP01.</em></p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/aa0bd88ba0a98f03b6b2e9adba3e03e2f3acf333.png" style="width:4.79167in;height:4.04167in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/aa0bd88ba0a98f03b6b2e9adba3e03e2f3acf333.png"/></p>
 <p><em>Verifying the static configuration and DNS server via PowerShell,
 and a successful ping test to DC01 (192.168.10.10).</em></p>
 <p>6.5 Test Communication with the Domain Controller</p>
@@ -434,7 +437,7 @@ controller's IP address:</p>
 <pre class="command-block"><code>ping yasserteach.local</code></pre>
 <p>Additional DNS verification was performed with:</p>
 <pre class="command-block"><code>nslookup DC01.yasserteach.local</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bc3f8b92d42e26dde26713c6407a1dec15374bdb.png" style="width:3.95833in;height:2.46875in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bc3f8b92d42e26dde26713c6407a1dec15374bdb.png"/></p>
 <p><em>Command Prompt — ping 192.168.10.10 from DHCP01, confirming
 successful Layer 3 connectivity to DC01.</em></p>
 <p>Successful IP communication confirmed Layer 3 connectivity.
@@ -447,18 +450,18 @@ credentials were provided when prompted. After the successful domain
 join, the server displayed a confirmation message welcoming it to the
 domain. DHCP01 was restarted to complete the domain membership
 process.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/5e6336679e8547963c392869ab1e9ae5b3a64f8b.png" style="width:3.95833in;height:2.69792in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/5e6336679e8547963c392869ab1e9ae5b3a64f8b.png"/></p>
 <p><em>Joining DHCP01 to the yasserteach.local domain via Computer
 Name/Domain Changes.</em></p>
 <p>After the restart, the server was accessed using a domain
 account:</p>
 <p>YASSERTEACH\yasser</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/003cbe41ccdda0e1bda9e386287b60c7d4b80acc.png" style="width:3.125in;height:2in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/003cbe41ccdda0e1bda9e386287b60c7d4b80acc.png"/></p>
 <p><em>Signing in to DHCP01 using a YASSERTEACH domain account.</em></p>
 <p>Domain membership was verified using:</p>
 <p>systeminfo | findstr /B /C:"Domain"</p>
 <p>Expected result: Domain: yasserteach.local</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a2a36e7d7e2d3a8f8cc7951af8fb6c4851b127fc.png" style="width:3.95833in;height:1.5in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a2a36e7d7e2d3a8f8cc7951af8fb6c4851b127fc.png"/></p>
 <p><em>systeminfo confirming domain membership: Domain:
 yasserteach.local.</em></p>
 <p>6.7 Install the DHCP Server Role</p>
@@ -476,7 +479,7 @@ process was used:</p>
 <li><p>Selected Install</p></li>
 <li><p>Waited for the installation to complete</p></li>
 </ol>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f6c8093f4b4a1050a0fd128065d7c5ec6705d041.png" style="width:4.375in;height:3.32292in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f6c8093f4b4a1050a0fd128065d7c5ec6705d041.png"/></p>
 <p><em>Add Roles and Features Wizard — installing the DHCP Server role
 with management tools.</em></p>
 <p>The DHCP role could also be installed using PowerShell:</p>
@@ -495,7 +498,7 @@ performed two important tasks:</p>
 <p>The following local security groups were created: DHCP
 Administrators, DHCP Users. The server was authorized using domain
 administrative credentials.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c96cf64e2c46d4f70f918fd9702ac1f5e4abaeff.png" style="width:4.79167in;height:3.41667in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c96cf64e2c46d4f70f918fd9702ac1f5e4abaeff.png"/></p>
 <p><em>DHCP post-installation configuration wizard confirming security
 groups created and the server authorized.</em></p>
 <h1>7. DHCP Authorization in Active Directory</h1>
@@ -546,7 +549,7 @@ administrators to identify the network purpose.</p>
 <p>The dynamic IP address range configured in the lab:</p>
 <p>Start IP Address: 192.168.10.100 End IP Address: 192.168.10.200
 Prefix Length: /24 Subnet Mask: 255.255.255.0</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a00755a1992e722b157dddd24a4d545190e7a69f.png" style="width:4.58333in;height:3.20833in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a00755a1992e722b157dddd24a4d545190e7a69f.png"/></p>
 <p><em>New Scope Wizard — configuring the IPv4 address range
 (192.168.10.100 – 192.168.10.200).</em></p>
 <p>8.3 Configure Exclusions</p>
@@ -566,7 +569,7 @@ lab:</p>
 </ul>
 <p>Addresses assigned manually to infrastructure systems should not be
 included in the dynamic DHCP pool.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/558815cc008d027acee35d791f5abd4a7ea12f7a.png" style="width:3.95833in;height:3.28125in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/558815cc008d027acee35d791f5abd4a7ea12f7a.png"/></p>
 <p><em>New Scope Wizard — Add Exclusions and Delay (192.168.10.100 –
 192.168.10.110).</em></p>
 <p>8.4 Configure Lease Duration</p>
@@ -606,7 +609,7 @@ DNS server allowed clients to resolve:</p>
 </ul>
 <p>Using a public DNS server directly on a domain client could prevent
 Active Directory domain discovery and internal name resolution.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/482aff13e240f64121d9263174bafc6f056c0f07.png" style="width:3.95833in;height:3.30208in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/482aff13e240f64121d9263174bafc6f056c0f07.png"/></p>
 <p><em>New Scope Wizard — Domain Name and DNS Servers, configured with
 192.168.10.10.</em></p>
 <p><strong>9.3 Option 015: DNS Domain Name</strong></p>
@@ -643,7 +646,7 @@ queries.</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b6407c029a76f9473d3b84651b6335070f39b226.png" style="width:4.375in;height:2.17708in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b6407c029a76f9473d3b84651b6335070f39b226.png"/></p>
 <p><em>DHCP console — Scope Options showing the configured Router, DNS
 Servers, and DNS Domain Name values.</em></p>
 <h1>10. Activate the DHCP Scope</h1>
@@ -659,7 +662,7 @@ following management sections:</p>
 <li><p>Policies</p></li>
 </ul>
 <p>The scope status was verified as active.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/eee90620c2f14523595ac27905a823a755077c95.png" style="width:4.79167in;height:1.5in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/eee90620c2f14523595ac27905a823a755077c95.png"/></p>
 <p><em>DHCP console showing the Corporate Client Network scope with an
 Active status.</em></p>
 <h1>11. Verify the DHCP Server Service</h1>
@@ -681,11 +684,11 @@ configuration from the DHCP server.</p>
 <h1>13. Request a DHCP Lease</h1>
 <p>The existing network configuration was released:</p>
 <pre class="command-block"><code>ipconfig /release</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4d460d58d2301d06589ba28e3dac28ae6eea8bbd.png" style="width:4.375in;height:1.48958in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4d460d58d2301d06589ba28e3dac28ae6eea8bbd.png"/></p>
 <pre class="command-block"><code>ipconfig /release on W11-CLIENT01.</code></pre>
 <p>A new DHCP lease was requested:</p>
 <pre class="command-block"><code>ipconfig /renew</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1a7ab25d942e6dc4d62a487a989f73891cde0e06.png" style="width:4.375in;height:1.67708in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1a7ab25d942e6dc4d62a487a989f73891cde0e06.png"/></p>
 <pre class="command-block"><code>ipconfig /renew — the client received IPv4 address
 192.168.10.111.</code></pre>
 <p>The complete client configuration was displayed using:</p>
@@ -707,10 +710,10 @@ configuration from the DHCP server.</p>
 255.255.255.0 Default Gateway: 192.168.10.1 DHCP Server: 192.168.10.20
 DNS Servers: 192.168.10.10 Connection-specific DNS Suffix:
 yasserteach.local</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/89e9bdea127715bb2722cc72c9a4ae3a30cf0d32.png" style="width:4.79167in;height:3.25in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/89e9bdea127715bb2722cc72c9a4ae3a30cf0d32.png"/></p>
 <pre class="command-block"><code>ipconfig /all on W11-CLIENT01 — full lease details (IP
 192.168.10.111, DHCP Server 192.168.10.20).</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fb4a2971f3542cb274d1699db1a506908d0bb0a8.png" style="width:3.95833in;height:3.60417in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fb4a2971f3542cb274d1699db1a506908d0bb0a8.png"/></p>
 <pre class="command-block"><code>ipconfig /all — DHCP server and DNS information on the
 client.</code></pre>
 <h1>14. Understand the DHCP Lease Process</h1>
@@ -743,7 +746,7 @@ as:</p>
 </ul>
 <p>This confirmed that the DHCP server had successfully issued and
 recorded the client lease.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/06f23300c2221288274fa7731369d2258ddc7af9.png" style="width:4.79167in;height:1.63542in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/06f23300c2221288274fa7731369d2258ddc7af9.png"/></p>
 <p><em>DHCP Address Leases console — W11-CLIENT01 listed with IP
 192.168.10.111.</em></p>
 <h1>16. Connectivity Testing</h1>
@@ -804,7 +807,7 @@ also reviewed to verify that the reservation was active.</p>
 <p>The following DHCP components were reviewed after implementation.</p>
 <p><strong>18.1 Address Pool</strong></p>
 <p>Confirmed the configured dynamic address range and exclusions.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b82a1078932ae91e9d4bdedea8df1ddeec267e2b.png" style="width:3.95833in;height:2.11458in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/b82a1078932ae91e9d4bdedea8df1ddeec267e2b.png"/></p>
 <p><em>DHCP console tree — Address Pool node under the Corporate Client
 Network scope.</em></p>
 <p><strong>18.2 Address Leases</strong></p>
@@ -824,7 +827,7 @@ the deployment.</p>
 <pre class="command-block"><code>Get-DhcpServerInDC</code></pre>
 <p><strong>19.2 Display IPv4 Scopes</strong></p>
 <pre class="command-block"><code>Get-DhcpServerv4Scope</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cb5402517361fe705e4a52ee171b6eb266b71758.png" style="width:4.79167in;height:1.84375in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cb5402517361fe705e4a52ee171b6eb266b71758.png"/></p>
 <pre class="command-block"><code>PowerShell output — Get-DhcpServerv4Scope (192.168.10.0, Active,
 192.168.10.100–200, 8 day lease) and Get-DhcpServerDatabase.</code></pre>
 <p><strong>19.3 Display the DHCP Address Pool</strong></p>
@@ -839,7 +842,7 @@ the deployment.</p>
 <pre class="command-block"><code>Get-DhcpServerv4Lease \
 -ComputerName DHCP01 \
 -ScopeId 192.168.10.0</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/6415b413cabecb8bc0ca92f8f26b8bcc385a8e12.png" style="width:4.375in;height:1.8125in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/6415b413cabecb8bc0ca92f8f26b8bcc385a8e12.png"/></p>
 <pre class="command-block"><code>Export-DhcpServer — exporting the DHCP configuration and active
 leases to C:\DHCP-EXPORT.xml.</code></pre>
 <p><strong>19.6 Display Reservations</strong></p>
@@ -946,10 +949,10 @@ or unauthorized devices.</p>
 <p><strong>21.8 Audit Logging</strong></p>
 <p>DHCP audit logging can be used to record lease operations and server
 activity. The default DHCP log location is C:\Windows\System32\dhcp.</p>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bebafd65567801db49294eaceef8481b3646dea1.png" style="width:3.95833in;height:1.57292in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/bebafd65567801db49294eaceef8481b3646dea1.png"/></p>
 <pre class="command-block"><code>Get-DhcpServerAuditLog — audit log configuration on
 DHCP01.</code></pre>
-<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/352b960fc4d89bf8d78a76eef6b205b2b58623a3.png" style="width:4.58333in;height:3.25in"/></p>
+<p><img alt="Windows Server DHCP Infrastructure project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/352b960fc4d89bf8d78a76eef6b205b2b58623a3.png"/></p>
 <p><em>Event Viewer — Microsoft-Windows-DHCP-Server Operational log
 recording server policy events.</em></p>
 <h1>22. DHCP Best Practices Applied</h1>
@@ -1102,84 +1105,21 @@ from DHCP01. The client was able to:</p>
 <li><p>Communicate with the domain controller</p></li>
 <li><p>Receive a reserved address when configured</p></li>
 </ul>
-<h1>25. Skills Demonstrated</h1>
-<ul>
-<li><p>Windows Server 2022 administration</p></li>
-<li><p>DHCP Server deployment</p></li>
-<li><p>DHCP scope configuration</p></li>
-<li><p>DHCP scope options</p></li>
-<li><p>DHCP lease management</p></li>
-<li><p>DHCP reservations</p></li>
-<li><p>Active Directory integration</p></li>
-<li><p>DHCP server authorization</p></li>
-<li><p>IPv4 subnet configuration</p></li>
-<li><p>DNS client configuration</p></li>
-<li><p>Windows 11 network configuration</p></li>
-<li><p>VMware virtual networking</p></li>
-<li><p>TCP/IP troubleshooting</p></li>
-<li><p>DNS troubleshooting</p></li>
-<li><pre class="command-block"><code>PowerShell administration</code></pre></li>
-<li><p>Enterprise infrastructure documentation</p></li>
-</ul>
-<h1>26. Technologies Used</h1>
-<ul>
-<li><p>Windows Server 2022</p></li>
-<li><p>Windows 11</p></li>
-<li><p>Active Directory Domain Services</p></li>
-<li><p>Windows DNS Server</p></li>
-<li><p>Windows DHCP Server</p></li>
-<li><pre class="command-block"><code>PowerShell</code></pre></li>
-<li><p>Command Prompt</p></li>
-<li><p>VMware Workstation Pro</p></li>
-<li><p>IPv4</p></li>
-<li><p>TCP/IP</p></li>
-<li><p>DNS</p></li>
-<li><p>DHCP</p></li>
-<li><p>Active Directory</p></li>
-</ul>
-<h1>27. Project Outcome</h1>
-<p>This project successfully simulated a real-world enterprise DHCP
-deployment. Instead of manually configuring every endpoint, client
-devices can now automatically obtain their network configuration from a
-centrally managed Windows Server DHCP service.</p>
-<p>The project demonstrates the ability to design, deploy, secure, test,
-troubleshoot, and document a core Microsoft infrastructure service
-within an Active Directory environment.</p>
-<h1>28. Short Project Summary</h1>
-<p><strong>28.1 Enterprise DHCP Server Deployment</strong></p>
-<p>Deployed a dedicated Windows Server 2022 DHCP server in an Active
-Directory domain environment. Configured a centralized IPv4 scope,
-exclusions, lease duration, gateway, internal DNS server, and DNS domain
-options. Authorized the DHCP server in Active Directory and validated
-automatic address allocation using a Windows 11 client.</p>
-<p>Created and tested a DHCP reservation, monitored active leases, and
-resolved VMware virtual networking and DNS name-resolution issues. The
-final solution provided centralized, consistent, and scalable network
-configuration for domain client devices.</p>
-<h1>29. Resume Project Description</h1>
-<p><strong>29.1 Enterprise DHCP Server Deployment — Windows Server
-2022</strong></p>
-<ul>
-<li><p>Deployed and configured a dedicated Windows Server 2022 DHCP
-server.</p></li>
-<li><p>Integrated and authorized the DHCP server within Active
-Directory.</p></li>
-<li><p>Created an IPv4 scope with address pools, exclusions, and lease
-settings.</p></li>
-<li><p>Configured gateway, DNS server, and DNS domain DHCP
-options.</p></li>
-<li><p>Tested DHCP address allocation using a Windows 11
-client.</p></li>
-<li><p>Created and validated a MAC-based DHCP reservation.</p></li>
-<li><p>Monitored active leases and verified server statistics using
-PowerShell.</p></li>
-<li><p>Troubleshot VMware network segmentation and internal DNS
-resolution.</p></li>
-<li><p>Documented the complete implementation, testing, and final
-results.</p></li>
-</ul>
-<div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
-</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
+</div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+<script id="project-screenshot-ratio-classifier">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
+    function classify() {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      img.classList.remove('is-portrait', 'is-wide');
+      if (ratio < 1.05) img.classList.add('is-portrait');
+      else if (ratio > 1.75) img.classList.add('is-wide');
+    }
+    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
+  });
+});
+</script>
 </body></html>

@@ -151,8 +151,67 @@
     font-size: 15px !important;
   }
 }
+</style>
+<style id="project-screenshot-size-fix">
+/* Balanced screenshot sizing: clear without filling the entire screen */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(94vw, 1120px) !important;
+  max-width: 1120px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: min(100%, 940px) !important;
+  max-width: 940px !important;
+  height: auto !important;
+  max-height: 680px !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc img.doc-img.is-portrait {
+  width: auto !important;
+  max-width: min(100%, 700px) !important;
+  max-height: 720px !important;
+}
+body.project-page main.doc img.doc-img.is-wide {
+  width: min(100%, 1000px) !important;
+  max-width: 1000px !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 92vw !important; }
+  body.project-page main.doc img.doc-img,
+  body.project-page main.doc img.doc-img.is-portrait,
+  body.project-page main.doc img.doc-img.is-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+</style>
+<style>
+/* Unified project navigation and lightbox safety */
+.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
+.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
+.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
+.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
+.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
+.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
+.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
+.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
+@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
 </style></head>
-<body class="project-page">
+<body class="project-page" id="page-top">
 <header>
 <nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
@@ -160,323 +219,8 @@
 </nav>
 </header>
 <main class="doc">
-<div class="container">
-<div class="meta-block">
-<p>Enterprise Active Directory Identity &amp; File Services Infrastructure</p>
-<p>Enterprise Windows Server Infrastructure Project</p>
-<p>Project Category: Infrastructure</p>
-<p>Platform: Microsoft Windows Server 2022</p>
-<p>Virtualization Platform: VMware Workstation</p>
-<p>Project Type: Enterprise Active Directory Infrastructure</p>
-<p>Domain Name: yasserteach.local</p>
-<p>Domain Controller: DC01</p>
-<p>Client Computer: W11-01</p>
-</div>
-<h1 class="unnumbered" id="executive-summary"><strong>Executive Summary</strong></h1>
-<p>This project demonstrates the complete deployment of an enterprise-grade Microsoft Active Directory infrastructure built entirely within a virtual environment using VMware Workstation.</p>
-<p>The objective was not simply to install Active Directory, but to design a structured enterprise identity infrastructure following Microsoft administration and security best practices.</p>
-<p>The environment was built around a dedicated Active Directory forest named yasserteach.local, with DC01 serving as the primary Domain Controller and DNS Server.</p>
-<p>The project includes:</p>
-<ul>
-<li><p>Enterprise network configuration</p></li>
-<li><p>Active Directory Domain Services deployment</p></li>
-<li><p>DNS integration</p></li>
-<li><p>Organizational Unit (OU) design</p></li>
-<li><p>Enterprise user provisioning</p></li>
-<li><pre class="command-block"><code>PowerShell automation</code></pre></li>
-<li><p>Security Group administration</p></li>
-<li><p>Role-Based Access Control (RBAC)</p></li>
-<li><p>AGDLP implementation</p></li>
-<li><p>Enterprise SMB File Shares</p></li>
-<li><p>NTFS permission management</p></li>
-<li><p>Least Privilege implementation</p></li>
-</ul>
-<p>Rather than assigning permissions directly to users, access is managed through layered Security Groups and Domain Local Groups using Microsoft's AGDLP model.</p>
-<pre class="command-block"><code>PowerShell automation was incorporated throughout the deployment to automate repetitive administrative tasks, improve consistency, and demonstrate enterprise Windows administration capabilities.</code></pre>
-<p>The completed infrastructure closely resembles a production Active Directory environment and demonstrates practical experience expected from Windows Server Administrators, Infrastructure Engineers, and Enterprise Systems Engineers.</p>
-<h1 class="unnumbered" id="business-scenario"><strong>Business Scenario</strong></h1>
-<p>A fictional company requires a centralized identity management solution capable of supporting multiple departments while maintaining secure authentication, simplified administration, and scalable permission management.</p>
-<p>The organization currently lacks centralized user administration, resulting in inconsistent access control, duplicated administrative effort, and increasing operational complexity.</p>
-<p>To modernize the infrastructure, Microsoft Active Directory Domain Services was selected as the organization's identity platform.</p>
-<p>The company requires a solution capable of providing:</p>
-<ul>
-<li><p>Centralized Authentication</p></li>
-<li><p>Centralized Authorization</p></li>
-<li><p>Department-Based Administration</p></li>
-<li><p>Enterprise Security Groups</p></li>
-<li><pre class="command-block"><code>PowerShell Automation</code></pre></li>
-<li><p>Role-Based Access Control (RBAC)</p></li>
-<li><p>Enterprise File Sharing</p></li>
-<li><p>Secure NTFS Permissions</p></li>
-</ul>
-<p>The completed solution provides a scalable enterprise directory capable of supporting future growth while maintaining consistent administrative practices.</p>
-<h1 class="unnumbered" id="project-objectives"><strong>Project Objectives</strong></h1>
-<p>The objectives of this project were to:</p>
-<ul>
-<li><p>Deploy a new Active Directory Forest named yasserteach.local.</p></li>
-<li><p>Configure DC01 as the Enterprise Domain Controller.</p></li>
-<li><p>Configure integrated DNS services.</p></li>
-<li><p>Design a scalable Organizational Unit hierarchy.</p></li>
-<li><p>Create enterprise user accounts.</p></li>
-<li><p>Implement Global Security Groups.</p></li>
-<li><p>Implement Domain Local Security Groups.</p></li>
-<li><p>Apply Microsoft's AGDLP security model.</p></li>
-<li><p>Configure centralized SMB file sharing.</p></li>
-<li><p>Secure departmental folders using NTFS permissions.</p></li>
-<li><p>Apply the Principle of Least Privilege.</p></li>
-<li><p>Automate Active Directory administration using PowerShell.</p></li>
-<li><p>Validate the entire enterprise infrastructure.</p></li>
-</ul>
-<h1 class="unnumbered" id="project-scope"><strong>Project Scope</strong></h1>
-<p>The implementation includes the following components.</p>
-<p>Identity Services</p>
-<ul>
-<li><p>Active Directory Domain Services</p></li>
-<li><p>DNS Server</p></li>
-<li><p>Kerberos Authentication</p></li>
-<li><p>LDAP Directory Services</p></li>
-</ul>
-<p>Enterprise Administration</p>
-<ul>
-<li><p>Organizational Units</p></li>
-<li><p>User Accounts</p></li>
-</ul>
-<h1 id="security-groups">Security Groups </h1>
-<ul>
-<li><p>Domain Local Groups</p></li>
-<li><p>Administrative Delegation</p></li>
-</ul>
-<p>Security</p>
-<ul>
-<li><p>Role-Based Access Control</p></li>
-<li><p>AGDLP</p></li>
-<li><p>NTFS Permissions</p></li>
-<li><p>Share Permissions</p></li>
-<li><p>Least Privilege</p></li>
-</ul>
-<p>Automation</p>
-<ul>
-<li><p>Bulk User Creation</p></li>
-<li><p>Group Membership Automation</p></li>
-<li><p>AGDLP Automation</p></li>
-<li><p>NTFS Permission Automation</p></li>
-</ul>
-<p>File Services</p>
-<ul>
-<li><p>Enterprise SMB Shares</p></li>
-<li><p>Department File Structure</p></li>
-<li><p>Secure Folder Permissions</p></li>
-</ul>
-<h1 class="unnumbered" id="project-environment"><strong>Project Environment</strong></h1>
-<table>
-<colgroup>
-<col style="width: 35%"/>
-<col style="width: 64%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Component</strong></th>
-<th><strong>Configuration</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Hypervisor</td>
-<td>VMware Workstation</td>
-</tr>
-<tr class="even">
-<td>Operating System</td>
-<td>Windows Server 2022</td>
-</tr>
-<tr class="odd">
-<td>Client OS</td>
-<td>Windows 11</td>
-</tr>
-<tr class="even">
-<td>Forest</td>
-<td>yasserteach.local</td>
-</tr>
-<tr class="odd">
-<td>Domain</td>
-<td>yasserteach.local</td>
-</tr>
-<tr class="even">
-<td>Domain Controller</td>
-<td>DC01</td>
-</tr>
-<tr class="odd">
-<td>Client Computer</td>
-<td>W11-01</td>
-</tr>
-<tr class="even">
-<td>DNS Server</td>
-<td>DC01</td>
-</tr>
-<tr class="odd">
-<td>Directory Service</td>
-<td>Active Directory Domain Services</td>
-</tr>
-<tr class="even">
-<td>Authentication</td>
-<td>Kerberos</td>
-</tr>
-<tr class="odd">
-<td>File Sharing</td>
-<td>SMB</td>
-</tr>
-<tr class="even">
-<td>Automation</td>
-<td>Windows PowerShell</td>
-</tr>
-</tbody>
-</table>
-<h1 class="unnumbered" id="enterprise-infrastructure"><strong>Enterprise Infrastructure</strong></h1>
-<p>Domain Information</p>
-<table>
-<colgroup>
-<col style="width: 51%"/>
-<col style="width: 48%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Component</strong></th>
-<th><strong>Value</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Forest Name</td>
-<td>yasserteach.local</td>
-</tr>
-<tr class="even">
-<td>Domain Name</td>
-<td>yasserteach.local</td>
-</tr>
-<tr class="odd">
-<td>NetBIOS Name</td>
-<td>YASSERTEACH</td>
-</tr>
-<tr class="even">
-<td>Domain Controller</td>
-<td>DC01</td>
-</tr>
-<tr class="odd">
-<td>Client Computer</td>
-<td>W11-01</td>
-</tr>
-</tbody>
-</table>
-<p>Organizational Unit Design</p>
-<p>The Active Directory hierarchy was designed around a dedicated Corporate Organizational Unit to simplify administration and future expansion.</p>
-<p>The implemented Organizational Units include:</p>
-<table>
-<colgroup>
-<col style="width: 100%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Organizational Unit</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Corporate</td>
-</tr>
-<tr class="even">
-<td>IT</td>
-</tr>
-<tr class="odd">
-<td>HR</td>
-</tr>
-<tr class="even">
-<td>Finance</td>
-</tr>
-<tr class="odd">
-<td>Operations</td>
-</tr>
-<tr class="even">
-<td>Executives</td>
-</tr>
-<tr class="odd">
-<td>Users</td>
-</tr>
-<tr class="even">
-<td>Groups</td>
-</tr>
-</tbody>
-</table>
-<h1 class="unnumbered" id="security-groups-1"><strong>Security Groups</strong></h1>
-<p>The project implements department-based Global Security Groups.</p>
-<table>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 22%"/>
-<col style="width: 27%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Group Name</strong></th>
-<th><strong>Scope</strong></th>
-<th><strong>Type</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>GG_IT</td>
-<td>Global</td>
-<td>Security</td>
-</tr>
-<tr class="even">
-<td>GG_HR</td>
-<td>Global</td>
-<td>Security</td>
-</tr>
-<tr class="odd">
-<td>GG_Finance</td>
-<td>Global</td>
-<td>Security</td>
-</tr>
-<tr class="even">
-<td>GG_Operations</td>
-<td>Global</td>
-<td>Security</td>
-</tr>
-<tr class="odd">
-<td>GG_Executives</td>
-<td>Global</td>
-<td>Security</td>
-</tr>
-</tbody>
-</table>
-<p>Domain Local Groups</p>
-<p>Domain Local Groups were created to manage permissions on enterprise resources.</p>
-<table>
-<colgroup>
-<col style="width: 38%"/>
-<col style="width: 61%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Group Name</strong></th>
-<th><strong>Purpose</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>DL_IT_RW</td>
-<td>Modify IT Folder <em>(<span dir="rtl"></span>)</em></td>
-</tr>
-<tr class="even">
-<td>DL_HR_RW</td>
-<td>Modify HR Folder</td>
-</tr>
-<tr class="odd">
-<td>DL_Finance_RW</td>
-<td>Modify Finance Folder</td>
-</tr>
-</tbody>
-</table>
-<h2 class="unnumbered" id="infrastructure-deployment"><strong>2. Infrastructure Deployment</strong></h2>
+<div class="container"><section class="project-hero"><h1 class="project-main-title">Enterprise Active Directory &amp; File Services</h1><div class="project-cover-wrap"><img alt="Enterprise Active Directory &amp; File Services project cover" class="project-cover-image" src="images/project-cover-active-directory.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Identity and Access Infrastructure</td></tr><tr><th scope="row">Platform</th><td>Microsoft Windows Server 2022</td></tr><tr><th scope="row">Core Technologies</th><td>Active Directory, DNS, AGDLP, SMB, NTFS</td></tr><tr><th scope="row">Project Focus</th><td>Centralized identity management and secure file access</td></tr></tbody></table></section>
+<h1>Project Overview</h1><p>Built a Windows Server identity and file-services environment with Active Directory, DNS, a structured OU model, user and group administration, AGDLP-based access control, SMB shares, NTFS permissions, and PowerShell automation.</p><h1>Business Scenario</h1><p>The environment required centralized identity management and controlled access to departmental file resources. Users were organized by department, while permissions were assigned through security groups rather than directly to individual accounts.</p><h1>Project Objectives</h1><ul><li>Deploy Active Directory Domain Services and integrated DNS.</li><li>Create a scalable OU structure and departmental user accounts.</li><li>Use Global and Domain Local groups to implement AGDLP.</li><li>Publish SMB shares with least-privilege NTFS permissions.</li><li>Automate repeatable administration tasks with PowerShell.</li></ul><h2 class="unnumbered" id="infrastructure-deployment"><strong>2. Infrastructure Deployment</strong></h2>
 <p>This phase documents the deployment of the core infrastructure used throughout the project. The environment was built from the ground up, beginning with virtual networking, followed by Windows Server preparation, Active Directory installation, and finally the deployment of the yasserteach.local domain.</p>
 <p>The primary objective of this phase was to establish a stable, secure, and scalable identity infrastructure capable of supporting enterprise authentication and centralized administration.</p>
 <h2 class="unnumbered" id="configuring-the-virtual-network-infrastructure"><strong>2.1 Configuring the Virtual Network Infrastructure</strong></h2>
@@ -724,10 +468,6 @@
 <li><p>Better Group Policy targeting</p></li>
 </ul>
 <h2 class="unnumbered" id="reviewing-the-organizational-unit-hierarchy"><strong>3.4 Reviewing the Organizational Unit Hierarchy</strong></h2><div class="architecture-tree"><ul><li><span class="tree-label">yasserteach.local</span><ul><li><span class="tree-label">Corporate</span><ul><li><span class="tree-label">IT</span></li><li><span class="tree-label">Finance</span></li><li><span class="tree-label">HR</span></li><li><span class="tree-label">Sales</span></li><li><span class="tree-label">Management</span></li><li><span class="tree-label">Security Groups</span></li><li><span class="tree-label">Service Accounts</span></li></ul></li></ul></li></ul></div><p>The domain hierarchy separates departments, security groups, and service accounts to support centralized administration, delegated management, and scalable access control.</p>
-
-
-
-
 <h2 class="unnumbered" id="creating-enterprise-user-accounts"><strong>3.5 Creating Enterprise User Accounts</strong></h2>
 <p><img alt="" class="doc-img" loading="lazy" src="images/image15.jpg"/></p>
 <p>Enterprise user accounts were created for each department within the yasserteach.local domain.</p>
@@ -1548,19 +1288,6 @@
 </tr>
 </tbody>
 </table>
-<h2 class="unnumbered" id="skills-demonstrated"><strong>6.11 Skills Demonstrated</strong></h2>
-<p>This project demonstrates practical experience in the following areas:</p>
-<p>Windows Infrastructure</p>
-<ul>
-<li><p>Windows Server Administration</p></li>
-<li><p>Active Directory Deployment</p></li>
-<li><p>DNS Administration</p></li>
-<li><p>Organizational Unit Design</p></li>
-</ul>
-<p>Identity Management</p>
-<ul>
-<li><p>User Provisioning</p></li>
-</ul>
 <h1 id="security-groups-3">Security Groups </h1>
 <ul>
 <li><p>Role-Based Access Control</p></li>
@@ -1579,35 +1306,15 @@
 <li><p>Least Privilege</p></li>
 <li><p>Access Control</p></li>
 </ul>
-<h2 class="unnumbered" id="project-deliverables"><strong>6.12 Project Deliverables</strong></h2>
-<p>The completed project includes:</p>
-<ul>
-<li><p>VMware Enterprise Lab</p></li>
-<li><p>yasserteach.local Active Directory Forest</p></li>
-<li><p>DC01 Domain Controller</p></li>
-<li><p>Windows 11 Enterprise Client (W11-01)</p></li>
-<li><p>Corporate Organizational Unit Structure</p></li>
-<li><p>Departmental Organizational Units</p></li>
-<li><p>Enterprise User Accounts</p></li>
-<li><p>Global Security Groups</p></li>
-<li><p>Domain Local Security Groups</p></li>
-<li><p>RBAC Implementation</p></li>
-<li><p>AGDLP Architecture</p></li>
-<li><p>SMB File Shares</p></li>
-<li><p>NTFS Security Model</p></li>
-<li><pre class="command-block"><code>PowerShell Automation</code></pre></li>
-</ul>
 <h1 id="enterprise-infrastructure-validation">Enterprise Infrastructure Validation </h1>
 <p>Final Conclusion</p>
 <p>The Enterprise Active Directory Identity &amp; File Services Infrastructure project successfully demonstrates the deployment of a complete Microsoft Windows Server environment based on enterprise administration best practices.</p>
 <p>Starting from an isolated VMware virtual network, the project progressed through the deployment of DC01, the creation of the yasserteach.local forest, the design of a structured Organizational Unit hierarchy, enterprise user provisioning, Security Group implementation, Role-Based Access Control (RBAC), AGDLP permission management, centralized SMB file sharing, NTFS security, and PowerShell automation.</p>
 <p>Unlike a basic Active Directory installation, this implementation emphasizes scalability, maintainability, and security by separating identity management from permission management and automating repetitive administrative tasks.</p>
 <p>The resulting infrastructure closely reflects a real-world enterprise deployment and demonstrates practical skills expected from Windows Server Administrators, Infrastructure Engineers, and Systems Engineers responsible for managing Microsoft-based enterprise environments.</p>
-<div class="cta">
-<a class="btn" href="../../index.html#projects">← Back to Portfolio</a>
+
 </div>
-</div>
-</main>
+<div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main>
 <footer>
 <div class="container">© <span id="year"></span> Yasser Alrajeh</div>
 </footer>
@@ -1631,5 +1338,19 @@
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
+<script id="project-screenshot-ratio-classifier">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
+    function classify() {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      img.classList.remove('is-portrait', 'is-wide');
+      if (ratio < 1.05) img.classList.add('is-portrait');
+      else if (ratio > 1.75) img.classList.add('is-wide');
+    }
+    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
+  });
+});
+</script>
 </body>
 </html>

@@ -147,44 +147,71 @@
     font-size: 15px !important;
   }
 }
+</style>
+<style id="project-screenshot-size-fix">
+/* Balanced screenshot sizing: clear without filling the entire screen */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(94vw, 1120px) !important;
+  max-width: 1120px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: min(100%, 940px) !important;
+  max-width: 940px !important;
+  height: auto !important;
+  max-height: 680px !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc img.doc-img.is-portrait {
+  width: auto !important;
+  max-width: min(100%, 700px) !important;
+  max-height: 720px !important;
+}
+body.project-page main.doc img.doc-img.is-wide {
+  width: min(100%, 1000px) !important;
+  max-width: 1000px !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 92vw !important; }
+  body.project-page main.doc img.doc-img,
+  body.project-page main.doc img.doc-img.is-portrait,
+  body.project-page main.doc img.doc-img.is-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+  }
+}
+</style>
+<style>
+/* Unified project navigation and lightbox safety */
+.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
+.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
+.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
+.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
+.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
+.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
+.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
+.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
+@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
 </style></head>
-<body class="project-page"><header><nav>
+<body class="project-page" id="page-top"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container">
-<div class="meta-block"><p>Enterprise Hyper-V Virtualization</p><p>Project Category: Infrastructure</p><p>Hyper-V lab covering virtual networking, VM deployment, checkpoints, export, recovery, and cloning.</p></div>
-<h1>ENTERPRISE HYPER-V VIRTUALIZATION INFRASTRUCTURE</h1>
-<p>Deployment, Virtual Networking, Storage Expansion, Recovery
-Validation, and VM Cloning</p>
-<h1 id="project-overview">1. Project Overview</h1>
-<p>This project demonstrates the design, deployment, and validation of a
-Microsoft Hyper-V virtualization environment on a Windows 10 Pro host.
-The environment was built to support Windows and Linux workloads while
-providing structured virtual networking, virtual storage management,
-production checkpoints, export and import recovery, and independent
-virtual machine cloning.</p>
-<h2 id="business-scenario">Business Scenario</h2>
-<p>A small organization required a centralized virtualization platform
-to improve hardware utilization, host multiple operating systems,
-simplify infrastructure testing, and provide reliable recovery and rapid
-deployment capabilities. Microsoft Hyper-V was selected because it
-integrates with Windows environments and supports the complete virtual
-machine lifecycle.</p>
-<h2 id="project-objectives">Project Objectives</h2>
-<ul>
-<li><p>Build a structured Hyper-V environment with dedicated storage
-paths.</p></li>
-<li><p>Create external and internal virtual networks for different
-connectivity requirements.</p></li>
-<li><p>Deploy Windows Server 2022, Windows 10, and Ubuntu virtual
-machines.</p></li>
-<li><p>Configure production checkpoints and validate export/import
-recovery.</p></li>
-<li><p>Expand guest storage with a dedicated VHDX data disk.</p></li>
-<li><p>Create an independent VM clone using a new unique Hyper-V
-identifier.</p></li>
-</ul>
-<h1 id="environment-and-technologies">2. Environment and
+<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Enterprise Hyper-V Virtualization</h1><div class="project-cover-wrap"><img alt="Enterprise Hyper-V Virtualization project cover" class="project-cover-image" src="images/project-cover-hyper-v.png"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Virtualization Infrastructure</td></tr><tr><th scope="row">Platform</th><td>Microsoft Hyper-V</td></tr><tr><th scope="row">Core Technologies</th><td>Virtual Switches, Checkpoints, VM Export and Import</td></tr><tr><th scope="row">Project Focus</th><td>Virtual machine deployment, networking, and recovery</td></tr></tbody></table></section>
+<h1 id="project-overview">1. Project Overview</h1><p>Built a Hyper-V lab with dedicated storage, internal and external virtual networking, Windows and Linux virtual machines, production checkpoints, export/import recovery, disk expansion, and independent cloning.</p><h1 id="environment-and-technologies">2. Environment and
 Technologies</h1>
 <table>
 <colgroup>
@@ -241,8 +268,6 @@ Technologies</h1>
 </tbody>
 </table>
 <h1 id="solution-architecture">3. Solution Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Windows 10 Pro Hyper-V Host</span><ul><li><span class="tree-label">External Virtual Switch</span><ul><li><span class="tree-label">Physical Network and Internet Access</span></li></ul></li><li><span class="tree-label">YCS-Enterprise-Network — Internal Switch</span><ul><li><span class="tree-label">YCS-DC01 — Windows Server 2022</span></li><li><span class="tree-label">Windows 10 Client</span></li><li><span class="tree-label">Ubuntu Linux</span></li></ul></li><li><span class="tree-label">VHDX Repository</span></li><li><span class="tree-label">Export Repository</span></li></ul></li></ul></div><p>The internal switch isolates lab communication between the host and virtual machines, while the external switch provides physical network and internet connectivity when required.</p>
-
-
 <h1 id="implementation-highlights">4. Implementation Highlights</h1>
 <h2 id="phase-1---hyper-v-environment-preparation">Phase 1 - Hyper-V
 Environment Preparation</h2>
@@ -257,13 +282,13 @@ disks.</p></li>
 <li><p>Created the YCS-Enterprise-Network Internal Virtual
 Switch.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image1.png" style="width:5.98969in;height:2.71381in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image1.png"/></p>
 <p>Initial Hyper-V Manager before deploying the virtual
 infrastructure.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image2.png" style="width:5.7918in;height:3.08468in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image2.png"/></p>
 <p>Dedicated storage locations configured for virtual machines and
 virtual hard disks.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image3.png" style="width:5.78878in;height:3.13217in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image3.png"/></p>
 <p>YCS-Enterprise-Network internal virtual switch created for the lab
 environment.</p>
 <h2 id="phase-2---virtual-machine-deployment-and-configuration">Phase 2
@@ -279,11 +304,11 @@ hardware.</p>
 <li><p>Created a 60 GB dynamically expanding VHDX disk.</p></li>
 <li><p>Attached Windows Server 2022 installation media.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image4.png" style="width:5.31163in;height:4.05422in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image4.png"/></p>
 <p>Creating the primary Windows Server virtual machine.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image5.png" style="width:5.57192in;height:4.14564in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image5.png"/></p>
 <p>Generation 2 selected to support UEFI and Secure Boot.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image6.png" style="width:5.35992in;height:4.06588in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image6.png"/></p>
 <p>Primary dynamically expanding VHDX disk configured with a 60 GB
 capacity.</p>
 <h2 id="phase-3---security-and-recovery-configuration">Phase 3 -
@@ -298,9 +323,9 @@ recovery points.</p></li>
 starts.</p></li>
 <li><p>Configured graceful guest shutdown when the host stops.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image7.png" style="width:5.73959in;height:5.54693in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image7.png"/></p>
 <p>Production Checkpoints selected as the preferred checkpoint type.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image8.png" style="width:5.73783in;height:5.41548in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image8.png"/></p>
 <p>Secure Boot configuration reviewed for the Windows Server virtual
 machine.</p>
 <p>Production Checkpoints were used as short-term recovery points before
@@ -316,13 +341,13 @@ systems and confirming that each workload started successfully.</p>
 <li><p>Deployed Ubuntu to demonstrate Linux guest support.</p></li>
 <li><p>Reviewed the final VM inventory in Hyper-V Manager.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image9.png" style="width:5.18184in;height:2.76124in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image9.png"/></p>
 <p>Windows Server 2022 successfully deployed inside Hyper-V.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image10.png" style="width:5.1751in;height:2.59298in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image10.png"/></p>
 <p>Windows 10 client virtual machine running successfully.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image11.png" style="width:6.05649in;height:3.24879in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image11.png"/></p>
 <p>Ubuntu virtual machine running successfully on Hyper-V.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image12.png" style="width:6.10249in;height:1.1806in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image12.png"/></p>
 <p>Final virtual machine inventory after deployment.</p>
 <h2 id="phase-5---virtual-machine-export-and-recovery">Phase 5 - Virtual
 Machine Export and Recovery</h2>
@@ -336,12 +361,12 @@ scenario.</p></li>
 <li><p>Powered on the recovered VM to validate operating system
 integrity.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image13.png" style="width:5.71853in;height:3.05392in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image13.png"/></p>
 <p>Virtual machine export completed successfully.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image14.png" style="width:5.91569in;height:4.48921in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image14.png"/></p>
 <p>Imported virtual machine successfully restored and registered in
 Hyper-V Manager.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image15.png" style="width:5.98738in;height:4.54802in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image15.png"/></p>
 <p>Recovered virtual machine booted successfully after import.</p>
 <h2 id="phase-6---virtual-storage-expansion">Phase 6 - Virtual Storage
 Expansion</h2>
@@ -355,12 +380,12 @@ administration.</p>
 <li><p>Created and formatted an NTFS volume.</p></li>
 <li><p>Assigned the drive letter F: for enterprise data.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image16.png" style="width:5.68194in;height:4.34742in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image16.png"/></p>
 <p>Creating the additional VHDX data disk.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image17.png" style="width:2.20963in;height:3.18869in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image17.png"/></p>
 <p>Additional virtual hard disk attached through the SCSI
 controller.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image18.png" style="width:6.53488in;height:3.24043in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image18.png"/></p>
 <p>Enterprise data volume created and assigned the drive letter F:.</p>
 <h2 id="phase-7---independent-virtual-machine-cloning">Phase 7 -
 Independent Virtual Machine Cloning</h2>
@@ -375,10 +400,10 @@ VHDX files.</p></li>
 <li><p>Confirmed that the cloned VM was registered
 independently.</p></li>
 </ul>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image19.png" style="width:6.23843in;height:4.75393in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image19.png"/></p>
 <p>Selecting Copy the virtual machine to generate a new unique Hyper-V
 ID.</p>
-<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image20.png" style="width:7in;height:1.38698in"/></p>
+<p><img alt="Enterprise Hyper-V Virtualization project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/image20.png"/></p>
 <p>Cloned virtual machine successfully deployed in Hyper-V Manager.</p>
 <h1 id="validation-results">5. Validation Results</h1>
 <table>
@@ -451,65 +476,21 @@ identity conflicts.</p></li>
 <li><p>Initialized the added VHDX disk inside the guest operating system
 before creating the F: volume.</p></li>
 </ul>
-<h1 id="skills-demonstrated">7. Skills Demonstrated</h1>
-<table>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Area</strong></th>
-<th><strong>Demonstrated Capability</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Virtualization</strong></td>
-<td>Microsoft Hyper-V administration; VM provisioning; Generation 2
-configuration</td>
-</tr>
-<tr class="even">
-<td><strong>Networking</strong></td>
-<td>External and Internal virtual switches; guest network
-assignment</td>
-</tr>
-<tr class="odd">
-<td><strong>Storage</strong></td>
-<td>VHDX creation; virtual disk expansion; GPT and NTFS
-configuration</td>
-</tr>
-<tr class="even">
-<td><strong>Business Continuity</strong></td>
-<td>Production Checkpoints; VM export/import; recovery validation</td>
-</tr>
-<tr class="odd">
-<td><strong>Deployment</strong></td>
-<td>Windows Server, Windows client, and Linux guest deployment</td>
-</tr>
-<tr class="even">
-<td><strong>Automation Readiness</strong></td>
-<td>Standardized VM configuration and rapid provisioning through
-cloning</td>
-</tr>
-<tr class="odd">
-<td><strong>Documentation</strong></td>
-<td>Technical evidence, validation results, and structured project
-reporting</td>
-</tr>
-</tbody>
-</table>
-<h1 id="conclusion">8. Conclusion</h1>
-<p>This project demonstrated the complete lifecycle of a Microsoft
-Hyper-V environment, from initial host preparation and virtual
-networking to multi-operating-system deployment, storage expansion,
-recovery testing, and virtual machine cloning. The final environment
-provides a practical foundation for future Windows Server, Active
-Directory, networking, and cybersecurity laboratories while
-demonstrating hands-on infrastructure administration skills relevant to
-Systems Administrator and Infrastructure Engineer roles.</p>
-<div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
-</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
+</div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+<script id="project-screenshot-ratio-classifier">
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
+    function classify() {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      img.classList.remove('is-portrait', 'is-wide');
+      if (ratio < 1.05) img.classList.add('is-portrait');
+      else if (ratio > 1.75) img.classList.add('is-wide');
+    }
+    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
+  });
+});
+</script>
 </body></html>

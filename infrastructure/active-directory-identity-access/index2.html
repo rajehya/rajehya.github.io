@@ -7,7 +7,39 @@
 <meta content="Enterprise Active Directory Identity &amp; File Services Infrastructure - Yasser Alrajeh" name="description"/>
 <title>Active Directory Identity &amp; Access | Yasser Alrajeh</title>
 
-<link href="../../assets/css/style.css" rel="stylesheet"/></head>
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style id="project-screenshot-size-fix">
+/* Full-width implementation screenshots across every project page */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(96vw, 1280px) !important;
+  max-width: 1280px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 94vw !important; }
+  body.project-page main.doc img.doc-img { width: 100% !important; }
+}
+</style>
+</head>
 <body class="project-page">
 <header>
 <nav>
