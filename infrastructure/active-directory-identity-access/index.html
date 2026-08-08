@@ -7,7 +7,7 @@
 <meta content="Active Directory identity, access, and file services lab using Windows Server 2022, Security Groups, AGDLP, SMB, NTFS, and PowerShell." name="description"/>
 <title>Active Directory Identity, Access &amp; File Services | Yasser Alrajeh</title>
 <link href="../../assets/css/style.css" rel="stylesheet"/>
-<style>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=tytqSLMEjMpeUw50_rRIjTBaddSVZZ4rHjjCO-UoxrkWIgLxjsKPCkfvjvxHzbS4xdkTU-j97jBtAYUJLmEv0dtTHFVAEES1nl2MQSGe1Fr_xkX80vy9_W-GrUErKl7yqYNTOf_FYzg8DRPe5rGPK8zqg0oWX-E_oOKRFaq_89nzMeYVi8Zl0o4QSIFHv6S0tpaQZKyAO0U0nsvPVyfzEkHC8wXmaRAAkev9hm9eb1ZDXiFx6sadJtNdYTe2BKHZICQZXzqXGT9jyFDgVeZCEMXHBtFUISTi4gOtXsuRvP0C8Db2ph6tp5WlcDpqWGAtnuXO_fVKKW-1hFOty3FzXw" charset="UTF-8"></script><style>
   /* Page-specific refinements matching the portfolio project style. */
   .doc .container { max-width: 1120px; }
   .doc h1 { color:#0067b8; margin-top:46px; margin-bottom:16px; line-height:1.25; }
@@ -42,18 +42,15 @@
 <h1>Active Directory Identity, Access &amp; File Services</h1>
 <div class="project-hero"><img alt="Microsoft Active Directory project cover" loading="eager" onclick="openLightbox(this.src,this.alt)" src="images/adpic.png"/></div>
 <table><tbody>
-<tr><td><strong>Project Category</strong></td><td>Infrastructure</td></tr>
+<tr><td><strong>Project Category</strong></td><td>Identity and Infrastructure Services</td></tr>
 <tr><td><strong>Platform</strong></td><td>Microsoft Windows Server 2022</td></tr>
-<tr><td><strong>Virtualization Platform</strong></td><td>VMware Workstation</td></tr>
-<tr><td><strong>Project Type</strong></td><td>Active Directory Identity, Access &amp; File Services Lab</td></tr>
-<tr><td><strong>Domain Name</strong></td><td>yasserteach.local</td></tr>
-<tr><td><strong>Domain Controller</strong></td><td>DC01</td></tr>
-<tr><td><strong>Client Computer</strong></td><td>W11-01</td></tr>
+<tr><td><strong>Core Technologies</strong></td><td>Active Directory DS, DNS, Security Groups, AGDLP, SMB, NTFS, PowerShell</td></tr>
+<tr><td><strong>Project Focus</strong></td><td>Centralized identity, role-based access control, and secure departmental resource permissions</td></tr>
 </tbody></table>
 <h1>Project Overview</h1>
-<p>This project demonstrates the deployment of a Microsoft Active Directory identity and access environment in a virtual lab using VMware Workstation and Windows Server 2022.</p>
-<p>The environment was built around the yasserteach.local forest, with DC01 providing Active Directory Domain Services and integrated DNS. The implementation extends beyond a basic domain installation by introducing a structured OU design, departmental user administration, Security Groups, the AGDLP access model, SMB file sharing, NTFS permissions, and PowerShell automation.</p>
-<p>Access to departmental resources is managed through group membership rather than direct user permission assignments, making the configuration easier to maintain, audit, and scale.</p>
+<p>This project demonstrates the deployment of a Microsoft Active Directory identity and access environment using Windows Server 2022 in a controlled virtual lab.</p>
+<p>The implementation extends beyond a basic domain installation by combining Active Directory Domain Services, integrated DNS, a structured Organizational Unit design, departmental user administration, Security Groups, the AGDLP authorization model, SMB file sharing, NTFS permissions, and PowerShell automation.</p>
+<p>The primary goal is to show how centralized identity and group-based authorization can be used to manage users and departmental resources without assigning permissions directly to individual accounts. This produces a cleaner access model that is easier to maintain, audit, and scale as the environment grows.</p>
 <h1>1. Business Scenario</h1>
 <p>A fictional organization requires centralized identity management for multiple departments while maintaining consistent authentication, structured administration, and controlled access to shared resources.</p>
 <p>Active Directory Domain Services was selected to centralize user and computer identities, while Security Groups and the AGDLP model were used to separate organizational roles from resource permissions.</p>
@@ -122,25 +119,25 @@
 <p>The next phase focused on building a structured OU hierarchy instead of leaving administrative objects in default containers. The objective was to make user administration, Group Policy targeting, and future delegation easier to manage.</p>
 <h2>6.1 Organizational Unit Structure</h2>
 <p><img alt="Active Directory Users and Computers console" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image11.jpg"/></p>
-<p>Active Directory Users and Computers (ADUC) was used as the primary graphical console for creating and organizing OUs, users, and Security Groups. PowerShell was used alongside the GUI for repeatable administrative tasks.</p>
+<p>Active Directory Users and Computers (ADUC) was used as the primary graphical console for creating and organizing OUs, users, and Security Groups. PowerShell was used alongside the GUI for repeatable administrative tasks. Using both methods demonstrates day-to-day administration through the graphical interface while also showing how routine changes can be standardized and automated.</p>
 <p><img alt="Corporate Organizational Unit creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image12.jpg"/></p>
 <p><img alt="Corporate OU configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image13.jpg"/></p>
-<p>A top-level Organizational Unit named Corporate was created as the administrative root for the organization's business structure. This separates managed objects from default Active Directory containers and provides a clean location for department-based administration.</p>
+<p>A top-level Organizational Unit named Corporate was created as the administrative root for the organization's business structure. This separates managed objects from default Active Directory containers and provides a clean location for department-based administration. The design also prepares the directory for future Group Policy targeting and delegated administration without having to reorganize the entire environment later.</p>
 <p><img alt="Departmental OU structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image14.jpg"/></p>
 <table><tbody><tr><td><strong>Organizational Unit</strong></td></tr><tr><td>Corporate</td></tr><tr><td>IT</td></tr><tr><td>HR</td></tr><tr><td>Finance</td></tr><tr><td>Operations</td></tr><tr><td>Executives</td></tr></tbody></table>
-<p>The departmental structure provides clear administrative boundaries and supports targeted management as the environment grows.</p>
+<p>The departmental structure provides clear administrative boundaries and supports targeted management as the environment grows. Users can be managed according to business function, while policies and delegated responsibilities can be scoped to the appropriate OU instead of being applied broadly across the domain.</p>
 <h2>6.2 User Provisioning and Directory Organization</h2>
 <p><img alt="Active Directory user account creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image15.jpg"/></p>
-<p>User accounts were created for the departments in the lab and placed in their corresponding OUs. These accounts authenticate centrally through Active Directory rather than through standalone local Windows accounts.</p>
+<p>User accounts were created for the departments in the lab and placed in their corresponding OUs. These accounts authenticate centrally through Active Directory rather than through standalone local Windows accounts. Centralized identities make it possible to manage authentication, group membership, password settings, and resource access from one directory service.</p>
 <p><img alt="Users organized by departmental OU" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image16.jpg"/></p>
-<p>Users were organized according to business function so that future policies, delegated administration, and access control could be applied consistently by department.</p>
+<p>Users were organized according to business function so that future policies, delegated administration, and access control could be applied consistently by department. This structure also makes account reviews easier because administrators can quickly identify which users belong to each organizational area.</p>
 <p><img alt="PowerShell user provisioning" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image17.jpg"/></p>
-<p>PowerShell was used to automate repeatable user provisioning instead of creating every account manually.</p>
+<p>PowerShell was used to automate repeatable user provisioning instead of creating every account manually. Automation reduces repetitive GUI work, applies the same naming and account settings consistently, and lowers the chance of configuration differences between users created at different times.</p>
 <p><strong>PowerShell Cmdlets Used</strong></p><ul><li><p><code>New-ADUser</code></p></li><li><p><code>Set-ADUser</code></p></li><li><p><code>Enable-ADAccount</code></p></li></ul>
 <p><img alt="Completed Active Directory user structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image18.jpg"/></p>
-<p>The resulting directory contained departmental user accounts organized beneath the Corporate hierarchy and prepared for Security Group membership.</p>
+<p>The resulting directory contained departmental user accounts organized beneath the Corporate hierarchy and prepared for Security Group membership. At this stage, the identity structure was complete enough to move from account organization to role-based authorization.</p>
 <p><img alt="Final Active Directory hierarchy" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image19.jpg"/></p>
-<p>A final directory review confirmed that the OU and user structure matched the intended design and was ready for group-based authorization.</p>
+<p>A final directory review confirmed that the OU and user structure matched the intended design and was ready for group-based authorization. The review verified that departmental accounts were located in the correct OUs and that the hierarchy remained clear before Security Groups and resource permissions were introduced.</p>
 <h2>6.3 Organizational Structure Summary</h2>
 <table><tbody><tr><td><strong>Component</strong></td><td><strong>Status</strong></td></tr><tr><td>Corporate OU</td><td>✅ Created</td></tr><tr><td>IT OU</td><td>✅ Created</td></tr><tr><td>HR OU</td><td>✅ Created</td></tr><tr><td>Finance OU</td><td>✅ Created</td></tr><tr><td>Operations OU</td><td>✅ Created</td></tr><tr><td>Executives OU</td><td>✅ Created</td></tr><tr><td>Enterprise Users</td><td>✅ Created</td></tr><tr><td>PowerShell User Provisioning</td><td>✅ Completed</td></tr><tr><td>Organizational Hierarchy</td><td>✅ Validated</td></tr></tbody></table>
 <h1>7. Security Groups and Role-Based Access Control</h1>
@@ -149,26 +146,26 @@
 <p><img alt="Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image20.jpg"/></p>
 <p><img alt="Creating a Global Security Group" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image21.jpg"/></p>
 <table><tbody><tr><td><strong>Security Group</strong></td><td><strong>Department</strong></td></tr><tr><td>GG_IT</td><td>Information Technology</td></tr><tr><td>GG_HR</td><td>Human Resources</td></tr><tr><td>GG_Finance</td><td>Finance</td></tr><tr><td>GG_Operations</td><td>Operations</td></tr><tr><td>GG_Executives</td><td>Executive Management</td></tr></tbody></table>
-<p>The GG prefix identifies each object as a Global Group and makes the naming convention easier to understand during administration and troubleshooting.</p>
+<p>The GG prefix identifies each object as a Global Group and makes the naming convention easier to understand during administration and troubleshooting. These Global Groups represent business roles, so users are grouped according to department before any resource-specific permission is assigned.</p>
 <p><img alt="Departmental role-based group configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image22.jpg"/></p>
-<p>Users receive access according to departmental membership rather than through individually managed folder permissions. For example, IT users are members of GG_IT, while Finance users are members of GG_Finance. This approach supports simpler onboarding, offboarding, auditing, and permission changes.</p>
+<p>Users receive access according to departmental membership rather than through individually managed folder permissions. For example, IT users are members of GG_IT, while Finance users are members of GG_Finance. This approach supports simpler onboarding, offboarding, auditing, and permission changes because access can be changed by updating group membership rather than editing multiple folder ACLs for individual accounts.</p>
 <p><img alt="Assigning users to Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image23.jpg"/></p>
 <p><img alt="Group membership verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image24.jpg"/></p>
 <ul><li><p>IT users → GG_IT</p></li><li><p>HR users → GG_HR</p></li><li><p>Finance users → GG_Finance</p></li><li><p>Operations users → GG_Operations</p></li><li><p>Executive users → GG_Executives</p></li></ul>
-<p>For scalable administration, resource permissions are assigned to Security Groups rather than maintained individually for each user account.</p>
+<p>For scalable administration, resource permissions are assigned to Security Groups rather than maintained individually for each user account. This separation between user identity and resource authorization keeps the access model easier to review and reduces the number of direct ACL entries administrators need to maintain.</p>
 <p><img alt="Security Group structure review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image25.jpg"/></p>
 <p>The completed Global Group structure represented the five departmental roles used throughout the lab and served as the identity layer of the AGDLP model.</p>
 <h2>7.2 PowerShell Group Administration</h2>
 <p><img alt="PowerShell group membership automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image26.jpg"/></p>
-<p>PowerShell was used to automate group membership with <code>Add-ADGroupMember</code>, reducing repetitive GUI work and improving consistency.</p>
+<p>PowerShell was used to automate group membership with <code>Add-ADGroupMember</code>, reducing repetitive GUI work and improving consistency. The same approach can be reused whenever users are onboarded or transferred between departments, making group administration faster and less error-prone.</p>
 <p><img alt="Department membership review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image27.jpg"/></p>
-<p>Departmental memberships were reviewed after automation to confirm that each account inherited access through the intended role group.</p>
+<p>Departmental memberships were reviewed after automation to confirm that each account inherited access through the intended role group. This validation was important because the later AGDLP design depends on accurate Global Group membership at the identity layer.</p>
 <h2>7.3 Domain Local Resource Groups</h2>
 <p><img alt="Domain Local resource group creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image28.jpg"/></p>
 <p><img alt="PowerShell Active Directory administration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image29.jpg"/></p>
 <p>Domain Local Security Groups were introduced as the permission layer for departmental resources. A consistent naming convention was used:</p>
 <table><tbody><tr><td><strong>Prefix / Suffix</strong></td><td><strong>Meaning</strong></td></tr><tr><td>GG</td><td>Global Group</td></tr><tr><td>DL</td><td>Domain Local Group</td></tr><tr><td>RW</td><td>Read / Write access</td></tr></tbody></table>
-<p>For example, DL_Finance_RW represents the Domain Local Group used for Finance read/write access. PowerShell automation was extended beyond user provisioning to group creation, group membership, and AGDLP nesting.</p>
+<p>For example, DL_Finance_RW represents the Domain Local Group used for Finance read/write access. Unlike Global Groups, which represent users and business roles, Domain Local Groups are used as the resource-permission layer. PowerShell automation was extended beyond user provisioning to group creation, group membership, and AGDLP nesting.</p>
 <h1>8. File Services and AGDLP Implementation</h1>
 <p>The next phase applied the AGDLP model to departmental SMB resources. Global Groups represented user roles, while Domain Local Groups represented resource permissions.</p>
 <h2>8.1 AGDLP Permission Model</h2>
@@ -184,9 +181,9 @@ DL_Finance_RW
 Finance Folder
   ↓
 Modify Permission</pre>
-<p>Finance users are added to GG_Finance. That Global Group is nested into DL_Finance_RW, and the Domain Local Group receives the folder permission. A new Finance employee therefore only needs the correct group membership; the NTFS ACL does not need to be edited for every user.</p>
+<p>Finance users are added to GG_Finance. That Global Group is nested into DL_Finance_RW, and the Domain Local Group receives the folder permission. This follows the AGDLP model by separating Accounts, Global Groups, Domain Local Groups, and Permissions into distinct layers. A new Finance employee therefore only needs the correct group membership; the NTFS ACL does not need to be edited for every user, which makes access changes easier to audit and maintain.</p>
 <p><img alt="PowerShell AGDLP automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image32.jpg"/></p>
-<p><code>Add-ADGroupMember</code> was used to automate the nesting of Global Groups into their corresponding Domain Local Groups.</p>
+<p><code>Add-ADGroupMember</code> was used to automate the nesting of Global Groups into their corresponding Domain Local Groups. Automating this relationship helps keep the authorization structure consistent across departments and reduces the risk of accidentally assigning a role group to the wrong resource group.</p>
 <h2>8.2 Departmental File Structure and SMB Sharing</h2>
 <p><img alt="Departmental folder structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image33.jpg"/></p>
 <pre class="command-block">D:\Shares
@@ -195,31 +192,31 @@ Modify Permission</pre>
 ├── IT
 ├── Operations
 └── Executives</pre>
-<p>The folder structure separates departmental data and provides a clear resource target for each Domain Local Group.</p>
+<p>The folder structure separates departmental data and provides a clear resource target for each Domain Local Group. Each folder represents a distinct business resource, allowing permissions to be mapped cleanly from the departmental role group through the corresponding Domain Local Group.</p>
 <p><img alt="SMB share configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image34.jpg"/></p>
-<p>The departmental repository was published using SMB so authenticated domain users could access shared resources across the lab network.</p>
+<p>The departmental repository was published using SMB so authenticated domain users could access shared resources across the lab network. SMB provides the network-access layer, while Active Directory groups and NTFS permissions determine which users are actually authorized to work with each departmental folder.</p>
 <p>Share permissions and NTFS permissions work together; the effective network access is constrained by both layers. Detailed departmental authorization in this lab is enforced primarily through the NTFS ACL design.</p>
 <h2>8.3 NTFS Permissions and Least Privilege</h2>
 <p><img alt="NTFS permission configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image35.jpg"/></p>
-<p>NTFS permissions were assigned to Domain Local Groups instead of individual users. This keeps resource ACLs stable even when employees join, leave, or change departments.</p>
+<p>NTFS permissions were assigned to Domain Local Groups instead of individual users. This keeps resource ACLs stable even when employees join, leave, or change departments. Administrators can modify access by changing Active Directory group membership while leaving the resource ACL itself unchanged.</p>
 <p><img alt="NTFS inheritance configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image36.jpg"/></p>
-<p>Inheritance was disabled where required so departmental folders could use explicit ACLs appropriate to their access requirements. This provides clearer administrative boundaries and avoids unintended permissions inherited from a parent folder.</p>
+<p>Inheritance was disabled where required so departmental folders could use explicit ACLs appropriate to their access requirements. This provides clearer administrative boundaries and avoids unintended permissions inherited from a parent folder. The resulting ACL is easier to review because the entries shown on the departmental folder directly reflect the intended access model.</p>
 <p><img alt="Domain Local Group assigned to folder ACL" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image37.jpg"/></p>
-<p>DL_Finance_RW was assigned to the Finance folder, completing the Accounts → Global → Domain Local → Permissions flow used by AGDLP.</p>
+<p>DL_Finance_RW was assigned to the Finance folder, completing the Accounts → Global → Domain Local → Permissions flow used by AGDLP. The folder ACL therefore references the resource group rather than individual employees, preserving the separation between organizational membership and resource permissions.</p>
 <p><img alt="Least privilege NTFS permissions" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image38.jpg"/></p>
-<p>Departmental users were granted Modify rather than unnecessary Full Control. This supports normal file operations while avoiding administrative rights that are not required for the business task.</p>
+<p>Departmental users were granted Modify rather than unnecessary Full Control. This supports normal file operations such as creating, editing, and deleting permitted content while avoiding administrative rights that are not required for the business task. The decision demonstrates least-privilege access rather than simply granting the broadest permission available.</p>
 <p><img alt="NTFS permission automation with icacls" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image39.jpg"/></p>
-<p>PowerShell and <code>icacls</code> were used to apply repeatable NTFS permission settings across departmental folders.</p>
+<p>PowerShell and <code>icacls</code> were used to apply repeatable NTFS permission settings across departmental folders. Using command-line administration also makes the permission configuration easier to reproduce and verify than relying only on manual GUI changes.</p>
 <p><img alt="NTFS ACL validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image40.jpg"/></p>
-<p>The final ACLs were reviewed to verify Domain Local Group assignment, inheritance settings, and Modify access.</p>
+<p>The final ACLs were reviewed to verify Domain Local Group assignment, inheritance settings, and Modify access. This validation confirmed that the resource-permission layer matched the intended AGDLP design and that no unnecessary Full Control assignment remained for departmental users.</p>
 <table><tbody><tr><td><strong>AGDLP Layer</strong></td><td><strong>Implementation</strong></td></tr><tr><td>Accounts</td><td>Departmental users</td></tr><tr><td>Global Groups</td><td>GG_IT, GG_HR, GG_Finance, GG_Operations, GG_Executives</td></tr><tr><td>Domain Local Groups</td><td>DL_IT_RW, DL_HR_RW, DL_Finance_RW, DL_Operations_RW, DL_Executives_RW</td></tr><tr><td>Permissions</td><td>Modify</td></tr><tr><td>Resources</td><td>Departmental SMB folders</td></tr></tbody></table>
 <h1>9. Project Validation and Final Results</h1>
-<p>The completed lab was validated across identity services, organizational structure, group membership, AGDLP relationships, SMB access, NTFS permissions, and PowerShell automation.</p>
+<p>The completed lab was validated across identity services, organizational structure, group membership, AGDLP relationships, SMB access, NTFS permissions, and PowerShell automation. The purpose of this final phase was to verify not only that the domain was operational, but also that the identity and permission model worked as one connected design from user account to resource access.</p>
 <h2>9.1 Active Directory Validation</h2>
 <table><tbody><tr><td><strong>Component</strong></td><td><strong>Status</strong></td></tr><tr><td>Forest</td><td>✅ yasserteach.local</td></tr><tr><td>Domain</td><td>✅ yasserteach.local</td></tr><tr><td>Domain Controller</td><td>✅ DC01</td></tr><tr><td>DNS</td><td>✅ Operational</td></tr><tr><td>Authentication Services</td><td>✅ Operational</td></tr></tbody></table>
 <h2>9.2 Identity and Access Validation</h2>
-<p>The Corporate, IT, HR, Finance, Operations, and Executives OUs were reviewed and confirmed as part of the implemented hierarchy. User creation, departmental placement, domain authentication, and PowerShell provisioning were validated.</p>
-<p>Global Group scope, departmental membership, and naming conventions were reviewed to ensure the identity layer of the access model was configured correctly.</p>
+<p>The Corporate, IT, HR, Finance, Operations, and Executives OUs were reviewed and confirmed as part of the implemented hierarchy. User creation, departmental placement, domain authentication, and PowerShell provisioning were validated to confirm that identities were organized correctly before access permissions were evaluated.</p>
+<p>Global Group scope, departmental membership, and naming conventions were reviewed to ensure the identity layer of the access model was configured correctly. This ensured that users reached resources through the expected role groups rather than through direct or inconsistent assignments.</p>
 <pre class="command-block">User
  ↓
 Global Group
@@ -229,9 +226,9 @@ Domain Local Group
 Department Folder
  ↓
 Modify Permission</pre>
-<p>The AGDLP relationship was validated using Finance as the detailed example and applied consistently to the other departmental resources in the lab.</p>
+<p>The AGDLP relationship was validated using Finance as the detailed example and applied consistently to the other departmental resources in the lab. The validation confirmed the full path from user account to Global Group, Domain Local Group, and finally the Modify permission on the departmental folder.</p>
 <h2>9.3 File Services and Automation Validation</h2>
-<p>The departmental SMB folders and NTFS ACLs were checked to confirm that access was controlled through Domain Local Groups and that unnecessary Full Control permissions were avoided.</p>
+<p>The departmental SMB folders and NTFS ACLs were checked to confirm that access was controlled through Domain Local Groups and that unnecessary Full Control permissions were avoided. PowerShell and command-line verification were also reviewed to confirm that the configuration was repeatable and consistent across the departmental resources.</p>
 <table><tbody><tr><td><strong>Administrative Task</strong></td><td><strong>Status</strong></td></tr><tr><td>User Provisioning</td><td>✅ Completed</td></tr><tr><td>Security Group Creation</td><td>✅ Completed</td></tr><tr><td>Group Membership</td><td>✅ Completed</td></tr><tr><td>AGDLP Configuration</td><td>✅ Completed</td></tr><tr><td>NTFS Permission Automation</td><td>✅ Completed</td></tr></tbody></table>
 <h2>9.4 Technologies Used</h2>
 <table><tbody><tr><td><strong>Technology</strong></td><td><strong>Purpose</strong></td></tr><tr><td>VMware Workstation</td><td>Virtualization</td></tr><tr><td>Windows Server 2022</td><td>Domain Controller platform</td></tr><tr><td>Windows 11</td><td>Domain client</td></tr><tr><td>Active Directory Domain Services</td><td>Identity and directory services</td></tr><tr><td>DNS Server</td><td>Name resolution and AD service discovery</td></tr><tr><td>PowerShell</td><td>Administration automation</td></tr><tr><td>Security Groups / AGDLP</td><td>Group-based authorization</td></tr><tr><td>SMB</td><td>File sharing</td></tr><tr><td>NTFS / icacls</td><td>File-system access control and validation</td></tr></tbody></table>
