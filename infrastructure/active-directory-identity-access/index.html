@@ -1,34 +1,46 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Active Directory identity, access, and file services lab using Windows Server 2022, Security Groups, AGDLP, SMB, NTFS, and PowerShell.">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Active Directory identity, access, and file services lab using Windows Server 2022, Security Groups, AGDLP, SMB, NTFS, and PowerShell." name="description"/>
 <title>Active Directory Identity, Access &amp; File Services | Yasser Alrajeh</title>
-<link rel="stylesheet" href="../../assets/css/style.css">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=x4fuH3bGg1nm1rmN55TbsiRBknq8pTHyz6GIlCjxEcvwaVC0ADQhW5mMVE-c2bfKytqUJg8HTWsqoFvWBgrUiao-e6_dfzBnrAcdTaGXJhTRVpz5B9jsvFNNfGvwwj5sezJJqmKIwbKSnYN6ypqphHOFjA4ZmV6EA_78q-99t652Q1mKSNgxrOqk_sbYVzmQbxbiCZJHF7pwUsQNFk1WHp95HPIoEmqyJtz-5jFPQHTPWUo8HCl5DJ6RogHmqTG-NB1gM0MbZSQdZCWmABKufLJ5cPFOmJN7LfqhcpC0wP-xD7GOn1lQXd58h1fVpaYmJeLBS6D0z2HOuv05p9ydAw" charset="UTF-8"></script><style>
-  /* Project-specific image sizing only. The overall design remains controlled by the shared site stylesheet. */
-  .project-hero { margin: 22px auto 30px; text-align: center; }
-  .project-hero img { display:block; width:100%; max-width:900px; height:auto; margin:0 auto; border-radius:14px; }
-  .doc .doc-img { display:block; width:auto; max-width:100%; max-height:620px; height:auto !important; margin:24px auto 10px; object-fit:contain; }
-  .doc p:has(> .doc-img) { text-align:center; }
-  .doc p > em { display:block; text-align:center; max-width:880px; margin:8px auto 24px; }
-  .doc h2 { margin-top:44px; }
-  .doc h3 { margin-top:30px; }
+<link href="../../assets/css/style.css" rel="stylesheet"/>
+<style>
+  /* Page-specific refinements matching the portfolio project style. */
+  .doc .container { max-width: 1120px; }
+  .doc h1 { color:#0067b8; margin-top:46px; margin-bottom:16px; line-height:1.25; }
+  .doc h1:first-of-type { text-align:center; margin-top:24px; color:#0b5cad; }
+  .doc h2 { color:#0b5cad; margin-top:34px; margin-bottom:12px; line-height:1.3; }
+  .project-hero { margin:22px auto 30px; text-align:center; }
+  .project-hero img { display:block; width:100%; max-width:900px; height:auto; margin:0 auto; border-radius:12px; }
+  .architecture-wrap { margin:24px auto 34px; text-align:center; }
+  .architecture-wrap img { display:block; width:100%; max-width:1080px; height:auto; margin:0 auto; border-radius:12px; }
+  .architecture-caption { display:block; text-align:center; max-width:960px; margin:10px auto 0; font-style:italic; }
+  .doc p:has(> .doc-img) { text-align:center; margin-top:22px; margin-bottom:8px; }
+  .doc .doc-img { display:block; width:auto; max-width:92%; max-height:650px; height:auto !important; margin:0 auto; object-fit:contain; border-radius:10px; }
+  .doc p > em { display:block; text-align:center; max-width:900px; margin:8px auto 24px; }
+  .doc table { margin-top:16px; margin-bottom:28px; }
+  .doc pre.command-block { overflow-x:auto; }
   @media (max-width:700px){
-    .project-hero img { border-radius:10px; }
-    .doc .doc-img { max-height:none; }
+    .doc .container { padding-left:18px; padding-right:18px; }
+    .doc h1 { font-size:1.65rem; margin-top:36px; }
+    .doc h1:first-of-type { font-size:2rem; }
+    .doc h2 { font-size:1.25rem; margin-top:28px; }
+    .project-hero img, .architecture-wrap img { border-radius:8px; }
+    .doc .doc-img { max-width:100%; max-height:none; }
   }
 </style>
 </head>
 <body class="project-page">
 <header><nav>
-<a class="brand" href="../../index.html"><img class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg" alt="Yasser Alrajeh"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a>
 </nav></header>
 <main class="doc"><div class="container">
 <h1>Active Directory Identity, Access &amp; File Services</h1>
-<div class="project-hero"><img src="images/adpic.png" alt="Microsoft Active Directory project cover" loading="eager" onclick="openLightbox(this.src,this.alt)"></div>
+<div class="project-hero"><img alt="Microsoft Active Directory project cover" loading="eager" onclick="openLightbox(this.src,this.alt)" src="images/adpic.png"/></div>
 <table><tbody>
 <tr><td><strong>Project Category</strong></td><td>Infrastructure</td></tr>
 <tr><td><strong>Platform</strong></td><td>Microsoft Windows Server 2022</td></tr>
@@ -38,18 +50,15 @@
 <tr><td><strong>Domain Controller</strong></td><td>DC01</td></tr>
 <tr><td><strong>Client Computer</strong></td><td>W11-01</td></tr>
 </tbody></table>
-
 <h1>Project Overview</h1>
 <p>This project demonstrates the deployment of a Microsoft Active Directory identity and access environment in a virtual lab using VMware Workstation and Windows Server 2022.</p>
 <p>The environment was built around the yasserteach.local forest, with DC01 providing Active Directory Domain Services and integrated DNS. The implementation extends beyond a basic domain installation by introducing a structured OU design, departmental user administration, Security Groups, the AGDLP access model, SMB file sharing, NTFS permissions, and PowerShell automation.</p>
 <p>Access to departmental resources is managed through group membership rather than direct user permission assignments, making the configuration easier to maintain, audit, and scale.</p>
-
-<h1>Business Scenario</h1>
+<h1>1. Business Scenario</h1>
 <p>A fictional organization requires centralized identity management for multiple departments while maintaining consistent authentication, structured administration, and controlled access to shared resources.</p>
 <p>Active Directory Domain Services was selected to centralize user and computer identities, while Security Groups and the AGDLP model were used to separate organizational roles from resource permissions.</p>
 <p>The solution provides centralized authentication and authorization, department-based administration, group-based access control, PowerShell automation, SMB file sharing, and NTFS permission management.</p>
-
-<h1>Project Objectives</h1>
+<h1>2. Project Objectives</h1>
 <ul>
 <li><p>Deploy a new Active Directory forest named yasserteach.local.</p></li>
 <li><p>Configure DC01 as the Domain Controller and DNS Server.</p></li>
@@ -62,8 +71,7 @@
 <li><p>Automate repeatable administration tasks with PowerShell.</p></li>
 <li><p>Validate identity, group membership, DNS, and resource access.</p></li>
 </ul>
-
-<h1>Project Environment</h1>
+<h1>3. Project Environment</h1>
 <table><tbody>
 <tr><td><strong>Component</strong></td><td><strong>Configuration</strong></td></tr>
 <tr><td>Hypervisor</td><td>VMware Workstation</td></tr>
@@ -77,107 +85,96 @@
 <tr><td>File Sharing</td><td>SMB</td></tr>
 <tr><td>Access Control</td><td>Security Groups, AGDLP, NTFS</td></tr>
 <tr><td>Automation</td><td>Windows PowerShell</td></tr>
-</tbody></table>
-
-<h1>Infrastructure Deployment</h1>
+</tbody></table><h1>4. Project Architecture</h1><p>The architecture below summarizes the single-domain Active Directory environment, including DC01, DNS, the directory database, organizational structure, users and groups, Group Policy, authentication, and core directory services.</p><div class="architecture-wrap"><img alt="Active Directory project architecture diagram" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/arcad_result.png"/><span class="architecture-caption">Active Directory architecture for the yasserteach.local lab, showing DC01 and the core identity, access, DNS, authentication, directory, and management components.</span></div>
+<h1>5. Infrastructure Deployment</h1>
 <p>This phase establishes the foundation of the lab: virtual networking, Windows Server preparation, static network configuration, AD DS installation, DNS integration, and creation of the yasserteach.local forest.</p>
-<h2>Virtual Network Infrastructure</h2>
-<p><img alt="VMware virtual network configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image1.jpg"></p>
+<h2>5.1 Virtual Network Infrastructure</h2>
+<p><img alt="VMware virtual network configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image1.jpg"/></p>
 <p>The project began by configuring an isolated virtual network in VMware Workstation. The lab network allows the Domain Controller and Windows client to communicate within a controlled environment without depending on an external DHCP service.</p>
 <p>The core systems connected to this network are DC01 and W11-01. This provides predictable control over IP addressing, DNS resolution, and Active Directory communication.</p>
-
-<h2>Windows Server Preparation</h2>
-<p><img alt="Windows Server initial configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image2.jpg"></p>
+<h2>5.2 Windows Server Preparation</h2>
+<p><img alt="Windows Server initial configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image2.jpg"/></p>
 <p>After installing Windows Server 2022, the initial server configuration was reviewed in Server Manager before installing directory services.</p>
 <ul><li><p>Computer information</p></li><li><p>Windows Update status</p></li><li><p>Time configuration</p></li><li><p>Network adapter status</p></li><li><p>Remote management</p></li></ul>
-
-<h2>Server Naming and Static Network Configuration</h2>
-<p><img alt="DC01 computer name configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image3.jpg"></p>
+<h2>5.3 Server Naming and Static Network Configuration</h2>
+<p><img alt="DC01 computer name configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image3.jpg"/></p>
 <p>The default Windows Server computer name was replaced with DC01, using a role-based naming convention that makes the server's purpose immediately recognizable.</p>
 <table><tbody><tr><td><strong>System</strong></td><td><strong>Purpose</strong></td></tr><tr><td>DC01</td><td>Domain Controller / DNS Server</td></tr><tr><td>W11-01</td><td>Domain Client</td></tr></tbody></table>
-<p><img alt="DC01 static IPv4 configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image4.jpg"></p>
+<p><img alt="DC01 static IPv4 configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image4.jpg"/></p>
 <p>Before deploying Active Directory, DC01 was configured with a static IPv4 address. Stable addressing is important for infrastructure services because domain clients must be able to locate DNS and the Domain Controller consistently.</p>
 <p>The server configuration included the IPv4 address, subnet mask, gateway as required by the lab network, and a DNS configuration that resolves through the Domain Controller.</p>
-<p><img alt="IP configuration validation using ipconfig" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image5.jpg"></p>
+<p><img alt="IP configuration validation using ipconfig" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image5.jpg"/></p>
 <p>The <code>ipconfig /all</code> command was used to verify the server name, IPv4 configuration, subnet, DNS settings, and active network adapter before Active Directory deployment.</p>
-
-<h2>Active Directory Domain Services and DNS Deployment</h2>
-<p><img alt="Active Directory Domain Services role installation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image6.jpg"></p>
+<h2>5.4 Active Directory Domain Services and DNS Deployment</h2>
+<p><img alt="Active Directory Domain Services role installation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image6.jpg"/></p>
 <p>The Active Directory Domain Services (AD DS) role was installed first through Server Manager. During the subsequent Domain Controller promotion, DNS Server was selected and configured as part of creating the new forest. Active Directory relies on DNS service records to allow domain members to locate Domain Controllers and directory services.</p>
 <table><tbody><tr><td><strong>Role</strong></td><td><strong>Purpose</strong></td></tr><tr><td>Active Directory Domain Services</td><td>Directory and identity services</td></tr><tr><td>DNS Server</td><td>AD-integrated name resolution and service discovery</td></tr></tbody></table>
-<p><img alt="Domain Controller promotion wizard" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image7.jpg"></p>
+<p><img alt="Domain Controller promotion wizard" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image7.jpg"/></p>
 <p>After the AD DS role was installed, DC01 was promoted to a Domain Controller. The promotion process configured the Active Directory database, SYSVOL, authentication services, Global Catalog functionality, and the components required for directory operations and future replication.</p>
 <p>DC01 then became responsible for domain authentication, Kerberos, LDAP directory access, Group Policy processing, and DNS integration.</p>
-<p><img alt="Creating the yasserteach.local Active Directory forest" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image8.jpg"></p>
+<p><img alt="Creating the yasserteach.local Active Directory forest" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image8.jpg"/></p>
 <p>A new forest named yasserteach.local was created, making it the root domain of the lab's Active Directory environment. The deployment established the directory namespace, Active Directory database, authentication services, DNS integration, and the forest security boundary.</p>
-<p><img alt="Active Directory prerequisite validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image9.jpg"></p>
+<p><img alt="Active Directory prerequisite validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image9.jpg"/></p>
 <p>Before installation completed, the Active Directory configuration wizard performed prerequisite checks to identify blocking issues with networking, DNS, or required dependencies. The validation completed without blocking errors, allowing the Domain Controller promotion to continue.</p>
-<p><img alt="Successful Domain Controller deployment" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image10.jpg"></p>
+<p><img alt="Successful Domain Controller deployment" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image10.jpg"/></p>
 <p>After the automatic restart, DC01 started as the Domain Controller for yasserteach.local. Active Directory, DNS, and authentication services were then verified before proceeding with directory design.</p>
-
-<h1>Active Directory Organizational Design</h1>
+<h1>6. Active Directory Organizational Design</h1>
 <p>The next phase focused on building a structured OU hierarchy instead of leaving administrative objects in default containers. The objective was to make user administration, Group Policy targeting, and future delegation easier to manage.</p>
-<h2>Organizational Unit Structure</h2>
-<p><img alt="Active Directory Users and Computers console" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image11.jpg"></p>
+<h2>6.1 Organizational Unit Structure</h2>
+<p><img alt="Active Directory Users and Computers console" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image11.jpg"/></p>
 <p>Active Directory Users and Computers (ADUC) was used as the primary graphical console for creating and organizing OUs, users, and Security Groups. PowerShell was used alongside the GUI for repeatable administrative tasks.</p>
-<p><img alt="Corporate Organizational Unit creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image12.jpg"></p>
-<p><img alt="Corporate OU configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image13.jpg"></p>
+<p><img alt="Corporate Organizational Unit creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image12.jpg"/></p>
+<p><img alt="Corporate OU configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image13.jpg"/></p>
 <p>A top-level Organizational Unit named Corporate was created as the administrative root for the organization's business structure. This separates managed objects from default Active Directory containers and provides a clean location for department-based administration.</p>
-<p><img alt="Departmental OU structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image14.jpg"></p>
+<p><img alt="Departmental OU structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image14.jpg"/></p>
 <table><tbody><tr><td><strong>Organizational Unit</strong></td></tr><tr><td>Corporate</td></tr><tr><td>IT</td></tr><tr><td>HR</td></tr><tr><td>Finance</td></tr><tr><td>Operations</td></tr><tr><td>Executives</td></tr></tbody></table>
 <p>The departmental structure provides clear administrative boundaries and supports targeted management as the environment grows.</p>
-
-<h2>User Provisioning and Directory Organization</h2>
-<p><img alt="Active Directory user account creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image15.jpg"></p>
+<h2>6.2 User Provisioning and Directory Organization</h2>
+<p><img alt="Active Directory user account creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image15.jpg"/></p>
 <p>User accounts were created for the departments in the lab and placed in their corresponding OUs. These accounts authenticate centrally through Active Directory rather than through standalone local Windows accounts.</p>
-<p><img alt="Users organized by departmental OU" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image16.jpg"></p>
+<p><img alt="Users organized by departmental OU" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image16.jpg"/></p>
 <p>Users were organized according to business function so that future policies, delegated administration, and access control could be applied consistently by department.</p>
-<p><img alt="PowerShell user provisioning" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image17.jpg"></p>
+<p><img alt="PowerShell user provisioning" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image17.jpg"/></p>
 <p>PowerShell was used to automate repeatable user provisioning instead of creating every account manually.</p>
 <p><strong>PowerShell Cmdlets Used</strong></p><ul><li><p><code>New-ADUser</code></p></li><li><p><code>Set-ADUser</code></p></li><li><p><code>Enable-ADAccount</code></p></li></ul>
-<p><img alt="Completed Active Directory user structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image18.jpg"></p>
+<p><img alt="Completed Active Directory user structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image18.jpg"/></p>
 <p>The resulting directory contained departmental user accounts organized beneath the Corporate hierarchy and prepared for Security Group membership.</p>
-<p><img alt="Final Active Directory hierarchy" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image19.jpg"></p>
+<p><img alt="Final Active Directory hierarchy" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image19.jpg"/></p>
 <p>A final directory review confirmed that the OU and user structure matched the intended design and was ready for group-based authorization.</p>
-
-<h2>Organizational Structure Summary</h2>
+<h2>6.3 Organizational Structure Summary</h2>
 <table><tbody><tr><td><strong>Component</strong></td><td><strong>Status</strong></td></tr><tr><td>Corporate OU</td><td>✅ Created</td></tr><tr><td>IT OU</td><td>✅ Created</td></tr><tr><td>HR OU</td><td>✅ Created</td></tr><tr><td>Finance OU</td><td>✅ Created</td></tr><tr><td>Operations OU</td><td>✅ Created</td></tr><tr><td>Executives OU</td><td>✅ Created</td></tr><tr><td>Enterprise Users</td><td>✅ Created</td></tr><tr><td>PowerShell User Provisioning</td><td>✅ Completed</td></tr><tr><td>Organizational Hierarchy</td><td>✅ Validated</td></tr></tbody></table>
-
-<h1>Security Groups and Role-Based Access Control</h1>
+<h1>7. Security Groups and Role-Based Access Control</h1>
 <p>Departmental Global Security Groups were created to represent organizational roles. This group-based model reduces direct permission assignments and prepares the directory for AGDLP.</p>
-<h2>Global Security Groups and Membership</h2>
-<p><img alt="Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image20.jpg"></p>
-<p><img alt="Creating a Global Security Group" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image21.jpg"></p>
+<h2>7.1 Global Security Groups and Membership</h2>
+<p><img alt="Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image20.jpg"/></p>
+<p><img alt="Creating a Global Security Group" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image21.jpg"/></p>
 <table><tbody><tr><td><strong>Security Group</strong></td><td><strong>Department</strong></td></tr><tr><td>GG_IT</td><td>Information Technology</td></tr><tr><td>GG_HR</td><td>Human Resources</td></tr><tr><td>GG_Finance</td><td>Finance</td></tr><tr><td>GG_Operations</td><td>Operations</td></tr><tr><td>GG_Executives</td><td>Executive Management</td></tr></tbody></table>
 <p>The GG prefix identifies each object as a Global Group and makes the naming convention easier to understand during administration and troubleshooting.</p>
-<p><img alt="Departmental role-based group configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image22.jpg"></p>
+<p><img alt="Departmental role-based group configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image22.jpg"/></p>
 <p>Users receive access according to departmental membership rather than through individually managed folder permissions. For example, IT users are members of GG_IT, while Finance users are members of GG_Finance. This approach supports simpler onboarding, offboarding, auditing, and permission changes.</p>
-<p><img alt="Assigning users to Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image23.jpg"></p>
-<p><img alt="Group membership verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image24.jpg"></p>
+<p><img alt="Assigning users to Global Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image23.jpg"/></p>
+<p><img alt="Group membership verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image24.jpg"/></p>
 <ul><li><p>IT users → GG_IT</p></li><li><p>HR users → GG_HR</p></li><li><p>Finance users → GG_Finance</p></li><li><p>Operations users → GG_Operations</p></li><li><p>Executive users → GG_Executives</p></li></ul>
 <p>For scalable administration, resource permissions are assigned to Security Groups rather than maintained individually for each user account.</p>
-<p><img alt="Security Group structure review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image25.jpg"></p>
+<p><img alt="Security Group structure review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image25.jpg"/></p>
 <p>The completed Global Group structure represented the five departmental roles used throughout the lab and served as the identity layer of the AGDLP model.</p>
-
-<h2>PowerShell Group Administration</h2>
-<p><img alt="PowerShell group membership automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image26.jpg"></p>
+<h2>7.2 PowerShell Group Administration</h2>
+<p><img alt="PowerShell group membership automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image26.jpg"/></p>
 <p>PowerShell was used to automate group membership with <code>Add-ADGroupMember</code>, reducing repetitive GUI work and improving consistency.</p>
-<p><img alt="Department membership review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image27.jpg"></p>
+<p><img alt="Department membership review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image27.jpg"/></p>
 <p>Departmental memberships were reviewed after automation to confirm that each account inherited access through the intended role group.</p>
-
-<h2>Domain Local Resource Groups</h2>
-<p><img alt="Domain Local resource group creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image28.jpg"></p>
-<p><img alt="PowerShell Active Directory administration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image29.jpg"></p>
+<h2>7.3 Domain Local Resource Groups</h2>
+<p><img alt="Domain Local resource group creation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image28.jpg"/></p>
+<p><img alt="PowerShell Active Directory administration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image29.jpg"/></p>
 <p>Domain Local Security Groups were introduced as the permission layer for departmental resources. A consistent naming convention was used:</p>
 <table><tbody><tr><td><strong>Prefix / Suffix</strong></td><td><strong>Meaning</strong></td></tr><tr><td>GG</td><td>Global Group</td></tr><tr><td>DL</td><td>Domain Local Group</td></tr><tr><td>RW</td><td>Read / Write access</td></tr></tbody></table>
 <p>For example, DL_Finance_RW represents the Domain Local Group used for Finance read/write access. PowerShell automation was extended beyond user provisioning to group creation, group membership, and AGDLP nesting.</p>
-
-<h1>File Services and AGDLP Implementation</h1>
+<h1>8. File Services and AGDLP Implementation</h1>
 <p>The next phase applied the AGDLP model to departmental SMB resources. Global Groups represented user roles, while Domain Local Groups represented resource permissions.</p>
-<h2>AGDLP Permission Model</h2>
-<p><img alt="Domain Local Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image30.jpg"></p>
+<h2>8.1 AGDLP Permission Model</h2>
+<p><img alt="Domain Local Security Groups" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image30.jpg"/></p>
 <table><tbody><tr><td><strong>Domain Local Group</strong></td><td><strong>Purpose</strong></td></tr><tr><td>DL_IT_RW</td><td>IT Folder — Read / Write</td></tr><tr><td>DL_HR_RW</td><td>HR Folder — Read / Write</td></tr><tr><td>DL_Finance_RW</td><td>Finance Folder — Read / Write</td></tr><tr><td>DL_Operations_RW</td><td>Operations Folder — Read / Write</td></tr><tr><td>DL_Executives_RW</td><td>Executives Folder — Read / Write</td></tr></tbody></table>
-<p><img alt="AGDLP permission model" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image31.jpg"></p>
+<p><img alt="AGDLP permission model" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image31.jpg"/></p>
 <pre class="command-block">Account
   ↓
 GG_Finance
@@ -188,11 +185,10 @@ Finance Folder
   ↓
 Modify Permission</pre>
 <p>Finance users are added to GG_Finance. That Global Group is nested into DL_Finance_RW, and the Domain Local Group receives the folder permission. A new Finance employee therefore only needs the correct group membership; the NTFS ACL does not need to be edited for every user.</p>
-<p><img alt="PowerShell AGDLP automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image32.jpg"></p>
+<p><img alt="PowerShell AGDLP automation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image32.jpg"/></p>
 <p><code>Add-ADGroupMember</code> was used to automate the nesting of Global Groups into their corresponding Domain Local Groups.</p>
-
-<h2>Departmental File Structure and SMB Sharing</h2>
-<p><img alt="Departmental folder structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image33.jpg"></p>
+<h2>8.2 Departmental File Structure and SMB Sharing</h2>
+<p><img alt="Departmental folder structure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image33.jpg"/></p>
 <pre class="command-block">D:\Shares
 ├── Finance
 ├── HR
@@ -200,30 +196,28 @@ Modify Permission</pre>
 ├── Operations
 └── Executives</pre>
 <p>The folder structure separates departmental data and provides a clear resource target for each Domain Local Group.</p>
-<p><img alt="SMB share configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image34.jpg"></p>
+<p><img alt="SMB share configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image34.jpg"/></p>
 <p>The departmental repository was published using SMB so authenticated domain users could access shared resources across the lab network.</p>
 <p>Share permissions and NTFS permissions work together; the effective network access is constrained by both layers. Detailed departmental authorization in this lab is enforced primarily through the NTFS ACL design.</p>
-
-<h2>NTFS Permissions and Least Privilege</h2>
-<p><img alt="NTFS permission configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image35.jpg"></p>
+<h2>8.3 NTFS Permissions and Least Privilege</h2>
+<p><img alt="NTFS permission configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image35.jpg"/></p>
 <p>NTFS permissions were assigned to Domain Local Groups instead of individual users. This keeps resource ACLs stable even when employees join, leave, or change departments.</p>
-<p><img alt="NTFS inheritance configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image36.jpg"></p>
+<p><img alt="NTFS inheritance configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image36.jpg"/></p>
 <p>Inheritance was disabled where required so departmental folders could use explicit ACLs appropriate to their access requirements. This provides clearer administrative boundaries and avoids unintended permissions inherited from a parent folder.</p>
-<p><img alt="Domain Local Group assigned to folder ACL" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image37.jpg"></p>
+<p><img alt="Domain Local Group assigned to folder ACL" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image37.jpg"/></p>
 <p>DL_Finance_RW was assigned to the Finance folder, completing the Accounts → Global → Domain Local → Permissions flow used by AGDLP.</p>
-<p><img alt="Least privilege NTFS permissions" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image38.jpg"></p>
+<p><img alt="Least privilege NTFS permissions" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image38.jpg"/></p>
 <p>Departmental users were granted Modify rather than unnecessary Full Control. This supports normal file operations while avoiding administrative rights that are not required for the business task.</p>
-<p><img alt="NTFS permission automation with icacls" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image39.jpg"></p>
+<p><img alt="NTFS permission automation with icacls" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image39.jpg"/></p>
 <p>PowerShell and <code>icacls</code> were used to apply repeatable NTFS permission settings across departmental folders.</p>
-<p><img alt="NTFS ACL validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image40.jpg"></p>
+<p><img alt="NTFS ACL validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/image40.jpg"/></p>
 <p>The final ACLs were reviewed to verify Domain Local Group assignment, inheritance settings, and Modify access.</p>
 <table><tbody><tr><td><strong>AGDLP Layer</strong></td><td><strong>Implementation</strong></td></tr><tr><td>Accounts</td><td>Departmental users</td></tr><tr><td>Global Groups</td><td>GG_IT, GG_HR, GG_Finance, GG_Operations, GG_Executives</td></tr><tr><td>Domain Local Groups</td><td>DL_IT_RW, DL_HR_RW, DL_Finance_RW, DL_Operations_RW, DL_Executives_RW</td></tr><tr><td>Permissions</td><td>Modify</td></tr><tr><td>Resources</td><td>Departmental SMB folders</td></tr></tbody></table>
-
-<h1>Project Validation and Final Results</h1>
+<h1>9. Project Validation and Final Results</h1>
 <p>The completed lab was validated across identity services, organizational structure, group membership, AGDLP relationships, SMB access, NTFS permissions, and PowerShell automation.</p>
-<h2>Active Directory Validation</h2>
+<h2>9.1 Active Directory Validation</h2>
 <table><tbody><tr><td><strong>Component</strong></td><td><strong>Status</strong></td></tr><tr><td>Forest</td><td>✅ yasserteach.local</td></tr><tr><td>Domain</td><td>✅ yasserteach.local</td></tr><tr><td>Domain Controller</td><td>✅ DC01</td></tr><tr><td>DNS</td><td>✅ Operational</td></tr><tr><td>Authentication Services</td><td>✅ Operational</td></tr></tbody></table>
-<h2>Identity and Access Validation</h2>
+<h2>9.2 Identity and Access Validation</h2>
 <p>The Corporate, IT, HR, Finance, Operations, and Executives OUs were reviewed and confirmed as part of the implemented hierarchy. User creation, departmental placement, domain authentication, and PowerShell provisioning were validated.</p>
 <p>Global Group scope, departmental membership, and naming conventions were reviewed to ensure the identity layer of the access model was configured correctly.</p>
 <pre class="command-block">User
@@ -236,20 +230,17 @@ Department Folder
  ↓
 Modify Permission</pre>
 <p>The AGDLP relationship was validated using Finance as the detailed example and applied consistently to the other departmental resources in the lab.</p>
-<h2>File Services and Automation Validation</h2>
+<h2>9.3 File Services and Automation Validation</h2>
 <p>The departmental SMB folders and NTFS ACLs were checked to confirm that access was controlled through Domain Local Groups and that unnecessary Full Control permissions were avoided.</p>
 <table><tbody><tr><td><strong>Administrative Task</strong></td><td><strong>Status</strong></td></tr><tr><td>User Provisioning</td><td>✅ Completed</td></tr><tr><td>Security Group Creation</td><td>✅ Completed</td></tr><tr><td>Group Membership</td><td>✅ Completed</td></tr><tr><td>AGDLP Configuration</td><td>✅ Completed</td></tr><tr><td>NTFS Permission Automation</td><td>✅ Completed</td></tr></tbody></table>
-
-<h2>Technologies Used</h2>
+<h2>9.4 Technologies Used</h2>
 <table><tbody><tr><td><strong>Technology</strong></td><td><strong>Purpose</strong></td></tr><tr><td>VMware Workstation</td><td>Virtualization</td></tr><tr><td>Windows Server 2022</td><td>Domain Controller platform</td></tr><tr><td>Windows 11</td><td>Domain client</td></tr><tr><td>Active Directory Domain Services</td><td>Identity and directory services</td></tr><tr><td>DNS Server</td><td>Name resolution and AD service discovery</td></tr><tr><td>PowerShell</td><td>Administration automation</td></tr><tr><td>Security Groups / AGDLP</td><td>Group-based authorization</td></tr><tr><td>SMB</td><td>File sharing</td></tr><tr><td>NTFS / icacls</td><td>File-system access control and validation</td></tr></tbody></table>
-
-<h1>Final Conclusion</h1>
+<h1>10. Final Conclusion</h1>
 <p>The Active Directory Identity, Access &amp; File Services project demonstrates an end-to-end Windows Server lab covering Domain Controller deployment, integrated DNS, OU design, user and Security Group administration, AGDLP, SMB resources, NTFS permissions, least privilege, and PowerShell automation.</p>
 <p>The final environment shows how centralized identity and group-based authorization can simplify administration while keeping resource access structured and maintainable. The project provides practical evidence of Windows Server and Active Directory administration skills without presenting the lab as a larger production deployment than it is.</p>
-
 <div class="cta"><a class="btn" href="../../index.html#projects">Back to Portfolio</a></div>
 </div></main>
 <footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img id="lightboxImage" alt="Project screenshot"></div>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
 </body></html>
