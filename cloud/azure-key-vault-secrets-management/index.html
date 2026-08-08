@@ -210,7 +210,7 @@ body.project-page main.doc figure:has(img.doc-img) {
 <body class="project-page" id="page-top"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Key Vault Secrets Management</h1><div class="project-cover-wrap"><img alt="Azure Key Vault Secrets Management project cover" class="project-cover-image" src="images/project-cover-key-vault.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Security</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Key Vault, Azure CLI, Linux</td></tr><tr><th scope="row">Project Focus</th><td>Secure secrets storage and controlled retrieval</td></tr></tbody></table></section>
+<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Key Vault Secrets Management</h1><div class="project-cover-wrap"><img alt="Azure Key Vault Secrets Management project cover" class="project-cover-image" src="images/project-cover-key-vault.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Security</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Key Vault, Azure CLI, Microsoft Entra ID, Linux</td></tr><tr><th scope="row">Project Focus</th><td>Secure secrets storage and controlled retrieval</td></tr></tbody></table></section>
 <h1>Project Overview</h1><p>Built a centralized secrets-management solution in Azure Key Vault and validated secure secret retrieval from an Ubuntu virtual machine through Azure CLI.</p><h1>1. Business Scenario</h1><p>Application credentials should not be stored in source code or local configuration files. This implementation moves API keys, database passwords, and connection strings into a controlled vault with authenticated access.</p><h1>2. Project Objectives</h1><ul><li>Deploy and configure Azure Key Vault.</li><li>Store application secrets securely.</li><li>Configure an Ubuntu VM and Azure CLI.</li><li>Authenticate to Azure and retrieve authorized secrets.</li><li>Validate access controls and successful secret retrieval.</li></ul><h1>3. Lab Environment</h1>
 <table>
 <colgroup>
@@ -301,7 +301,10 @@ body.project-page main.doc figure:has(img.doc-img) {
 </tr>
 </tbody>
 </table>
-<h1>5. Project Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Microsoft Azure</span><ul><li><span class="tree-label">Resource Group: rg-ycs-keyvault-lab-01</span><ul><li><span class="tree-label">Azure Key Vault: kv-ycs-01</span><ul><li><span class="tree-label">ApiKey</span></li><li><span class="tree-label">DatabasePassword</span></li><li><span class="tree-label">StorageConnectionString</span></li></ul></li><li><span class="tree-label">Ubuntu VM: vm-ycs-app-01</span><ul><li><span class="tree-label">SSH Access</span></li><li><span class="tree-label">Azure CLI</span></li><li><span class="tree-label">Device Code Authentication</span></li></ul></li></ul></li></ul></li></ul></div><p>The Ubuntu virtual machine connects securely to Microsoft Azure through Azure CLI and retrieves authorized secrets from Azure Key Vault inside the dedicated resource group.</p>
+<h1>5. Project Architecture</h1>
+<p>The architecture illustrates the implemented access flow: an administrator connects to the Ubuntu VM over SSH, Azure CLI authenticates the user through Microsoft Entra ID using Device Code authentication, and the authenticated CLI session retrieves the three configured secrets from Azure Key Vault over encrypted HTTPS/TLS communication.</p>
+<p><img alt="Azure Key Vault secrets management architecture showing SSH access, Microsoft Entra ID authentication, Azure CLI, and secure secret retrieval" class="doc-img is-wide" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/azure-key-vault-architecture.png"/></p>
+<p><em>Architecture — Ubuntu VM uses Azure CLI with Microsoft Entra user authentication to retrieve ApiKey, DatabasePassword, and StorageConnectionString from Azure Key Vault.</em></p>
 <h1>6. Technologies Used</h1>
 <ul>
 <li><p>Microsoft Azure</p></li>
@@ -315,16 +318,14 @@ body.project-page main.doc figure:has(img.doc-img) {
 <li><p>Device Code Authentication</p></li>
 </ul>
 <h1>7. Security Features Implemented</h1>
-<p>The project incorporates several Azure security best practices:</p>
+<p>The project demonstrates the following security practices:</p>
 <ul>
-<li><p>Centralized secret storage.</p></li>
-<li><p>Secrets stored outside application code.</p></li>
-<li><pre class="command-block"><code>SSH-based secure remote administration.</code></pre></li>
-<li><p>Azure CLI authentication using Microsoft identity.</p></li>
-<li><p>Encrypted communication between Azure CLI and Azure
-services.</p></li>
-<li><p>Secret retrieval only after successful authentication.</p></li>
-<li><p>Centralized secret management within Azure Key Vault.</p></li>
+<li><p>Centralized storage of application secrets in Azure Key Vault.</p></li>
+<li><p>Sensitive credentials kept outside application source code and local configuration files.</p></li>
+<li><p>Authenticated Azure CLI access using a Microsoft Entra user identity.</p></li>
+<li><p>Secret access performed only after successful authentication and authorization.</p></li>
+<li><p>Encrypted communication with Azure services over HTTPS/TLS.</p></li>
+<li><p>Secret values redacted from portfolio screenshots to prevent credential exposure.</p></li>
 </ul>
 <h1>8. Implementation Steps</h1>
 <p>8.1 Create the Resource Group</p>
@@ -556,10 +557,7 @@ Microsoft's authentication page.</p>
 <p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4b0993819ee90572461fc2c5039423118381b491.png"/></p>
 <p><em>Microsoft device login page — entering the one-time code
 (redacted).</em></p>
-<p>After successful authentication, Azure confirmed that the Linux
-virtual machine was authorized to access Azure resources. This completed
-the secure authentication process without exposing passwords inside the
-terminal.</p>
+<p>After successful authentication, Azure CLI established an authenticated session using the Microsoft Entra user identity. The CLI could then access Azure resources according to the permissions assigned to that identity, without storing the user password in the terminal session.</p>
 <p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8a68666f547d73c3c62741e733208976df6cc76d.png"/></p>
 <p><em>Microsoft Azure CLI confirming successful sign-in.</em></p>
 <h1>9. Azure CLI Operations, Validation, and Project Outcome</h1>
@@ -583,8 +581,7 @@ subscription.</p>
 <li><p>Azure Cloud Environment</p></li>
 <li><p>Subscription State</p></li>
 </ul>
-<p>This validation confirms that Azure CLI is fully authenticated and
-authorized to communicate with Azure resources.</p>
+<p>This validation confirms that Azure CLI is authenticated with the intended Microsoft Entra user identity and connected to the expected Azure subscription.</p>
 <p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1c80f6e38f5b511cbaa7e22603a0a9c6c9b04b52.png"/></p>
 <pre class="command-block"><code>az account show — subscription and tenant details confirmed
 (tenant/subscription IDs and account email redacted for
@@ -682,57 +679,29 @@ Key Vault.</p>
 <pre class="command-block"><code>az keyvault secret show — StorageConnectionString retrieved
 successfully. The returned value is redacted for this
 portfolio.</code></pre>
-<h1>10. Security Validation</h1>
-<p>The following security controls were successfully implemented during
-this project:</p>
+<h1>10. Implementation Validation and Security Outcomes</h1>
+<p>The completed lab was validated across deployment, authentication, connectivity, and secret retrieval.</p>
 <table>
-<colgroup>
-<col style="width: 72%"/>
-<col style="width: 27%"/>
-</colgroup>
+<colgroup><col style="width: 72%"/><col style="width: 27%"/></colgroup>
 <tbody>
-<tr class="odd">
-<td><strong>Security Control</strong></td>
-<td><strong>Status</strong></td>
-</tr>
-<tr class="even">
-<td>Dedicated Resource Group</td>
-<td>Completed</td>
-</tr>
-<tr class="odd">
-<td>Azure Key Vault Deployment</td>
-<td>Completed</td>
-</tr>
-<tr class="even">
-<td>Centralized Secret Storage</td>
-<td>Completed</td>
-</tr>
-<tr class="odd">
-<td>Secure SSH Remote Access</td>
-<td>Completed</td>
-</tr>
-<tr class="even">
-<td>Azure CLI Installation</td>
-<td>Completed</td>
-</tr>
-<tr class="odd">
-<td>Microsoft Entra Authentication</td>
-<td>Completed</td>
-</tr>
-<tr class="even">
-<td>Azure Subscription Verification</td>
-<td>Completed</td>
-</tr>
-<tr class="odd">
-<td>Secret Enumeration</td>
-<td>Completed</td>
-</tr>
-<tr class="even">
-<td>Secure Secret Retrieval</td>
-<td>Completed</td>
-</tr>
+<tr class="odd"><td><strong>Validation Item</strong></td><td><strong>Status</strong></td></tr>
+<tr class="even"><td>Dedicated Resource Group</td><td>Completed</td></tr>
+<tr class="odd"><td>Azure Key Vault Deployment</td><td>Completed</td></tr>
+<tr class="even"><td>Ubuntu VM and SSH Connectivity</td><td>Completed</td></tr>
+<tr class="odd"><td>Azure CLI Installation</td><td>Completed</td></tr>
+<tr class="even"><td>Microsoft Entra User Authentication</td><td>Completed</td></tr>
+<tr class="odd"><td>Azure Subscription Verification</td><td>Completed</td></tr>
+<tr class="even"><td>Secret Enumeration</td><td>Completed</td></tr>
+<tr class="odd"><td>Secure Secret Retrieval</td><td>Completed</td></tr>
 </tbody>
 </table>
+<h2>Security Outcomes</h2>
+<ul>
+<li><p>API keys, database credentials, and storage connection strings were centralized in Azure Key Vault rather than stored in application code.</p></li>
+<li><p>Secret retrieval required an authenticated Microsoft Entra user identity with sufficient permissions.</p></li>
+<li><p>Azure CLI successfully retrieved all three configured secrets from the Ubuntu VM.</p></li>
+<li><p>Sensitive secret values and identity details were redacted from portfolio evidence.</p></li>
+</ul>
 </div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
 <div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
