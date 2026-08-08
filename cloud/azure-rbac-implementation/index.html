@@ -4,7 +4,50 @@
 <meta content="Role-based access control implementation using Microsoft Entra ID groups and least privilege." name="description"/><title>Azure RBAC Implementation | Yasser Alrajeh</title>
 <link href="../../assets/css/style.css" rel="stylesheet"/><style id="rbac-final-enhancements">
 .architecture-figure{margin:24px auto 30px;text-align:center}.architecture-img{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto;border:1px solid #dbe7f3;border-radius:14px;box-shadow:0 8px 24px rgba(15,23,42,.08)}.architecture-figure figcaption{margin-top:10px;color:#475569;font-size:.95rem}.privacy-wrap{position:relative;display:block;width:100%;max-width:1200px;margin:22px auto 14px}.privacy-wrap>img.doc-img{margin:0!important;width:100%!important;max-width:none!important}.privacy-mask{position:absolute;background:#111;border-radius:3px;pointer-events:none;z-index:4}.privacy-note{font-size:.82rem;color:#64748b;margin-top:6px;text-align:center}.privacy-wrap.mask-groups .privacy-mask{right:2.5%;top:26%;width:34%;height:56%}.privacy-wrap.mask-iam .privacy-mask.m1{left:31%;top:27%;width:28%;height:10%}.privacy-wrap.mask-iam .privacy-mask.m2{left:31%;top:42%;width:28%;height:10%}@media(max-width:700px){.architecture-img{border-radius:10px}}
-</style></head>
+</style>
+<style id="project-screenshot-size-fix">
+/* Restore full-width implementation screenshots; preserve architecture and cover sizing. */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(96vw, 1280px) !important;
+  max-width: 1280px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* Keep privacy-redacted screenshots at the same restored size. */
+body.project-page main.doc .privacy-wrap {
+  width: 100% !important;
+  max-width: 1200px !important;
+}
+body.project-page main.doc .privacy-wrap > img.doc-img {
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: auto !important;
+}
+@media (max-width:700px){
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width:94vw !important; }
+  body.project-page main.doc img.doc-img { width:100% !important; }
+}
+</style>
+
+</head>
 <body class="project-page"><header><nav>
 <a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
