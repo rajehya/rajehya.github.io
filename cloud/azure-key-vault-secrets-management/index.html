@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<html lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SDLNK9Y2F3');
+</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine." name="description"/><title>Azure Key Vault Secrets Management | Yasser Alrajeh</title>
 <link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
 /* Unified project typography */
@@ -206,9 +215,53 @@ body.project-page main.doc figure:has(img.doc-img) {
 .lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
 .lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
 @media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
-</style></head>
+</style>
+<style id="portfolio-four-fixes">
+/* Requested global project-page fixes only: image sizing + top spacing. */
+body.project-page main.doc {
+  padding-top: 30px !important;
+}
+body.project-page main.doc > .container > h1:first-child,
+body.project-page main.doc > .container > .project-hero:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+body.project-page main.doc img.doc-img {
+  display: block;
+  width: min(100%, 1050px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .project-cover-image {
+  display: block;
+  width: min(100%, 1000px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .architecture-img,
+body.project-page main.doc .architecture-wrap img,
+body.project-page main.doc img[alt*="architecture" i] {
+  display: block;
+  width: min(100%, 1100px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc { padding-top: 20px !important; }
+}
+</style>
+</head>
 <body class="project-page" id="page-top"><header><nav>
-<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Key Vault Secrets Management</h1><div class="project-cover-wrap"><img alt="Azure Key Vault Secrets Management project cover" class="project-cover-image" src="images/project-cover-key-vault.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Security</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Key Vault, Azure CLI, Microsoft Entra ID, Linux</td></tr><tr><th scope="row">Project Focus</th><td>Secure secrets storage and controlled retrieval</td></tr></tbody></table></section>
 <h1>Project Overview</h1><p>Built a centralized secrets-management solution in Azure Key Vault and validated secure secret retrieval from an Ubuntu virtual machine through Azure CLI.</p><h1>1. Business Scenario</h1><p>Application credentials should not be stored in source code or local configuration files. This implementation moves API keys, database passwords, and connection strings into a controlled vault with authenticated access.</p><h1>2. Project Objectives</h1><ul><li>Deploy and configure Azure Key Vault.</li><li>Store application secrets securely.</li><li>Configure an Ubuntu VM and Azure CLI.</li><li>Authenticate to Azure and retrieve authorized secrets.</li><li>Validate access controls and successful secret retrieval.</li></ul><h1>3. Lab Environment</h1>
