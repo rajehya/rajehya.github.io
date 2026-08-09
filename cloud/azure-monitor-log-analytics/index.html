@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries." name="description"/><title>Azure Monitor &amp; Log Analytics | Yasser Alrajeh</title>
-<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
+<!-- saved from url=(0070)https://yasseralrajeh.com/cloud/azure-monitor-log-analytics/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="Centralized Azure monitoring with Log Analytics, VM insights, alerts, and KQL queries." name="description"><title>Azure Monitor &amp; Log Analytics | Yasser Alrajeh</title>
+<link href="./index_files/style.css" rel="stylesheet"><link href="./index_files/portfolio-enhancements.css" rel="stylesheet"><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=O5HH-9IJOxJOkc_h7UQibxM7lSYmAgag6cgBk719FoeIWaQjmTMaqMEHBasHpvr5-UjJASE13iAFShBdRoPRGuTMMYgOOnr9fdOfyJhq3AIDy5t9HROEL1rLEpoPJUXCfYlGfyrKAjL5Ol29Wn6eJR-mwsP0PDCgPOKmFCfwguUCqWBo4FM1sJQNwbTWdccm7AF-kCtYPQUS5I961447SjCY68o3FkwRBNlusk3RlZjxht3n4aDf_k9lSj9v_LvQDaB5Jb1JAq6GxJhUwVxRTh4hkr5Ltnsh_b5GvvkTyd_XqacS5CuFhXIRQYDcJFeHJ72qUups6yEGoTtW5AXD1_PDt2jFvN3b3BC-8pOnrLk" charset="UTF-8"></script><style data-portfolio-enhancements="all-projects-final">
 /* Unified project typography */
 .project-page .doc,
 .project-page .doc p,
@@ -159,12 +159,18 @@ body.project-page main.doc img.doc-img,
 body.project-page main.doc p > img.doc-img,
 body.project-page main.doc figure img.doc-img {
   display: block !important;
-  width: 100% !important;
-  max-width: 1200px !important;
+  width: 88% !important;
+  max-width: 1000px !important;
   height: auto !important;
   max-height: none !important;
   margin: 22px auto 14px !important;
   object-fit: contain !important;
+}
+
+/* Architecture stays slightly larger than implementation screenshots */
+body.project-page main.doc img[alt="Azure Monitor and Log Analytics architecture diagram"] {
+  width: 94% !important;
+  max-width: 1100px !important;
 }
 body.project-page main.doc p:has(> img.doc-img),
 body.project-page main.doc figure:has(img.doc-img) {
@@ -176,11 +182,34 @@ body.project-page main.doc figure:has(img.doc-img) {
 @media (max-width: 700px) {
   body.project-page main.doc > .container,
   body.project-page main.doc .container { width: 94vw !important; }
-  body.project-page main.doc img.doc-img { width: 100% !important; }
+  body.project-page main.doc img.doc-img { width: 96% !important; }
+}
+.project-bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 42px 0 12px;
+}
+.project-bottom-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border: 1px solid #0078d4;
+  border-radius: 8px;
+  color: #0078d4;
+  background: #fff;
+  text-decoration: none;
+  font-weight: 650;
+}
+.project-bottom-nav a:hover {
+  background: #0078d4;
+  color: #fff;
 }
 </style>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
+<script async="" src="./index_files/js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -189,16 +218,16 @@ body.project-page main.doc figure:has(img.doc-img) {
   gtag('config', 'G-SDLNK9Y2F3');
 </script>
 </head>
-<body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
-<a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Monitor &amp; Log Analytics</h1><div class="project-cover-wrap"><img alt="Azure Monitor &amp; Log Analytics project cover" class="project-cover-image" src="images/project-cover-azure-monitor.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Monitoring</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Monitor, Log Analytics, KQL, Alerts</td></tr><tr><th scope="row">Project Focus</th><td>Centralized monitoring, log analysis, and alerting</td></tr></tbody></table></section>
+<body class="project-page" id="top"><header><nav>
+<a class="brand" href="https://yasseralrajeh.com/index.html"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="back-link" href="https://yasseralrajeh.com/index.html#projects">← Back to Portfolio</a></nav></header>
+<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Monitor &amp; Log Analytics</h1><div class="project-cover-wrap"><img alt="Azure Monitor &amp; Log Analytics project cover" class="project-cover-image" src="./index_files/project-cover-azure-monitor.jpeg"></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Monitoring</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Monitor, Log Analytics, KQL, Alerts</td></tr><tr><th scope="row">Project Focus</th><td>Centralized monitoring, log analysis, and alerting</td></tr></tbody></table></section>
 
 <h1>Project Overview</h1><p>Implemented centralized monitoring for an Azure virtual machine using Azure Monitor, Log Analytics, the Azure Monitor Agent, Data Collection Rules, KQL queries, and alert notifications.</p><h1>1. Business Scenario</h1><p>The environment required a central view of health and performance instead of checking each resource manually. Logs, metrics, and alerts were consolidated so operational issues could be detected and investigated quickly.</p><h1>2. Project Objectives</h1><ul><li>Connect a virtual machine to Log Analytics.</li><li>Deploy the Azure Monitor Agent and Data Collection Rule.</li><li>Query heartbeat, CPU, memory, and disk data with KQL.</li><li>Create metric alerts and an Action Group.</li><li>Validate log collection and alert delivery.</li></ul><h1>3. Azure Resources Created</h1>
 <table>
 <colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -252,16 +281,16 @@ body.project-page main.doc figure:has(img.doc-img) {
 </tbody>
 </table>
 <h1>4. Solution Architecture</h1>
-<p><img alt="Azure Monitor and Log Analytics architecture diagram" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/azure-monitor-log-analytics-architecture.png"/></p>
+<p><img alt="Azure Monitor and Log Analytics architecture diagram" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/azure-monitor-log-analytics-architecture.png"></p>
 <h1>5. Implementation</h1>
 <h2>5.1 Deploy Ubuntu Virtual Machine</h2>
 <p>A Linux virtual machine running Ubuntu Server was deployed in
 Microsoft Azure and configured for secure remote administration using
 SSH.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a3f04c1f6a7da1df0292d07b4a53188cc8a5724c.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/a3f04c1f6a7da1df0292d07b4a53188cc8a5724c.png"></p>
 <p><em>Deployment of vm-monitor-01 completed successfully inside
 vm-monitor-01_group.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/edfdcbc7fef15e2603f8820f15578083c745141e.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/edfdcbc7fef15e2603f8820f15578083c745141e.png"></p>
 <p><em>Secure SSH connection established to the Ubuntu virtual
 machine.</em></p>
 <h2>5.2 Configure Azure Monitor</h2>
@@ -274,7 +303,7 @@ the virtual machine.</p>
 <li><p>Disk activity</p></li>
 <li><p>VM availability</p></li>
 </ul>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/14774884bc77cdafd299bdc1cddc1c04df17cb85.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/14774884bc77cdafd299bdc1cddc1c04df17cb85.png"></p>
 <p><em>Azure Monitor blade for vm-monitor-01 after enabling
 monitoring.</em></p>
 <h2>5.3 Install Azure Monitor Agent</h2>
@@ -291,32 +320,32 @@ monitoring data should be collected.</p>
 <li><p>VM Insights Data</p></li>
 <li><p>Heartbeat Monitoring</p></li>
 </ul>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/00205b4b88e7a02e42a399db8e1e4dccb028ce34.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/00205b4b88e7a02e42a399db8e1e4dccb028ce34.png"></p>
 <p><em>Scoping the Data Collection Rule to vm-monitor-01 within
 vm-monitor-01_group.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/252a993a6925da33896c60c5be32de82bcb82e47.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/252a993a6925da33896c60c5be32de82bcb82e47.png"></p>
 <p><em>Selecting performance counter categories: CPU, Disk, Network and
 Process.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/e05a3859777a03e5bc458b932641a9b76e0b0e6c.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/e05a3859777a03e5bc458b932641a9b76e0b0e6c.png"></p>
 <p><em>CPU counter — Processor Time sampled every 60 seconds.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/04f4e60de9fb664c48c6911a648d472a98dbe502.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/04f4e60de9fb664c48c6911a648d472a98dbe502.png"></p>
 <p><em>Memory counters — Available MBytes and % Available
 Memory.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8e69130436055d36faa7b1f1e07aca0b92f1ceaa.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/8e69130436055d36faa7b1f1e07aca0b92f1ceaa.png"></p>
 <p><em>Logical Disk counter — % Free Space.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f6945bd6183301d950684388b82af9ad26ca16d1.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/f6945bd6183301d950684388b82af9ad26ca16d1.png"></p>
 <p><em>Disk Reads/Writes per second and Network Interface
 counters.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/ef9eecf5dab66374c88d241339280c72f014fc89.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/ef9eecf5dab66374c88d241339280c72f014fc89.png"></p>
 <p><em>Review + create summary for Data Collection Rule
 dcr-monitor-01.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7766ccb89ab6846eb080b980b576395fb2076722.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/7766ccb89ab6846eb080b980b576395fb2076722.png"></p>
 <p><em>Data Collection Rule deployment completed successfully.</em></p>
 <h2>5.5 Configure Log Analytics Workspace</h2>
 <p>The virtual machine was connected to Log Analytics Workspace to
 enable centralized storage, querying, and analysis of monitoring
 data.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/28a6d9c0e912fc6e0b6e77513f0b6aad8494b027.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/28a6d9c0e912fc6e0b6e77513f0b6aad8494b027.png"></p>
 <p><em>Data Collection Rule destination configured to Log Analytics
 Workspace law-monitor-01.</em></p>
 <h2>5.6 Monitor Virtual Machine Performance</h2>
@@ -328,19 +357,19 @@ Workspace law-monitor-01.</em></p>
 <li><p>VM heartbeat</p></li>
 </ul>
 <pre class="command-block"><code>Performance data was continuously collected and displayed within Azure Monitor.</code></pre>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/82dcf5b3364514554a08a80e5772dd0cf5a9db22.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/82dcf5b3364514554a08a80e5772dd0cf5a9db22.png"></p>
 <p><em>VM availability and CPU utilization metrics.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fa3ef2506585078bb791ebd88a31c58539698bda.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/fa3ef2506585078bb791ebd88a31c58539698bda.png"></p>
 <p><em>Memory utilization percentage over time.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/58057a3525a838b1ab69d10f503eb14953e5c066.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/58057a3525a838b1ab69d10f503eb14953e5c066.png"></p>
 <p><em>Top 5 processes by memory utilization.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/9f4d3c320af0826b9b243e419584f5a3e9717cf3.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/9f4d3c320af0826b9b243e419584f5a3e9717cf3.png"></p>
 <p><em>Network traffic, dropped packets, and network errors.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4ceeaae709cc18831ab29a1617a921ed2447a18b.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/4ceeaae709cc18831ab29a1617a921ed2447a18b.png"></p>
 <p><em>Logical disk usage and disk IOPS.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1c37ff073198c25eb17561768386ebb848023228.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/1c37ff073198c25eb17561768386ebb848023228.png"></p>
 <p><em>Logical disk latency (ms).</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/cf95f187b0bec5c53423cd9a3ab67913c5f135a7.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/cf95f187b0bec5c53423cd9a3ab67913c5f135a7.png"></p>
 <p><em>Logical disk throughput and top 5 processes by disk write
 operations.</em></p>
 <h1>6. Kusto Query Language (KQL)</h1>
@@ -351,7 +380,7 @@ operations.</em></p>
 | sort by TimeGenerated desc</code></pre>
 <p>This query verifies that the virtual machine continuously reports its
 operational status.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/aca1948ad0c0e98eab0ba40bbd2c4e5a93541814.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/aca1948ad0c0e98eab0ba40bbd2c4e5a93541814.png"></p>
 <p><em>Heartbeat query results confirming continuous agent reporting.</em></p>
 <h2>6.2 CPU Utilization</h2>
 <pre class="command-block"><code>InsightsMetrics
@@ -361,12 +390,12 @@ operational status.</p>
 | summarize AvgCPU = avg(Val) by bin(TimeGenerated, 1m)
 | render timechart</code></pre>
 <p>This query visualizes processor utilization over time.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/27512dfe2337033b0ebcf7568706c6eec0a8244f.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/27512dfe2337033b0ebcf7568706c6eec0a8244f.png"></p>
 <p><em>Confirming the UtilizationPercentage metric exists under the
 Processor namespace.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/a3267c11aea41721dcb94c60eda14cdf9265f975.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/a3267c11aea41721dcb94c60eda14cdf9265f975.png"></p>
 <p><em>CPU utilization time chart generated from the KQL query.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/60c345429e02645ec47c87a52dc104850fb09773.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/60c345429e02645ec47c87a52dc104850fb09773.png"></p>
 <p><em>Query saved as a chart inside an Azure Monitor Workbook for
 dashboarding.</em></p>
 <h2>6.3 Memory Performance</h2>
@@ -393,7 +422,7 @@ virtual machine.</p>
 | summarize AvgDiskWrites = avg(CounterValue) by bin(TimeGenerated, 1m)
 | render timechart</code></pre>
 <p>This chart visualizes disk write operations over time.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/3529df653254302238ef88cdc6fcff4dc5aad2cd.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/3529df653254302238ef88cdc6fcff4dc5aad2cd.png"></p>
 <p><em>Disk write operations query saved as a Workbook chart ("Disk
 Write Operations").</em></p>
 <h1>7. Alert Configuration</h1>
@@ -408,31 +437,31 @@ utilization.</p>
 </ul>
 <p>Whenever CPU utilization exceeded the configured threshold, Azure
 Monitor automatically triggered the alert.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/af363dee06a3ff95c0e43da01be83e256bb20cc8.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/af363dee06a3ff95c0e43da01be83e256bb20cc8.png"></p>
 <p><em>Defining the alert condition: Percentage CPU greater than
 60%.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/64de46b57d4c9351003b5c85771cb3af12680cbc.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/64de46b57d4c9351003b5c85771cb3af12680cbc.png"></p>
 <p><em>Alert rule details — High-CPU-Alert, severity Warning.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/fc8c77ef83a40c51cb66bdf049ac91a604c4d9cc.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/fc8c77ef83a40c51cb66bdf049ac91a604c4d9cc.png"></p>
 <p><em>Review + create summary for the High-CPU-Alert rule.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7db265554d1290a55e578404275ab54db2471e4a.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/7db265554d1290a55e578404275ab54db2471e4a.png"></p>
 <p><em>Alert rule enabled and active on vm-monitor-01.</em></p>
 <h1>8. Action Group</h1>
 <p>An Azure Action Group was configured to send email notifications
 whenever the alert rule was triggered.</p>
 <p>This provides immediate notification to administrators during high
 CPU utilization events.</p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/69995cd8e40bda93ad83c2484c8a70170023690a.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/69995cd8e40bda93ad83c2484c8a70170023690a.png"></p>
 <p><em>Action group VMI-ActionGroup-vm-monitor-01 configured with an
 email action.</em></p>
 <h1>9. Alert Validation</h1>
 <p>CPU load was intentionally generated on the Ubuntu virtual machine
 using:</p>
 <pre class="command-block"><code>stress-ng --cpu 2 --timeout 10m</code></pre>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f278f8b38a7b23b132c638b5b8586be1e6fd1b34.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/f278f8b38a7b23b132c638b5b8586be1e6fd1b34.png"></p>
 <p><em>Installing and running stress-ng to generate CPU load on the
 Ubuntu VM.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/d6dfa86c8d64b83b6833b17a789b1fbeed9c62a4.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/d6dfa86c8d64b83b6833b17a789b1fbeed9c62a4.png"></p>
 <p><em>Metrics Explorer confirming the CPU spike to over 99% during the
 stress test.</em></p>
 <p>Azure Monitor successfully:</p>
@@ -442,9 +471,9 @@ stress test.</em></p>
 <li><p>Executed the configured Action Group.</p></li>
 <li><p>Delivered an email notification.</p></li>
 </ul>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/164c5baa879657cdfa6b9b4889316783661c3711.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/164c5baa879657cdfa6b9b4889316783661c3711.png"></p>
 <p><em>Alert fired: High-CPU-Alert email notification received.</em></p>
-<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/eafb69b4034eaf3b8bbade6af6fbbe5b64a5d2ea.png"/></p>
+<p><img alt="Azure Monitor &amp; Log Analytics project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="./index_files/eafb69b4034eaf3b8bbade6af6fbbe5b64a5d2ea.png"></p>
 <p><em>Alert resolved: High-CPU-Alert email notification once CPU
 returned to normal.</em></p>
 <p>This confirmed that the complete monitoring pipeline was functioning
@@ -461,7 +490,11 @@ correctly.</p>
 <li><p>Email notification delivery</p></li>
 <li><p>End-to-end validation using CPU stress testing</p></li>
 </ul>
-</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
+<div class="project-bottom-nav">
+  <a href="https://yasseralrajeh.com/index.html#projects">← Back to Main Page</a>
+  <a href="#top">↑ Back to Top</a>
+</div>
+</div></main><footer><div class="container">© <span id="year">2026</span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
-</body></html>
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span></body></html>
