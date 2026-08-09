@@ -149,31 +149,22 @@
 }
 </style>
 <style id="project-screenshot-size-fix">
-/* Balanced screenshot sizing: clear without filling the entire screen */
+/* Full-width implementation screenshots across every project page */
 body.project-page main.doc > .container,
 body.project-page main.doc .container {
-  width: min(94vw, 1120px) !important;
-  max-width: 1120px !important;
+  width: min(96vw, 1280px) !important;
+  max-width: 1280px !important;
 }
 body.project-page main.doc img.doc-img,
 body.project-page main.doc p > img.doc-img,
 body.project-page main.doc figure img.doc-img {
   display: block !important;
-  width: min(100%, 940px) !important;
-  max-width: 940px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
   height: auto !important;
-  max-height: 680px !important;
+  max-height: none !important;
   margin: 22px auto 14px !important;
   object-fit: contain !important;
-}
-body.project-page main.doc img.doc-img.is-portrait {
-  width: auto !important;
-  max-width: min(100%, 700px) !important;
-  max-height: 720px !important;
-}
-body.project-page main.doc img.doc-img.is-wide {
-  width: min(100%, 1000px) !important;
-  max-width: 1000px !important;
 }
 body.project-page main.doc p:has(> img.doc-img),
 body.project-page main.doc figure:has(img.doc-img) {
@@ -184,33 +175,25 @@ body.project-page main.doc figure:has(img.doc-img) {
 }
 @media (max-width: 700px) {
   body.project-page main.doc > .container,
-  body.project-page main.doc .container { width: 92vw !important; }
-  body.project-page main.doc img.doc-img,
-  body.project-page main.doc img.doc-img.is-portrait,
-  body.project-page main.doc img.doc-img.is-wide {
-    width: 100% !important;
-    max-width: 100% !important;
-    max-height: none !important;
-  }
+  body.project-page main.doc .container { width: 94vw !important; }
+  body.project-page main.doc img.doc-img { width: 100% !important; }
 }
 </style>
-<style>
-/* Unified project navigation and lightbox safety */
-.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
-.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
-.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
-.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
-.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
-.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
-.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
-.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
-.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
-@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
-</style></head>
-<body class="project-page" id="page-top"><header><nav>
-<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SDLNK9Y2F3');
+</script>
+</head>
+<body class="project-page"><header><nav>
+<a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Monitor &amp; Log Analytics</h1><div class="project-cover-wrap"><img alt="Azure Monitor &amp; Log Analytics project cover" class="project-cover-image" src="images/project-cover-azure-monitor.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Monitoring</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Monitor, Log Analytics, KQL, Alerts</td></tr><tr><th scope="row">Project Focus</th><td>Centralized monitoring, log analysis, and alerting</td></tr></tbody></table></section>
+
 <h1>Project Overview</h1><p>Implemented centralized monitoring for an Azure virtual machine using Azure Monitor, Log Analytics, the Azure Monitor Agent, Data Collection Rules, KQL queries, and alert notifications.</p><h1>1. Business Scenario</h1><p>The environment required a central view of health and performance instead of checking each resource manually. Logs, metrics, and alerts were consolidated so operational issues could be detected and investigated quickly.</p><h1>2. Project Objectives</h1><ul><li>Connect a virtual machine to Log Analytics.</li><li>Deploy the Azure Monitor Agent and Data Collection Rule.</li><li>Query heartbeat, CPU, memory, and disk data with KQL.</li><li>Create metric alerts and an Action Group.</li><li>Validate log collection and alert delivery.</li></ul><h1>3. Azure Resources Created</h1>
 <table>
 <colgroup>
@@ -254,10 +237,6 @@ body.project-page main.doc figure:has(img.doc-img) {
 <td>Data Collection Rule</td>
 <td>dcr-monitor-01</td>
 </tr>
-<tr class="even">
-<td>Azure Monitor Workspace</td>
-<td>defaultazuremonitorworkspace-eus2</td>
-</tr>
 <tr class="odd">
 <td>Log Analytics Workspace</td>
 <td>law-monitor-01</td>
@@ -272,7 +251,8 @@ body.project-page main.doc figure:has(img.doc-img) {
 </tr>
 </tbody>
 </table>
-<h1>4. Solution Architecture</h1><div class="architecture-tree"><ul><li><span class="tree-label">Ubuntu Linux Virtual Machine</span><ul><li><span class="tree-label">Azure Monitor Agent (AMA)</span><ul><li><span class="tree-label">Data Collection Rule (DCR)</span><ul><li><span class="tree-label">Azure Monitor Workspace</span></li><li><span class="tree-label">Log Analytics Workspace</span><ul><li><span class="tree-label">KQL Queries</span></li></ul></li><li><span class="tree-label">Azure Monitor Alerts</span><ul><li><span class="tree-label">Action Group</span></li></ul></li></ul></li></ul></li></ul></li></ul></div><p>The Azure Monitor Agent collects telemetry from the Ubuntu virtual machine and sends it through the Data Collection Rule. Metrics are stored in Azure Monitor, logs are analyzed in Log Analytics with KQL, and alerts trigger the Action Group.</p>
+<h1>4. Solution Architecture</h1>
+<p><img alt="Azure Monitor and Log Analytics architecture diagram" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/azure-monitor-log-analytics-architecture.png"/></p>
 <h1>5. Implementation</h1>
 <h2>5.1 Deploy Ubuntu Virtual Machine</h2>
 <p>A Linux virtual machine running Ubuntu Server was deployed in
@@ -481,21 +461,7 @@ correctly.</p>
 <li><p>Email notification delivery</p></li>
 <li><p>End-to-end validation using CPU stress testing</p></li>
 </ul>
-</div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
+</div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
-<script id="project-screenshot-ratio-classifier">
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
-    function classify() {
-      if (!img.naturalWidth || !img.naturalHeight) return;
-      var ratio = img.naturalWidth / img.naturalHeight;
-      img.classList.remove('is-portrait', 'is-wide');
-      if (ratio < 1.05) img.classList.add('is-portrait');
-      else if (ratio > 1.75) img.classList.add('is-wide');
-    }
-    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
-  });
-});
-</script>
 </body></html>
