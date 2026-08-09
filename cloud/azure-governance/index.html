@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<html lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SDLNK9Y2F3');
+</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Azure Governance portfolio project covering Azure Policy, RBAC, resource locks, cost governance, tagging, compliance, and validation." name="description"/><title>Azure Governance Enterprise Lab | Yasser Alrajeh</title>
 <link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
 /* Unified project typography */
@@ -179,9 +188,53 @@ body.project-page main.doc figure:has(img.doc-img) {
   body.project-page main.doc img.doc-img { width: 100% !important; }
 }
 </style>
+
+<style id="portfolio-four-fixes">
+/* Requested global project-page fixes only: image sizing + top spacing. */
+body.project-page main.doc {
+  padding-top: 30px !important;
+}
+body.project-page main.doc > .container > h1:first-child,
+body.project-page main.doc > .container > .project-hero:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+body.project-page main.doc img.doc-img {
+  display: block;
+  width: min(100%, 1050px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .project-cover-image {
+  display: block;
+  width: min(100%, 1000px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .architecture-img,
+body.project-page main.doc .architecture-wrap img,
+body.project-page main.doc img[alt*="architecture" i] {
+  display: block;
+  width: min(100%, 1100px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc { padding-top: 20px !important; }
+}
+</style>
 </head>
 <body class="project-page"><header><nav>
-<a class="brand" href="../../index.html"><img alt="Yasser Alrajeh" class="brand-avatar" src="../../assets/images/yasser-alrajeh.jpg"/><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
 <main class="doc">
 <div class="container">
