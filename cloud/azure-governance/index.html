@@ -10,7 +10,7 @@
   gtag('config', 'G-SDLNK9Y2F3');
 </script>
 <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Azure Key Vault secrets management using Azure CLI from an Ubuntu virtual machine." name="description"/><title>Azure Key Vault Secrets Management | Yasser Alrajeh</title>
+<meta content="Azure Governance portfolio project covering Azure Policy, RBAC, resource locks, cost governance, tagging, compliance, and validation." name="description"/><title>Azure Governance Enterprise Lab | Yasser Alrajeh</title>
 <link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
 /* Unified project typography */
 .project-page .doc,
@@ -158,31 +158,22 @@
 }
 </style>
 <style id="project-screenshot-size-fix">
-/* Balanced screenshot sizing: clear without filling the entire screen */
+/* Full-width implementation screenshots across every project page */
 body.project-page main.doc > .container,
 body.project-page main.doc .container {
-  width: min(94vw, 1120px) !important;
-  max-width: 1120px !important;
+  width: min(96vw, 1280px) !important;
+  max-width: 1280px !important;
 }
 body.project-page main.doc img.doc-img,
 body.project-page main.doc p > img.doc-img,
 body.project-page main.doc figure img.doc-img {
   display: block !important;
-  width: min(100%, 940px) !important;
-  max-width: 940px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
   height: auto !important;
-  max-height: 680px !important;
+  max-height: none !important;
   margin: 22px auto 14px !important;
   object-fit: contain !important;
-}
-body.project-page main.doc img.doc-img.is-portrait {
-  width: auto !important;
-  max-width: min(100%, 700px) !important;
-  max-height: 720px !important;
-}
-body.project-page main.doc img.doc-img.is-wide {
-  width: min(100%, 1000px) !important;
-  max-width: 1000px !important;
 }
 body.project-page main.doc p:has(> img.doc-img),
 body.project-page main.doc figure:has(img.doc-img) {
@@ -193,29 +184,11 @@ body.project-page main.doc figure:has(img.doc-img) {
 }
 @media (max-width: 700px) {
   body.project-page main.doc > .container,
-  body.project-page main.doc .container { width: 92vw !important; }
-  body.project-page main.doc img.doc-img,
-  body.project-page main.doc img.doc-img.is-portrait,
-  body.project-page main.doc img.doc-img.is-wide {
-    width: 100% !important;
-    max-width: 100% !important;
-    max-height: none !important;
-  }
+  body.project-page main.doc .container { width: 94vw !important; }
+  body.project-page main.doc img.doc-img { width: 100% !important; }
 }
 </style>
-<style>
-/* Unified project navigation and lightbox safety */
-.project-end-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:48px auto 24px;padding-top:28px;border-top:1px solid rgba(148,163,184,.25)}
-.project-end-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;line-height:1.2;transition:transform .2s ease,opacity .2s ease}
-.project-end-actions .back-main{background:#075985;color:#fff;border:1px solid #075985}
-.project-end-actions .back-top{background:transparent;color:#e5e7eb;border:1px solid rgba(148,163,184,.55)}
-.project-end-actions a:hover{transform:translateY(-2px);opacity:.92}
-.project-end-actions .back-main:hover{background:#0c4a6e;border-color:#0c4a6e;opacity:1}
-.lightbox:not(.open){display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
-.lightbox.open{display:flex !important;visibility:visible !important;opacity:1 !important;pointer-events:auto !important}
-.lightbox img:not([src]),.lightbox img[src=""]{display:none !important}
-@media(max-width:600px){.project-end-actions{gap:10px}.project-end-actions a{width:100%;min-width:0}}
-</style>
+
 <style id="portfolio-four-fixes">
 /* Requested global project-page fixes only: image sizing + top spacing. */
 body.project-page main.doc {
@@ -261,517 +234,193 @@ body.project-page main.doc img[alt*="architecture" i] {
 </style>
 <link href="../../assets/css/project-system.css" rel="stylesheet"/>
 </head>
-<body class="project-page" id="page-top"><header><nav>
+<body class="project-page"><header><nav>
 <a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
 <a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
-<main class="doc"><div class="container"><section class="project-hero"><h1 class="project-main-title">Azure Key Vault Secrets Management</h1><div class="project-cover-wrap"><img alt="Azure Key Vault Secrets Management project cover" class="project-cover-image" src="images/project-cover-key-vault.jpeg"/></div><table class="project-summary-table"><tbody><tr><th scope="row">Project Category</th><td>Cloud Security</td></tr><tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr><tr><th scope="row">Core Technologies</th><td>Azure Key Vault, Azure CLI, Microsoft Entra ID, Linux</td></tr><tr><th scope="row">Project Focus</th><td>Secure secrets storage and controlled retrieval</td></tr></tbody></table></section>
-<h1>Project Overview</h1><p>Built a centralized secrets-management solution in Azure Key Vault and validated secure secret retrieval from an Ubuntu virtual machine through Azure CLI.</p><h1>1. Business Scenario</h1><p>Application credentials should not be stored in source code or local configuration files. This implementation moves API keys, database passwords, and connection strings into a controlled vault with authenticated access.</p><h1>2. Project Objectives</h1><ul><li>Deploy and configure Azure Key Vault.</li><li>Store application secrets securely.</li><li>Configure an Ubuntu VM and Azure CLI.</li><li>Authenticate to Azure and retrieve authorized secrets.</li><li>Validate access controls and successful secret retrieval.</li></ul><h1>3. Lab Environment</h1>
-<table>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Component</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>Cloud Platform</td>
-<td>Microsoft Azure</td>
-</tr>
-<tr class="odd">
-<td>Subscription</td>
-<td>Azure subscription 1</td>
-</tr>
-<tr class="even">
-<td>Region</td>
-<td>East US 2</td>
-</tr>
-<tr class="odd">
-<td>Resource Group</td>
-<td>rg-ycs-keyvault-lab-01</td>
-</tr>
-<tr class="even">
-<td>Key Vault</td>
-<td>kv-ycs-01</td>
-</tr>
-<tr class="odd">
-<td>Virtual Machine</td>
-<td>vm-ycs-app-01</td>
-</tr>
-<tr class="even">
-<td>Operating System</td>
-<td>Ubuntu Server 24.04 LTS</td>
-</tr>
-<tr class="odd">
-<td>Authentication</td>
-<td>Azure Device Login</td>
-</tr>
-<tr class="even">
-<td>Access Method</td>
-<td>Native SSH</td>
-</tr>
-<tr class="odd">
-<td>Management Tool</td>
-<td>Azure CLI</td>
-</tr>
-</tbody>
-</table>
-<h1>4. Resources Created</h1>
-<table>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Resource Type</strong></td>
-<td><strong>Resource Name</strong></td>
-</tr>
-<tr class="even">
-<td>Resource Group</td>
-<td>rg-ycs-keyvault-lab-01</td>
-</tr>
-<tr class="odd">
-<td>Azure Key Vault</td>
-<td>kv-ycs-01</td>
-</tr>
-<tr class="even">
-<td>Linux Virtual Machine</td>
-<td>vm-ycs-app-01</td>
-</tr>
-<tr class="odd">
-<td>Secret</td>
-<td>ApiKey</td>
-</tr>
-<tr class="even">
-<td>Secret</td>
-<td>DatabasePassword</td>
-</tr>
-<tr class="odd">
-<td>Secret</td>
-<td>StorageConnectionString</td>
-</tr>
-</tbody>
-</table>
-<h1>5. Project Architecture</h1>
-<p>The architecture illustrates the implemented access flow: an administrator connects to the Ubuntu VM over SSH, Azure CLI authenticates the user through Microsoft Entra ID using Device Code authentication, and the authenticated CLI session retrieves the three configured secrets from Azure Key Vault over encrypted HTTPS/TLS communication.</p>
-<p><img alt="Azure Key Vault secrets management architecture showing SSH access, Microsoft Entra ID authentication, Azure CLI, and secure secret retrieval" class="doc-img is-wide" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/azure-key-vault-architecture.png"/></p>
-<p><em>Architecture — Ubuntu VM uses Azure CLI with Microsoft Entra user authentication to retrieve ApiKey, DatabasePassword, and StorageConnectionString from Azure Key Vault.</em></p>
-<h1>6. Technologies Used</h1>
-<ul>
-<li><p>Microsoft Azure</p></li>
-<li><p>Azure Resource Manager</p></li>
-<li><p>Azure Key Vault</p></li>
-<li><p>Azure Virtual Machines</p></li>
-<li><p>Ubuntu Server 24.04 LTS</p></li>
-<li><p>Azure CLI</p></li>
-<li><p>OpenSSH</p></li>
-<li><p>Windows PowerShell</p></li>
-<li><p>Device Code Authentication</p></li>
-</ul>
-<h1>7. Security Features Implemented</h1>
-<p>The project demonstrates the following security practices:</p>
-<ul>
-<li><p>Centralized storage of application secrets in Azure Key Vault.</p></li>
-<li><p>Sensitive credentials kept outside application source code and local configuration files.</p></li>
-<li><p>Authenticated Azure CLI access using a Microsoft Entra user identity.</p></li>
-<li><p>Secret access performed only after successful authentication and authorization.</p></li>
-<li><p>Encrypted communication with Azure services over HTTPS/TLS.</p></li>
-<li><p>Secret values redacted from portfolio screenshots to prevent credential exposure.</p></li>
-</ul>
-<h1>8. Implementation Steps</h1>
-<p>8.1 Create the Resource Group</p>
-<p>A dedicated Resource Group was created to organize all project
-resources under a single management boundary.</p>
-<table>
-<colgroup>
-<col style="width: 33%"/>
-<col style="width: 66%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Property</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>Resource Group</td>
-<td>rg-ycs-keyvault-lab-01</td>
-</tr>
-<tr class="odd">
-<td>Region</td>
-<td>East US 2</td>
-</tr>
-</tbody>
-</table>
-<p>Using a dedicated Resource Group simplifies administration, access
-control, cost tracking, and resource cleanup after the project is
-completed.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/379296dc756682ff82f0da12102d1549d21f4f2e.png"/></p>
-<p><em>Resource Manager — Resource groups showing rg-ycs-keyvault-lab-01
-in East US 2.</em></p>
-<p>8.2 Deploy Azure Key Vault</p>
-<p>A new Azure Key Vault was deployed successfully using Azure Resource
-Manager.</p>
-<table>
-<colgroup>
-<col style="width: 33%"/>
-<col style="width: 66%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Property</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>Deployment Name</td>
-<td>kv-ycs-01</td>
-</tr>
-<tr class="odd">
-<td>Resource Type</td>
-<td>Key Vault</td>
-</tr>
-<tr class="even">
-<td>Resource Name</td>
-<td>kv-ycs-01</td>
-</tr>
-<tr class="odd">
-<td>Deployment Status</td>
-<td>Successful</td>
-</tr>
-</tbody>
-</table>
-<p>The Key Vault acts as a centralized and highly secure repository for
-storing application secrets, passwords, certificates, and cryptographic
-keys.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/853489aeef6cd0f27d0f6a0edba34084995be87f.png"/></p>
-<p><em>Deployment overview confirming kv-ycs-01 was deployed
-successfully to rg-ycs-keyvault-lab-01.</em></p>
-<p>8.3 Create Application Secrets</p>
-<p>Three application secrets were created inside Azure Key Vault.</p>
-<table>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Secret Name</strong></td>
-<td><strong>Purpose</strong></td>
-</tr>
-<tr class="even">
-<td>ApiKey</td>
-<td>API authentication key</td>
-</tr>
-<tr class="odd">
-<td>DatabasePassword</td>
-<td>Database credentials</td>
-</tr>
-<tr class="even">
-<td>StorageConnectionString</td>
-<td>Azure Storage connection string</td>
-</tr>
-</tbody>
-</table>
-<p>All secrets are encrypted at rest by Azure Key Vault and protected
-through Azure security controls.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/56fde3f38d23dbbfeeee5cbd21c128cf1b04cc23.png"/></p>
-<p><em>kv-ycs-01 Secrets pane confirming ApiKey, DatabasePassword, and
-StorageConnectionString were created and enabled.</em></p>
-<p>8.4 Verify Secret Configuration</p>
-<p>The StorageConnectionString secret was opened to verify its
-configuration.</p>
-<p>Verified properties included:</p>
-<ul>
-<li><p>Secret Identifier</p></li>
-<li><p>Creation Time</p></li>
-<li><p>Update Time</p></li>
-<li><p>Secret Status</p></li>
-<li><p>Secret Value</p></li>
-<li><p>Enabled State</p></li>
-</ul>
-<p>The secret was confirmed as enabled and ready for secure
-retrieval.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/c3ce7bc45994ff4996e30f6a61044e75b9a07e8d.png"/></p>
-<p><em>StorageConnectionString secret properties — confirmed enabled.
-The secret value is redacted for this portfolio.</em></p>
-<p>8.5 Create Ubuntu Virtual Machine</p>
-<p>An Ubuntu Server virtual machine was provisioned to simulate an
-application server accessing Azure Key Vault.</p>
-<table>
-<colgroup>
-<col style="width: 33%"/>
-<col style="width: 66%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Property</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>VM Name</td>
-<td>vm-ycs-app-01</td>
-</tr>
-<tr class="odd">
-<td>Operating System</td>
-<td>Ubuntu Server 24.04 LTS</td>
-</tr>
-<tr class="even">
-<td>Region</td>
-<td>East US 2</td>
-</tr>
-<tr class="odd">
-<td>Authentication</td>
-<td>Local User</td>
-</tr>
-<tr class="even">
-<td>Username</td>
-<td>azureuser</td>
-</tr>
-</tbody>
-</table>
-<p>The virtual machine represents a production workload that securely
-retrieves secrets from Azure Key Vault.</p>
-<p>8.6 Configure SSH Connectivity</p>
-<p>Azure automatically generated the SSH connection information.</p>
-<table>
-<colgroup>
-<col style="width: 33%"/>
-<col style="width: 66%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Property</strong></td>
-<td><strong>Value</strong></td>
-</tr>
-<tr class="even">
-<td>Protocol</td>
-<td>SSH</td>
-</tr>
-<tr class="odd">
-<td>Port</td>
-<td>22</td>
-</tr>
-<tr class="even">
-<td>Public IP</td>
-<td>20.246.80.154</td>
-</tr>
-<tr class="odd">
-<td>Username</td>
-<td>azureuser</td>
-</tr>
-</tbody>
-</table>
-<p>Azure verified that TCP port 22 was accessible through the Network
-Security Group. This validation confirms that remote administrative
-access is available.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/39705dfd758df7ad739a0ced39a225c6fb914854.png"/></p>
-<p><em>Native SSH connection blade — port 22 verified as accessible. The
-source (client) IP address is redacted for privacy.</em></p>
-<p>8.7 Connect to the Linux Virtual Machine</p>
-<p>A secure SSH session was established from Windows PowerShell.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>ssh azureuser@20.246.80.154</code></pre>
-<p>After entering the local account password, the connection was
-successfully established. The administrator was presented with the
-Ubuntu login banner and shell prompt.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/f51040a637e87ac604e4379493896b6373a4f143.png"/></p>
-<p><em>Windows PowerShell — SSH session established, Ubuntu 24.04.4 LTS
-login banner displayed.</em></p>
-<p>8.8 Install Azure CLI</p>
-<p>Azure CLI was installed inside Ubuntu to allow secure interaction
-with Azure resources.</p>
-<p>The installation completed successfully and included:</p>
-<ul>
-<li><p>Package download</p></li>
-<li><p>Dependency installation</p></li>
-<li><p>Repository configuration</p></li>
-<li><p>Azure CLI version installation</p></li>
-</ul>
-<p>Azure CLI provides a command-line interface for managing Azure
-resources directly from Linux.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/28e6697704f40d6b3cc752043b1682913994262e.png"/></p>
-<p><em>Azure CLI package installation completing successfully on the
-Ubuntu virtual machine.</em></p>
-<p>8.9 Authenticate Azure CLI</p>
-<p>Azure CLI authentication was initiated using Device Code
-authentication.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az login --use-device-code</code></pre>
-<p>Azure generated a temporary authentication code and instructed the
-user to visit Microsoft's device login portal. This authentication
-method is commonly used for systems without a graphical web browser.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/64db1aff7ef1cf1239babeea290076b4b1726398.png"/></p>
-<pre class="command-block"><code>az login --use-device-code — Azure generates a one-time device
-code (redacted here since it grants sign-in access).</code></pre>
-<p>8.10 Complete Microsoft Authentication</p>
-<p>The authentication code generated by Azure CLI was entered into
-Microsoft's authentication page.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/4b0993819ee90572461fc2c5039423118381b491.png"/></p>
-<p><em>Microsoft device login page — entering the one-time code
-(redacted).</em></p>
-<p>After successful authentication, Azure CLI established an authenticated session using the Microsoft Entra user identity. The CLI could then access Azure resources according to the permissions assigned to that identity, without storing the user password in the terminal session.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/8a68666f547d73c3c62741e733208976df6cc76d.png"/></p>
-<p><em>Microsoft Azure CLI confirming successful sign-in.</em></p>
-<h1>9. Azure CLI Operations, Validation, and Project Outcome</h1>
-<p>9.1 Verify Azure Authentication</p>
-<p>After completing the Device Code authentication process, the active
-Azure subscription was verified using Azure CLI.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az account show</code></pre>
-<p><strong>Purpose</strong></p>
-<p>The command displays information about the currently authenticated
-Azure account and confirms that Azure CLI is connected to the correct
-subscription.</p>
-<p><strong>Verification Results</strong></p>
-<p>The following information was successfully returned:</p>
-<ul>
-<li><p>Active Azure Subscription</p></li>
-<li><p>Subscription ID</p></li>
-<li><p>Tenant ID</p></li>
-<li><p>Tenant Name</p></li>
-<li><p>User Account</p></li>
-<li><p>Azure Cloud Environment</p></li>
-<li><p>Subscription State</p></li>
-</ul>
-<p>This validation confirms that Azure CLI is authenticated with the intended Microsoft Entra user identity and connected to the expected Azure subscription.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1c80f6e38f5b511cbaa7e22603a0a9c6c9b04b52.png"/></p>
-<pre class="command-block"><code>az account show — subscription and tenant details confirmed
-(tenant/subscription IDs and account email redacted for
-privacy).</code></pre>
-<p>9.2 List Available Secrets</p>
-<p>After authentication was verified, Azure CLI was used to display all
-secrets stored inside Azure Key Vault.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az keyvault secret list \
---vault-name kv-ycs-01 \
---output table</code></pre>
-<p><strong>Result</strong></p>
-<p>Azure CLI successfully returned the following secrets:</p>
-<table>
-<colgroup>
-<col style="width: 100%"/>
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><strong>Secret</strong></td>
-</tr>
-<tr class="even">
-<td>ApiKey</td>
-</tr>
-<tr class="odd">
-<td>DatabasePassword</td>
-</tr>
-<tr class="even">
-<td>StorageConnectionString</td>
-</tr>
-</tbody>
-</table>
-<p>This confirmed that:</p>
-<ul>
-<li><p>The Key Vault exists.</p></li>
-<li><p>Azure CLI can successfully communicate with Azure Key
-Vault.</p></li>
-<li><p>The authenticated account has sufficient permissions to enumerate
-stored secrets.</p></li>
-</ul>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/48149ee8fa9ca4a3e0efce6df5928f034657e930.png"/></p>
-<pre class="command-block"><code>az keyvault secret list — all three secrets returned with their
-status confirmed as enabled.</code></pre>
-<p>9.3 Retrieve the API Key</p>
-<p>The API key stored inside Azure Key Vault was retrieved using Azure
-CLI.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az keyvault secret show \
---vault-name kv-ycs-01 \
---name ApiKey \
---query value -o tsv</code></pre>
-<p><strong>Purpose</strong></p>
-<p>Instead of storing API credentials inside application source code,
-Azure Key Vault securely stores the secret and returns it only after
-successful authentication.</p>
-<p><strong>Result</strong></p>
-<p>Azure CLI successfully returned the stored API key.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/1596514d51ed4abcad787598f5991adba1cfee60.png"/></p>
-<pre class="command-block"><code>az keyvault secret show — ApiKey retrieved successfully. The
-returned value is redacted for this portfolio.</code></pre>
-<p>9.4 Retrieve the Database Password</p>
-<p>The database password was retrieved directly from Azure Key
-Vault.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az keyvault secret show \
---vault-name kv-ycs-01 \
---name DatabasePassword \
---query value -o tsv</code></pre>
-<p><strong>Purpose</strong></p>
-<p>This command demonstrates secure retrieval of database credentials
-without embedding passwords inside application configuration files.</p>
-<p><strong>Result</strong></p>
-<p>The password was successfully returned by Azure Key Vault after
-verifying the user's identity and permissions.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/67103ef5c0451a6fcd3ac6d533912cfc4935290f.png"/></p>
-<pre class="command-block"><code>az keyvault secret show — DatabasePassword retrieved
-successfully. The returned value is redacted for this
-portfolio.</code></pre>
-<p>9.5 Retrieve the Storage Connection String</p>
-<p>The final secret retrieved from Azure Key Vault was the storage
-connection string.</p>
-<p>Command executed:</p>
-<pre class="command-block"><code>az keyvault secret show \
---vault-name kv-ycs-01 \
---name StorageConnectionString \
---query value -o tsv</code></pre>
-<p><strong>Purpose</strong></p>
-<p>Applications commonly use storage connection strings to access Azure
-Storage Accounts. Storing them in Azure Key Vault prevents accidental
-exposure and simplifies credential management.</p>
-<p><strong>Result</strong></p>
-<p>Azure CLI successfully retrieved the connection string stored in the
-Key Vault.</p>
-<p><img alt="Azure Key Vault Secrets Management project screenshot" class="doc-img" loading="lazy" onclick="openLightbox(this.src, this.alt)" src="images/7df92c695cd9e4393bc3d13f0742df655fc4a558.png"/></p>
-<pre class="command-block"><code>az keyvault secret show — StorageConnectionString retrieved
-successfully. The returned value is redacted for this
-portfolio.</code></pre>
-<h1>10. Implementation Validation and Security Outcomes</h1>
-<p>The completed lab was validated across deployment, authentication, connectivity, and secret retrieval.</p>
-<table>
-<colgroup><col style="width: 72%"/><col style="width: 27%"/></colgroup>
-<tbody>
-<tr class="odd"><td><strong>Validation Item</strong></td><td><strong>Status</strong></td></tr>
-<tr class="even"><td>Dedicated Resource Group</td><td>Completed</td></tr>
-<tr class="odd"><td>Azure Key Vault Deployment</td><td>Completed</td></tr>
-<tr class="even"><td>Ubuntu VM and SSH Connectivity</td><td>Completed</td></tr>
-<tr class="odd"><td>Azure CLI Installation</td><td>Completed</td></tr>
-<tr class="even"><td>Microsoft Entra User Authentication</td><td>Completed</td></tr>
-<tr class="odd"><td>Azure Subscription Verification</td><td>Completed</td></tr>
-<tr class="even"><td>Secret Enumeration</td><td>Completed</td></tr>
-<tr class="odd"><td>Secure Secret Retrieval</td><td>Completed</td></tr>
-</tbody>
-</table>
-<h2>Security Outcomes</h2>
-<ul>
-<li><p>API keys, database credentials, and storage connection strings were centralized in Azure Key Vault rather than stored in application code.</p></li>
-<li><p>Secret retrieval required an authenticated Microsoft Entra user identity with sufficient permissions.</p></li>
-<li><p>Azure CLI successfully retrieved all three configured secrets from the Ubuntu VM.</p></li>
-<li><p>Sensitive secret values and identity details were redacted from portfolio evidence.</p></li>
-</ul>
-</div><div aria-label="Project navigation" class="project-end-actions"><a class="back-main" href="../../index.html#projects">← Back to Main Page</a><a class="back-top" href="#page-top">↑ Back to Top</a></div></main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
-<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="" id="lightboxImage" src=""/></div>
+<main class="doc">
+<div class="container">
+<section class="project-hero">
+<h1 class="project-main-title">Azure Governance Enterprise Lab</h1>
+<div class="project-cover-wrap">
+<img alt="Azure Governance project cover" class="project-cover-image" src="images/project-cover-azure-governance.png"/>
+</div>
+<table class="project-summary-table"><tbody>
+<tr><th scope="row">Project Category</th><td>Cloud Governance and Security</td></tr>
+<tr><th scope="row">Platform</th><td>Microsoft Azure</td></tr>
+<tr><th scope="row">Core Technologies</th><td>Azure Policy, RBAC, Resource Locks, Cost Management</td></tr>
+<tr><th scope="row">Project Focus</th><td>Subscription-level governance for Production and Development</td></tr>
+</tbody></table>
+</section>
+<h1>Project Overview</h1>
+<p>This enterprise lab implements a subscription-level Azure governance foundation for two logically separated environments. It combines standardized naming and tagging, approved-region enforcement, policy-driven controls, role-based access control, deletion protection, cost monitoring, compliance review, and validation testing.</p>
+<h1>1. Business Scenario and Requirements</h1>
+<p>YCS Enterprise Lab represents a small-to-medium organization hosting controlled Production workloads and an isolated Development environment in Microsoft Azure. The governance model improves resource organization, operational control, security management, policy enforcement, cost visibility, and future scalability.</p>
+<table><tbody>
+<tr><th>Requirement</th><th>Description</th></tr>
+<tr><td>Environment separation</td><td>Production and Development resources are logically separated.</td></tr>
+<tr><td>Standardized naming</td><td>Azure resources follow identifiable naming conventions adapted to each resource type.</td></tr>
+<tr><td>Regional control</td><td>Resources are restricted to Qatar Central or UAE Central.</td></tr>
+<tr><td>Tag governance</td><td>Resources use Environment, Department, Owner, CostCenter, Criticality, and Project metadata.</td></tr>
+<tr><td>Environment validation</td><td>The Environment tag is restricted to Production or Development.</td></tr>
+<tr><td>Tag inheritance</td><td>Resources can inherit the Environment tag from their parent Resource Group when missing.</td></tr>
+<tr><td>Resource protection</td><td>Production resources are protected against accidental deletion.</td></tr>
+<tr><td>Cost control</td><td>A monthly budget and cost notifications are configured.</td></tr>
+<tr><td>Access governance</td><td>Administrative access follows Azure RBAC and scoped access principles.</td></tr>
+<tr><td>Compliance visibility</td><td>Azure Policy compliance is reviewed and documented.</td></tr>
+</tbody></table>
+<h1>2. Scope and Architecture</h1>
+<p>The project covers subscription-level governance, separate resource groups, standardized resource names and tags, representative networking and storage resources, custom and built-in Azure Policy assignments, approved locations, tag inheritance, resource protection, monthly budgets, RBAC, compliance review, and validation testing.</p>
+<h2>2.1 Subscription Design</h2>
+<table><tbody>
+<tr><th>Component</th><th>Value</th></tr>
+<tr><td>Subscription</td><td>Azure subscription 1</td></tr>
+<tr><td>Subscription purpose</td><td>Azure Governance Enterprise Lab</td></tr>
+<tr><td>Governance scope</td><td>Subscription level</td></tr>
+<tr><td>Production region</td><td>Qatar Central</td></tr>
+<tr><td>Development region</td><td>UAE Central</td></tr>
+<tr><td>Approved regions</td><td>Qatar Central and UAE Central</td></tr>
+<tr><td>Project owner</td><td>Yasser Alrajeh</td></tr>
+</tbody></table>
+<p>A single subscription was selected for this controlled lab. Production and Development are separated by resource group while Azure Policy, RBAC, Cost Management, budgets, and compliance reporting are centrally governed at subscription scope.</p>
+<h2>2.2 Resource Hierarchy</h2>
+<div class="architecture-tree"><ul>
+<li><span class="tree-label">Microsoft Entra Tenant</span><ul>
+<li><span class="tree-label">Azure Subscription 1</span><ul>
+<li><span class="tree-label">Governance Controls</span><ul>
+<li><span class="tree-label">Azure Policy</span></li>
+<li><span class="tree-label">Azure RBAC</span></li>
+<li><span class="tree-label">Resource Locks</span></li>
+<li><span class="tree-label">Cost Management</span></li>
+<li><span class="tree-label">Compliance</span></li>
+</ul></li>
+<li><span class="tree-label">rg-ycs-prod-core-01</span></li>
+<li><span class="tree-label">rg-ycs-dev-core-01</span></li>
+</ul></li></ul></li>
+</ul></div>
+<h1>3. Naming, Environment, and Tagging Design</h1>
+<h2>3.1 Naming Convention</h2>
+<pre class="command-block"><code>&lt;resource-type&gt;-&lt;organization&gt;-&lt;environment&gt;-&lt;workload/optional&gt;-&lt;instance&gt;</code></pre>
+<p>The naming model is adapted by resource type. Some Azure resources, such as Storage Accounts, require a different format because names must be globally unique, lowercase, alphanumeric, and cannot contain hyphens.</p>
+<h2>3.2 Environment Design</h2>
+<table><tbody>
+<tr><th>Environment</th><th>Resource Group</th><th>Region</th><th>Criticality</th><th>Purpose</th></tr>
+<tr><td>Production</td><td>rg-ycs-prod-core-01</td><td>Qatar Central</td><td>High</td><td>Controlled production resources</td></tr>
+<tr><td>Development</td><td>rg-ycs-dev-core-01</td><td>UAE Central</td><td>Medium</td><td>Development and testing resources</td></tr>
+</tbody></table>
+<h2>3.3 Tagging Strategy</h2>
+<table><tbody>
+<tr><th>Tag</th><th>Production Value</th><th>Development Value</th><th>Purpose</th></tr>
+<tr><td>Environment</td><td>Production</td><td>Development</td><td>Identifies the deployment environment.</td></tr>
+<tr><td>Department</td><td>IT</td><td>IT</td><td>Identifies the responsible department.</td></tr>
+<tr><td>Owner</td><td>CloudTeam</td><td>CloudTeam</td><td>Identifies the responsible cloud team.</td></tr>
+<tr><td>CostCenter</td><td>CC-1001</td><td>CC-1001</td><td>Supports cost allocation and reporting.</td></tr>
+<tr><td>Criticality</td><td>High</td><td>Medium</td><td>Identifies business impact level.</td></tr>
+<tr><td>Project</td><td>EnterpriseLab</td><td>EnterpriseLab</td><td>Associates resources with the project.</td></tr>
+</tbody></table>
+<h1>4. Governance Control Design</h1>
+<table><tbody>
+<tr><th>Governance Control</th><th>Configuration</th><th>Purpose</th></tr>
+<tr><td>Custom Azure Policy</td><td>Allow only Production and Development Environment values</td><td>Prevent invalid environment classification.</td></tr>
+<tr><td>Tag inheritance policy</td><td>Inherit Environment from Resource Group</td><td>Standardize metadata automatically.</td></tr>
+<tr><td>Allowed Locations</td><td>Qatar Central and UAE Central</td><td>Restrict deployments to approved regions.</td></tr>
+<tr><td>Resource Lock</td><td>CanNotDelete on Production Resource Group</td><td>Protect against accidental deletion.</td></tr>
+<tr><td>Budget alerts</td><td>10%, 25%, and 50% shown in the captured configuration</td><td>Provide progressive cost notifications.</td></tr>
+<tr><td>RBAC</td><td>Reader and Contributor assignment workflow with scoped administration</td><td>Demonstrate delegated access.</td></tr>
+<tr><td>Compliance</td><td>Azure Policy Compliance dashboard</td><td>Validate governance implementation.</td></tr>
+</tbody></table>
+<h1>5. Implementation</h1>
+<p>The Azure Portal was used to configure and validate the governed environment. The screenshots are ordered below according to what each image actually shows. Intermediate wizard screens are retained where they document the implementation workflow.</p>
+<h2>5.1 Resource Groups and Core Resources</h2>
+<p>Representative networking and platform resources were provisioned to provide a practical scope for governance controls.</p>
+<p><img alt="Initial Azure Resource Manager view" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-01.png"/></p>
+<p><em>Initial Resource Manager / All resources view used at the start of the provisioning workflow.</em></p>
+<p><img alt="Virtual Network marketplace selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-07.png"/></p>
+<p><em>Virtual Network selected from Azure Marketplace during Production network provisioning.</em></p>
+<p><img alt="Production VNet address space and subnet configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-09.png"/></p>
+<p><em>Production VNet configuration showing the 10.10.0.0/16 address space and subnet configuration workflow.</em></p>
+<p><img alt="Production subnet configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-10.png"/></p>
+<p><em>Production subnet configured with a 10.10.1.0/24 range. This screenshot captures the resource naming used during provisioning.</em></p>
+<p><img alt="NSG marketplace selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-12.png"/></p>
+<p><em>Network Security Group selected from Azure Marketplace as part of the Production network build.</em></p>
+<p><img alt="Public IP marketplace selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-14.png"/></p>
+<p><em>Public IP Address selected from Azure Marketplace for the governed environment.</em></p>
+<p><img alt="Production resource inventory" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-47.png"/></p>
+<p><em>Production Resource Group inventory showing the deployed NSG, Public IP, Storage Account, and Virtual Network.</em></p>
+<h2>5.2 Tagging Implementation</h2>
+<p>The approved metadata schema was applied to the Production resource group to support ownership, environment classification, criticality, and cost allocation.</p>
+<p><img alt="Resource group Tags blade before values were added" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-20.png"/></p>
+<p><em>Production Resource Group Tags blade before the metadata values were entered.</em></p>
+<p><img alt="Production resource group tags" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-21.png"/></p>
+<p><em>Production tags configured with Environment: Production, Department: IT, Owner: CloudTeam, CostCenter: CC-1001, Criticality: High, and Project: EnterpriseLab.</em></p>
+<h2>5.3 Azure Policy</h2>
+<p>Custom and built-in Azure Policies were used to control Environment values, inherit metadata, and restrict approved deployment regions.</p>
+<p><img alt="Initial Azure Policy overview" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-25.png"/></p>
+<p><em>Azure Policy Overview at an early stage of the lab before the final policy set was fully evaluated.</em></p>
+<p><img alt="Assign policy workflow" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-27.png"/></p>
+<p><em>Subscription-level policy assignment workflow.</em></p>
+<p><img alt="Custom Environment policy JSON" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-32.png"/></p>
+<p><em>Custom policy rule restricting the Environment tag to Production or Development.</em></p>
+<p><img alt="Allowed Environment policy review" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-35.png"/></p>
+<p><em>Review + create screen for the Allowed-Environment-Tag-Values policy assignment.</em></p>
+<p><img alt="Tag inheritance policy selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-39.png"/></p>
+<p><em>Built-in “Inherit a tag from the resource group if missing” policy selected for assignment.</em></p>
+<p><img alt="Environment tag parameter" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-41.png"/></p>
+<p><em>Environment specified as the tag name parameter for the inheritance policy.</em></p>
+<p><img alt="Allowed Azure locations" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-45.png"/></p>
+<p><em>Allowed Locations policy configured with Qatar Central and UAE Central, matching the values visible in the captured configuration.</em></p>
+<h2>5.4 Resource Protection</h2>
+<p>A CanNotDelete lock was used as a Production protection control. The deletion workflow below documents the controlled validation attempt against the Production resource group.</p>
+<p><img alt="Production resource group deletion validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-73.png"/></p>
+<p><em>Controlled deletion attempt against rg-ycs-prod-core-01 as part of the resource-protection validation workflow.</em></p>
+<h2>5.5 Cost Governance</h2>
+<p>A monthly budget configuration was prepared with progressive alert thresholds. The screenshot shows the thresholds that were actually captured during the implementation.</p>
+<p><img alt="Azure budget alert configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-55.png"/></p>
+<p><em>Azure Budget alert conditions showing 10%, 25%, and 50% thresholds with an email recipient configured.</em></p>
+<h2>5.6 Role-Based Access Control</h2>
+<p>Azure RBAC was configured through the Resource Group Access control (IAM) workflow. Reader and Contributor roles were selected to demonstrate differentiated access levels.</p>
+<p><img alt="IAM add role assignment menu" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-58.png"/></p>
+<p><em>Access control (IAM) menu used to start a new role assignment.</em></p>
+<p><img alt="Reader role selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-59.png"/></p>
+<p><em>Reader role selected to provide read-only access without modification permissions.</em></p>
+<p><img alt="Second IAM role assignment workflow" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-62.png"/></p>
+<p><em>Role assignment workflow opened again to configure an additional delegated role.</em></p>
+<p><img alt="Contributor member selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-64.png"/></p>
+<p><em>Contributor role assignment with contributor01 selected as the member.</em></p>
+<h1>6. Governance Validation and Compliance</h1>
+<h2>6.1 Policy Compliance Review</h2>
+<p>The Azure Policy dashboards were reviewed to identify compliant and non-compliant resources and determine where remediation was required.</p>
+<p><img alt="Azure Policy compliance overview" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-75.png"/></p>
+<p><em>Policy Overview showing 40% overall resource compliance, with two compliant and two non-compliant policy evaluations.</em></p>
+<p><img alt="Detailed Azure Policy compliance" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-76.png"/></p>
+<p><em>Detailed Compliance view showing Allowed Locations and Allowed-Environment-Tag-Values as non-compliant, while the tag inheritance assignment is compliant.</em></p>
+<h2>6.2 Resource Inventory Validation</h2>
+<p>The Production resource inventory was reviewed to confirm the set of resources covered by governance controls.</p>
+<p><img alt="Production resource group inventory" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-47.png"/></p>
+<p><em>Resource inventory for rg-ycs-prod-core-01 used to validate the Production governance scope.</em></p>
+<h2>6.3 Negative Testing</h2>
+<p>A deliberate out-of-region deployment was prepared to test the Allowed Locations policy. Australia Central was selected as the non-approved region for the test.</p>
+<p><img alt="Virtual network marketplace for negative test" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-69.png"/></p>
+<p><em>Virtual Network deployment workflow opened in the Development resource group for the policy validation test.</em></p>
+<p><img alt="Out of region deployment test" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-70.png"/></p>
+<p><em>Negative-test configuration using Australia Central, a region outside the approved Qatar Central / UAE Central policy set.</em></p>
+<h2>6.4 Governance Monitoring Alert Setup</h2>
+<p>Azure Monitor was also opened at subscription scope to prepare governance-related alerting. These screenshots document the alert-rule setup workflow rather than a final “no active alerts” result.</p>
+<p><img alt="Azure Monitor alert rule resource selection" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-81.png"/></p>
+<p><em>Alert rule creation workflow with subscription resources available for scope selection.</em></p>
+<p><img alt="Azure subscription alert scope" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-83.png"/></p>
+<p><em>Azure subscription selected as the alert-rule scope.</em></p>
+<p><img alt="Azure Monitor activity alert scope" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/figure-85.png"/></p>
+<p><em>Alert-rule setup opened from Monitor / Activity log with the subscription selected as scope.</em></p>
+<h1>7. Project Conclusion</h1>
+<p>This project established a practical Azure governance foundation across Production and Development environments. The implementation combined standardized tagging, Azure Policy enforcement, scoped RBAC, resource protection, budget controls, compliance review, negative testing, and subscription-level monitoring preparation.</p>
+<p>The final portfolio page now keeps the original implementation evidence while ensuring that each screenshot is described by what it actually shows.</p>
+<div class="project-bottom-nav" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:36px 0 10px;">
+<a class="back-link" href="../../index.html#projects">← Back to Main Page</a>
+<a class="back-link" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a>
+</div>
+</div>
+</main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
 <script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
-<script id="project-screenshot-ratio-classifier">
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('main.doc img.doc-img').forEach(function (img) {
-    function classify() {
-      if (!img.naturalWidth || !img.naturalHeight) return;
-      var ratio = img.naturalWidth / img.naturalHeight;
-      img.classList.remove('is-portrait', 'is-wide');
-      if (ratio < 1.05) img.classList.add('is-portrait');
-      else if (ratio > 1.75) img.classList.add('is-wide');
-    }
-    if (img.complete) classify(); else img.addEventListener('load', classify, { once: true });
-  });
-});
-</script>
 <script src="../../assets/js/project-system.js"></script>
 </body></html>
