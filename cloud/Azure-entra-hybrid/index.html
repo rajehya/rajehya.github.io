@@ -6,6 +6,193 @@
 <meta content="Microsoft Entra Hybrid Identity Integration using Microsoft Entra Connect Sync, Active Directory, Password Hash Synchronization, OU filtering, and Delta Sync validation." name="description"/>
 <title>Microsoft Entra Hybrid Identity Integration | Yasser Alrajeh</title>
 <link href="../../assets/css/project-system.css" rel="stylesheet"/>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=xtewlQZUgbtYQi97FSG_0W7JKMUIVU5yjAMt64XuApaiINfjdNta7Yaqytv6RWRYh-cC1Y7M-EcMMK5chZfTX3Le2C8KQ9REPBtjoDpMkoFbBtWQFLLSdrTjrrIjd7VwLAWd50KauSFQMpfp6JDbmolAGzQvCZYwpCir3xjhrDPSuj5n5ZmxBOHDz6iEol0Gu-gL8FnJp2St40276bnRffsY5HsaBm4ePQEuHSED9x5-WnrHEyCHm86WkjGRNi0GfODZYQpxXJtWMJKu-UK_50MHQ0tRED4OeeTGmLqw4tEsh3kuJliWs32Sgr87zRjxLi-WhlhU6ge6FnCCz6IEEQ" charset="UTF-8"></script><style id="active-directory-visual-match">
+/* Visual overrides to match the Active Directory portfolio page */
+:root{
+  --ad-page-bg:#17283a;
+  --ad-header-bg:#22364b;
+  --ad-panel-bg:rgba(40,63,84,.72);
+  --ad-panel-border:rgba(120,169,204,.16);
+  --ad-accent:#67b9df;
+  --ad-text:#eef5fa;
+  --ad-muted:#d5e1e9;
+  --ad-button-bg:#2d4f6b;
+  --ad-button-hover:#376483;
+}
+html{scroll-behavior:smooth;}
+body.project-page{
+  margin:0;
+  background:var(--ad-page-bg)!important;
+  color:var(--ad-text)!important;
+}
+body.project-page header{
+  background:var(--ad-header-bg)!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  box-shadow:none!important;
+}
+body.project-page header nav.container{
+  max-width:1200px!important;
+  margin:0 auto!important;
+  min-height:74px!important;
+  padding:0 28px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
+  box-sizing:border-box!important;
+}
+body.project-page header .brand,
+body.project-page header .back-link{
+  width:auto!important;
+  margin:0!important;
+  padding:0!important;
+  position:static!important;
+  transform:none!important;
+  text-decoration:none!important;
+}
+body.project-page header .brand-name{
+  color:#fff!important;
+  font-size:17px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:.1px!important;
+}
+body.project-page header .back-link{
+  color:#eef5fa!important;
+  font-size:14px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  white-space:nowrap!important;
+}
+body.project-page header .back-link:hover,
+body.project-page header .brand:hover{opacity:.86!important;}
+body.project-page main.doc{background:transparent!important;}
+body.project-page main.doc>.container{
+  max-width:1200px!important;
+  margin:0 auto!important;
+  padding:42px 28px 56px!important;
+  box-sizing:border-box!important;
+}
+body.project-page .project-hero{
+  text-align:center!important;
+  margin:0 auto 34px!important;
+}
+body.project-page .project-main-title{
+  margin:0 0 20px!important;
+  color:var(--ad-accent)!important;
+  font-size:clamp(30px,3.2vw,46px)!important;
+  line-height:1.15!important;
+  font-weight:750!important;
+  letter-spacing:-.7px!important;
+  text-align:center!important;
+}
+body.project-page .project-cover-wrap{
+  width:min(100%,760px)!important;
+  margin:0 auto 26px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body.project-page .project-cover-image{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  border-radius:6px!important;
+  box-shadow:none!important;
+}
+body.project-page .project-summary-table{
+  width:min(100%,900px)!important;
+  margin:0 auto!important;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  overflow:hidden!important;
+  background:var(--ad-panel-bg)!important;
+  border:1px solid var(--ad-panel-border)!important;
+  border-radius:6px!important;
+  color:var(--ad-text)!important;
+}
+body.project-page .project-summary-table th,
+body.project-page .project-summary-table td{
+  padding:14px 18px!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  background:transparent!important;
+  text-align:left!important;
+  vertical-align:middle!important;
+  font-size:15px!important;
+  line-height:1.45!important;
+}
+body.project-page .project-summary-table tr:last-child th,
+body.project-page .project-summary-table tr:last-child td{border-bottom:0!important;}
+body.project-page .project-summary-table th{
+  width:185px!important;
+  color:#fff!important;
+  font-weight:700!important;
+}
+body.project-page .project-summary-table td{color:#eef4f8!important;}
+body.project-page .doc> .container > h1,
+body.project-page main.doc>.container>h1{
+  color:var(--ad-accent)!important;
+}
+body.project-page h1,
+body.project-page h2,
+body.project-page h3{color:var(--ad-accent)!important;}
+body.project-page p,body.project-page li,body.project-page td{color:var(--ad-muted);} 
+body.project-page table:not(.project-summary-table){
+  background:rgba(35,55,75,.55)!important;
+  border-color:rgba(255,255,255,.1)!important;
+}
+body.project-page table:not(.project-summary-table) th{
+  background:rgba(54,87,112,.55)!important;
+  color:#fff!important;
+}
+body.project-page .project-bottom-nav{
+  margin-top:46px!important;
+  padding-top:24px!important;
+  display:flex!important;
+  justify-content:center!important;
+  gap:12px!important;
+  border-top:1px solid rgba(255,255,255,.08)!important;
+}
+body.project-page .project-bottom-nav a{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:42px!important;
+  padding:0 18px!important;
+  border-radius:6px!important;
+  background:var(--ad-button-bg)!important;
+  border:1px solid rgba(125,183,221,.25)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:650!important;
+  text-decoration:none!important;
+  box-shadow:none!important;
+}
+body.project-page .project-bottom-nav a:hover{
+  background:var(--ad-button-hover)!important;
+  transform:none!important;
+}
+body.project-page footer{
+  background:var(--ad-header-bg)!important;
+  color:#dce8ef!important;
+  border-top:1px solid rgba(255,255,255,.07)!important;
+}
+@media (max-width:700px){
+  body.project-page header nav.container{min-height:64px!important;padding:0 18px!important;}
+  body.project-page header .brand-name{font-size:15px!important;}
+  body.project-page header .back-link{font-size:13px!important;}
+  body.project-page main.doc>.container{padding:30px 18px 44px!important;}
+  body.project-page .project-main-title{font-size:30px!important;}
+  body.project-page .project-summary-table th,body.project-page .project-summary-table td{padding:12px 13px!important;font-size:13px!important;}
+  body.project-page .project-summary-table th{width:125px!important;}
+  body.project-page .project-bottom-nav{flex-wrap:wrap!important;}
+}
+</style>
+
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
 <script>
