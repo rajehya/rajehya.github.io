@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SDLNK9Y2F3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SDLNK9Y2F3');
+</script>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Azure DNSSEC technical case study for yasserlab.xyz: Azure Public DNS, Dynadot delegation, DS, DNSKEY, RRSIG and Linux/PowerShell verification." name="description"/><title>Azure DNSSEC | yasserlab.xyz | Yasser Alrajeh</title>
+<link href="../../assets/css/style.css" rel="stylesheet"/><link href="../../assets/css/portfolio-enhancements.css" rel="stylesheet"/><style data-portfolio-enhancements="all-projects-final">
+/* Unified project typography */
+.project-page .doc,
+.project-page .doc p,
+.project-page .doc li,
+.project-page .doc td,
+.project-page .doc th {
+  font-size: 18px !important;
+  line-height: 1.8 !important;
+}
+
+.project-page .doc table {
+  font-size: 17px !important;
+}
+
+.project-page .doc h1,
+.project-page .doc h2,
+.project-page .doc h3,
+.project-page .doc h4 {
+  color: #0078d4 !important;
+  line-height: 1.3 !important;
+}
+
+/* Unified command and code blocks */
+.project-page .doc pre.command-block {
+  display: block !important;
+  margin: 18px 0 24px !important;
+  padding: 18px 20px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(80,167,232,.45) !important;
+  border-left: 5px solid #0078d4 !important;
+  border-radius: 10px !important;
+  background: #07111f !important;
+  color: #f5f9ff !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.20) !important;
+  white-space: pre !important;
+  text-align: left !important;
+}
+
+.project-page .doc pre.command-block code {
+  display: block !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #f5f9ff !important;
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+  white-space: pre !important;
+}
+
+/* Unified architecture tree */
+.project-page .doc .architecture-tree,
+.project-page .doc .architecture-tree * {
+  box-sizing: border-box !important;
+}
+
+.project-page .doc .architecture-tree {
+  display: block !important;
+  margin: 20px 0 26px !important;
+  padding: 20px 22px !important;
+  overflow-x: auto !important;
+  border: 1px solid rgba(0,120,212,.42) !important;
+  border-radius: 12px !important;
+  background: rgba(0,120,212,.07) !important;
+}
+
+.project-page .doc .architecture-tree ul {
+  position: relative !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 0 0 28px !important;
+  list-style: none !important;
+}
+
+.project-page .doc .architecture-tree > ul {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree li {
+  position: relative !important;
+  display: block !important;
+  margin: 10px 0 !important;
+  padding: 0 0 0 24px !important;
+  list-style: none !important;
+  min-width: max-content !important;
+}
+
+.project-page .doc .architecture-tree li::marker {
+  content: "" !important;
+}
+
+.project-page .doc .architecture-tree li::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 18px !important;
+  width: 16px !important;
+  border-top: 2px solid #0078d4 !important;
+}
+
+.project-page .doc .architecture-tree li::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: -12px !important;
+  bottom: -12px !important;
+  border-left: 2px solid rgba(0,120,212,.62) !important;
+}
+
+.project-page .doc .architecture-tree li:last-child::after {
+  bottom: calc(100% - 18px) !important;
+}
+
+.project-page .doc .architecture-tree > ul > li {
+  padding-left: 0 !important;
+}
+
+.project-page .doc .architecture-tree > ul > li::before,
+.project-page .doc .architecture-tree > ul > li::after {
+  display: none !important;
+}
+
+.project-page .doc .architecture-tree .tree-label {
+  display: inline-block !important;
+  padding: 7px 11px !important;
+  border: 1px solid rgba(80,167,232,.28) !important;
+  border-radius: 7px !important;
+  background: rgba(0,120,212,.13) !important;
+  color: inherit !important;
+  font-weight: 650 !important;
+}
+
+@media (max-width: 700px) {
+  .project-page .doc,
+  .project-page .doc p,
+  .project-page .doc li,
+  .project-page .doc td,
+  .project-page .doc th {
+    font-size: 17px !important;
+  }
+  .project-page .doc pre.command-block code {
+    font-size: 15px !important;
+  }
+}
+</style>
+<style id="project-screenshot-size-fix">
+/* Full-width implementation screenshots across every project page */
+body.project-page main.doc > .container,
+body.project-page main.doc .container {
+  width: min(96vw, 1280px) !important;
+  max-width: 1280px !important;
+}
+body.project-page main.doc img.doc-img,
+body.project-page main.doc p > img.doc-img,
+body.project-page main.doc figure img.doc-img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 22px auto 14px !important;
+  object-fit: contain !important;
+}
+body.project-page main.doc p:has(> img.doc-img),
+body.project-page main.doc figure:has(img.doc-img) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc > .container,
+  body.project-page main.doc .container { width: 94vw !important; }
+  body.project-page main.doc img.doc-img { width: 100% !important; }
+}
+</style>
+<style id="portfolio-four-fixes">
+/* Requested global project-page fixes only: image sizing + top spacing. */
+body.project-page main.doc {
+  padding-top: 30px !important;
+}
+body.project-page main.doc > .container > h1:first-child,
+body.project-page main.doc > .container > .project-hero:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+body.project-page main.doc img.doc-img {
+  display: block;
+  width: min(100%, 1050px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .project-cover-image {
+  display: block;
+  width: min(100%, 1000px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+body.project-page main.doc .architecture-img,
+body.project-page main.doc .architecture-wrap img,
+body.project-page main.doc img[alt*="architecture" i] {
+  display: block;
+  width: min(100%, 1100px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  body.project-page main.doc { padding-top: 20px !important; }
+}
+</style>
+<link href="../../assets/css/project-system.css" rel="stylesheet"/>
+<style>figure{margin:24px auto 34px;max-width:1100px}figure figcaption{font-size:15px;color:#526779;text-align:center;margin-top:8px} .project-page .doc .project-cover-image{width:min(100%,420px)!important;max-height:330px!important;object-fit:contain!important} .project-page .doc figure img.doc-img{width:100%!important;max-width:1100px!important;border-radius:8px;cursor:zoom-in} .project-page .doc figure img.architecture-img{max-width:1100px!important} .project-page .doc .project-summary-table th{text-align:left}</style></head>
+<body class="project-page"><header><nav>
+<a class="brand" href="../../index.html"><span class="brand-name">Yasser Alrajeh</span></a>
+<a class="back-link" href="../../index.html#projects">← Back to Portfolio</a></nav></header>
+<main class="doc">
+<div class="container"><section class="project-hero"><h1 class="project-main-title">Azure DNSSEC | yasserlab.xyz</h1><div class="project-cover-wrap"><img alt="DNSSEC shield project cover" class="project-cover-image" src="images/dnssec-cover.png"/></div><table class="project-summary-table"><tbody><tr><th>Project Category</th><td>Cloud Security / DNS Security</td></tr><tr><th>Platform</th><td>Microsoft Azure Public DNS and Dynadot</td></tr><tr><th>Core Technologies</th><td>DNSSEC, DNSKEY, RRSIG, DS, PowerShell, Linux dig</td></tr><tr><th>Domain</th><td>yasserlab.xyz</td></tr></tbody></table></section><h1>Project Overview</h1><p>Configured DNSSEC for <strong>yasserlab.xyz</strong> with authoritative DNS hosted in Microsoft Azure and domain registration managed through Dynadot. The implementation included name-server delegation, Azure-managed signing, DS publication in the parent zone, and independent checks from Windows PowerShell and CentOS Linux. Azure reported <strong>Signed and delegation established</strong> after the parent-zone configuration was completed.</p><h1>1. Objectives and Scope</h1><p>The goal was to authenticate the origin and integrity of public DNS records and establish a verifiable chain of trust. DNSSEC protects DNS data authenticity; it does not encrypt DNS queries or prevent every DNS-based attack.</p><h1>2. Solution Architecture</h1><p>The DNS root provides the trust anchor, the .xyz parent zone publishes the DS record, and Azure hosts the signed authoritative zone. Dynadot manages registrar-side delegation. Cloudflare's public resolver (1.1.1.1) was used for validation.</p><figure><img alt="Azure DNSSEC architecture and chain of trust for yasserlab.xyz" class="doc-img architecture-img" onclick="openLightbox(this.src,this.alt)" src="images/architecture.png"/><figcaption>Figure A. DNSSEC trust chain, parent-zone delegation and validation endpoints.</figcaption></figure><h1>3. Implementation and Evidence</h1><h2>01 | Azure Public DNS Zone Overview</h2><p>The public DNS zone for yasserlab.xyz was provisioned in Azure. Azure assigned four authoritative name servers, and the zone was managed through the Azure portal.</p><figure><img alt="01 | Azure Public DNS Zone Overview" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/01_DNSSEC_Evidence_result.png"/><figcaption>01 — Azure Public DNS Zone Overview</figcaption></figure><h2>02 | Dynadot Name Server Configuration</h2><p>The registrar was configured to delegate authoritative DNS service to the four Azure DNS name servers. This is a prerequisite for consistent public resolution.</p><figure><img alt="02 | Dynadot Name Server Configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/02_DNSSEC_Evidence_result.png"/><figcaption>02 — Dynadot Name Server Configuration</figcaption></figure><h2>03 | Public DNS Delegation Verification</h2><p>PowerShell queries against a public resolver returned the Azure authoritative name servers, confirming the observed delegation path.</p><figure><img alt="03 | Public DNS Delegation Verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/03_DNSSEC_Evidence_result.png"/><figcaption>03 — Public DNS Delegation Verification</figcaption></figure><h2>04 | Azure DNSSEC Signing Configuration</h2><p>DNSSEC was enabled for the Azure public zone. At this stage the zone was signed but delegation to the parent was not yet established, as indicated by the Azure status.</p><figure><img alt="04 | Azure DNSSEC Signing Configuration" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/04_DNSSEC_Evidence_result.png"/><figcaption>04 — Azure DNSSEC Signing Configuration</figcaption></figure><h2>05 | DNSSEC Signing Records in Azure</h2><p>Azure displayed DNSSEC signing records and key metadata. The DS information was obtained from Azure for submission to the registrar.</p><figure><img alt="05 | DNSSEC Signing Records in Azure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/05_DNSSEC_Evidence_result.png"/><figcaption>05 — DNSSEC Signing Records in Azure</figcaption></figure><h2>05A | DNSSEC Delegation Established in Azure</h2><p>After the DS record was published through Dynadot, Azure reported “Signed and delegation established” for yasserlab.xyz. The captured DNSSEC details show the DS key tag (4541), signing algorithm (13, ECDSAP256SHA256), SHA-256 digest type (2), and the public key. This confirms the Azure-side delegation status at the time of capture. The DS digest and public key are intentionally visible: they are public DNSSEC verification material, not credentials.</p><figure><img alt="05A | DNSSEC Delegation Established in Azure" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/15_DNSSEC_Delegation_Established_result.png"/><figcaption>05A — DNSSEC Delegation Established in Azure</figcaption></figure><h2>06 | Parent DS Record Verification</h2><p>A direct DNS query to the parent-zone infrastructure returned the DS record with key tag 4541, algorithm 13 and digest type 2.</p><figure><img alt="06 | Parent DS Record Verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/06_DNSSEC_Evidence_result.png"/><figcaption>06 — Parent DS Record Verification</figcaption></figure><h2>07 | DNSSEC Chain-of-Trust Visualization</h2><p>The trust-path visualization connects the DNS root, the .xyz parent zone and the yasserlab.xyz zone through DNSKEY and DS relationships.</p><figure><img alt="07 | DNSSEC Chain-of-Trust Visualization" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/07_DNSSEC_Evidence_result.png"/><figcaption>07 — DNSSEC Chain-of-Trust Visualization</figcaption></figure><h2>08 | DNSKEY and RRSIG Validation in PowerShell</h2><p>PowerShell returned DNSKEY records and accompanying RRSIG signatures, as well as signed SOA data.</p><figure><img alt="08 | DNSKEY and RRSIG Validation in PowerShell" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/08_DNSSEC_Evidence_result.png"/><figcaption>08 — DNSKEY and RRSIG Validation in PowerShell</figcaption></figure><h2>09 | Signed SOA Response Verification</h2><p>The SOA response was accompanied by an RRSIG, demonstrating that the authoritative zone data was signed.</p><figure><img alt="09 | Signed SOA Response Verification" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/09_DNSSEC_Evidence_result.png"/><figcaption>09 — Signed SOA Response Verification</figcaption></figure><h2>10 | Linux dig DNSSEC Query</h2><p>CentOS was used to independently query DNSSEC-enabled records using dig and the +dnssec option.</p><figure><img alt="10 | Linux dig DNSSEC Query" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/10_DNSSEC_Evidence_result.png"/><figcaption>10 — Linux dig DNSSEC Query</figcaption></figure><h2>11 | Linux DNSSEC Verification — Additional Evidence</h2><p>A second CentOS capture records the DNSSEC response and its accompanying signature data.</p><figure><img alt="11 | Linux DNSSEC Verification — Additional Evidence" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/11_DNSSEC_Evidence_result.png"/><figcaption>11 — Linux DNSSEC Verification — Additional Evidence</figcaption></figure><h2>12 | Linux DNSKEY Validation</h2><p>The DNSKEY query returned the public keys and corresponding signature data for the domain.</p><figure><img alt="12 | Linux DNSKEY Validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/12_DNSSEC_Evidence_result.png"/><figcaption>12 — Linux DNSKEY Validation</figcaption></figure><h2>13 | Linux SOA Signature Validation</h2><p>A signed SOA response was returned, with the RRSIG covering the requested record type.</p><figure><img alt="13 | Linux SOA Signature Validation" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/13_DNSSEC_Evidence_result.png"/><figcaption>13 — Linux SOA Signature Validation</figcaption></figure><h2>14 | Final Linux Validation Evidence</h2><p>The final CentOS capture records the DNSSEC-enabled response used to cross-check the Windows results.</p><figure><img alt="14 | Final Linux Validation Evidence" class="doc-img" loading="lazy" onclick="openLightbox(this.src,this.alt)" src="images/14_DNSSEC_Evidence_result.png"/><figcaption>14 — Final Linux Validation Evidence</figcaption></figure><h1>4. Reproducible Validation Commands</h1><p>These commands reproduce the record lookups shown in the evidence. The <code>+dnssec</code> option requests DNSSEC records; the <code>AD</code> flag from a validating resolver is stronger evidence of successful validation than the presence of RRSIG records alone.</p><h2>Windows PowerShell</h2><pre class="command-block"><code>Resolve-DnsName -Name yasserlab.xyz -Type NS -Server 1.1.1.1
+Resolve-DnsName -Name yasserlab.xyz -Type DS -Server 1.1.1.1
+Resolve-DnsName -Name yasserlab.xyz -Type DNSKEY -Server 1.1.1.1 -DnssecOk
+Resolve-DnsName -Name yasserlab.xyz -Type SOA -Server 1.1.1.1 -DnssecOk</code></pre><h2>CentOS Linux</h2><pre class="command-block"><code>dig @1.1.1.1 yasserlab.xyz DNSKEY +dnssec
+dig @1.1.1.1 yasserlab.xyz SOA +dnssec
+dig @1.1.1.1 yasserlab.xyz DS +dnssec</code></pre><h1>5. Security Validation and Outcome</h1><p>The evidence captures Azure name-server delegation, DNSKEY and RRSIG responses, and the parent-zone DS record with key tag <strong>4541</strong>, signing algorithm <strong>13 (ECDSAP256SHA256)</strong> and digest type <strong>2 (SHA-256)</strong>. Azure displayed “Signed and delegation established.” DNSSEC validation was observed through the tested resolver paths. These findings demonstrate a working DNSSEC deployment for the captured tests, not protection against every DNS threat.</p><h1>6. Skills Demonstrated</h1><p>Azure Public DNS administration, registrar and parent-zone delegation, DNSSEC trust chains, ECDSA/SHA-256 signing, PowerShell DNS diagnostics, Linux <code>dig</code>, troubleshooting, and evidence-based technical documentation.</p><div class="project-bottom-nav" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:36px 0 10px;"><a class="back-link" href="../../index.html#projects">← Back to Main Page</a><a class="back-link" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to Top</a></div></div>
+</main><footer><div class="container">© <span id="year"></span> Yasser Alrajeh</div></footer>
+<div class="lightbox" id="imageLightbox" onclick="if(event.target===this) closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">✕</button><img alt="Project screenshot" id="lightboxImage"/></div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();function openLightbox(src,alt){const b=document.getElementById('imageLightbox');document.getElementById('lightboxImage').src=src;document.getElementById('lightboxImage').alt=alt||'Project screenshot';b.classList.add('open')}function closeLightbox(){document.getElementById('imageLightbox').classList.remove('open')}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});</script>
+<script src="../../assets/js/project-system.js"></script>
+</body></html>
